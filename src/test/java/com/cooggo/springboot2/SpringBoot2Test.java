@@ -1,11 +1,13 @@
 package com.cooggo.springboot2;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  * SpringBoot2Test
@@ -21,7 +23,16 @@ public class SpringBoot2Test {
     private String springProfilesActive;
 
     @Test
-    public void testHello() {
-        Assert.assertEquals("dev", springProfilesActive);
+    public void testExecute() throws Exception {
+        // chcp 65001
+        String commandString = "ipconfig /all";
+        Process process = Runtime.getRuntime().exec(commandString);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line = null;
+        while (null != (line = reader.readLine())) {
+            System.out.println(line);
+        }
+        reader.close();
+        process.waitFor();
     }
 }
