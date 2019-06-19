@@ -1,4 +1,4 @@
-group 'com.cooggo'
+group 'com.incarcloud'
 version '0.1.0-SNAPSHOT'
 
 apply plugin: 'java'
