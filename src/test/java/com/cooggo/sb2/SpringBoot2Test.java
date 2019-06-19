@@ -1,4 +1,4 @@
-package com.cooggo.springboot2;
+package com.cooggo.sb2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

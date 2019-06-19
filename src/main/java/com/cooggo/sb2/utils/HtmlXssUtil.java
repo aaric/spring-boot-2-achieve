@@ -1,4 +1,6 @@
-package com.cooggo.springboot2.utils;
+package com.cooggo.sb2.utils;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
@@ -9,6 +11,35 @@ import java.util.regex.Pattern;
  * @since 0.0.2-SNAPSHOT
  */
 public final class HtmlXssUtil {
+
+
+    /**
+     * HTML Sensitive Words
+     */
+    private static final String[] keyWords = {
+            "alert", "prompt", "confirm", "script", "javascript", "action", "formaction", "location", "name", "poster",
+            "data", "code", "lowsrc", "bgsound", "href", "onload", "onunload", "onblur", "onchange", "onfocus",
+            "onreset", "onselect", "onkeydown", "onkeypress", "onkeyup", "onclick", "ondblclick", "onmousedown", "onmousemove",
+            "onmouseout", "onmouseover", "onmouseup", "onabort", "onwaiting"
+    };
+
+    /**
+     * 过滤HTML敏感词汇
+     *
+     * @param htmlText HTML文本内容
+     * @return
+     */
+    private static String processKeyWords(String htmlText) {
+        if (StringUtils.isEmpty(htmlText)) {
+            return "";
+        }
+        for (String s : keyWords) {
+            if (htmlText.contains(s)) {
+                htmlText = htmlText.replace(s, "_" + s);
+            }
+        }
+        return htmlText;
+    }
 
     /**
      * 过滤HTML Javascript危险标签和代码
@@ -63,6 +94,9 @@ public final class HtmlXssUtil {
             // Remove any lonesome <iframe ...> tag
             scriptPattern = Pattern.compile("<iframe(.*?)>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             value = scriptPattern.matcher(value).replaceAll("");
+
+            // Handling Sensitive Words
+            value = processKeyWords(value);
         }
         return value;
     }

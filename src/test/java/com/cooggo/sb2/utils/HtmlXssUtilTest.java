@@ -1,4 +1,4 @@
-package com.cooggo.springboot2.utils;
+package com.cooggo.sb2.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -22,7 +22,7 @@ public class HtmlXssUtilTest {
 
         String result = HtmlXssUtil.stripXSS(htmlText);
         System.out.println(result);
-        Assert.assertEquals("alert('hello')<p>hello</p><s>alert('hello')<p>hello</p>alert('hello')somethingxxx", result);
+        Assert.assertEquals("_alert('hello')<p>hello</p><s>_alert('hello')<p>hello</p>_alert('hello')somethingxxx", result);
     }
 
     @Test
