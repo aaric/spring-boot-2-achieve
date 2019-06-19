@@ -1,4 +1,4 @@
-package com.cooggo.springboot2;
+package com.incarcloud.sb2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
