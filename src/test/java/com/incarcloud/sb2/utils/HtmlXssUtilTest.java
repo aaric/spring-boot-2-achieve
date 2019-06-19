@@ -1,4 +1,4 @@
-package com.cooggo.sb2.utils;
+package com.incarcloud.sb2.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
