@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * com.cooggo.springboot2.utils
+ * HtmlXssUtilTest
  *
  * @author Aaric, created on 2019-04-30T14:05.
  * @since 0.0.2-SNAPSHOT
@@ -26,16 +26,16 @@ public class HtmlXssUtilTest {
     }
 
     @Test
-    public void testFileExt() {
+    public void testValidateFileExt() {
         String fileName = "hello.png";
-        System.out.println(StringUtils.isNotBlank(fileName));
-        System.out.println(-1 != StringUtils.indexOf(fileName, "."));
-        System.out.println(-1 != StringUtils.lastIndexOf(fileName, ".png"));
+        Assert.assertTrue(StringUtils.isNotBlank(fileName));
+        Assert.assertTrue(-1 != StringUtils.indexOf(fileName, "."));
+        Assert.assertTrue(-1 != StringUtils.lastIndexOf(fileName, ".png"));
 
+        boolean flag = true;
         if (!(StringUtils.endsWith(fileName, ".jpg") || StringUtils.endsWith(fileName, ".png"))) {
-            System.out.println("error");
-        } else {
-            System.out.println("ok");
+            flag = false;
         }
+        Assert.assertTrue(flag);
     }
 }

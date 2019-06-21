@@ -1,0 +1,4 @@
+dependencies {
+    compile project(":sb2-service")
+    compile project(":sb2-web")
+}
