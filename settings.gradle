@@ -1,1 +1,9 @@
-rootProject.name = 'spring-boot-2-achieve'
+include 'sb2-common'
+include 'sb2-pojo'
+include 'sb2-service'
+include 'sb2-web'
+include 'sb2-web-app'
+include 'sb2-web-plat'
+include 'sb2-cmd-task'
+
+rootProject.name = 'sb2-achieve'
