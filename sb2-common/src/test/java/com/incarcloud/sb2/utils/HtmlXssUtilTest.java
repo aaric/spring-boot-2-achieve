@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * com.cooggo.springboot2.utils
+ * HtmlXssUtilTest
  *
  * @author Aaric, created on 2019-04-30T14:05.
  * @since 0.0.2-SNAPSHOT
