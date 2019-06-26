@@ -6,4 +6,4 @@ include 'sb2-web-app'
 include 'sb2-web-plat'
 include 'sb2-cmd-task'
 
-rootProject.name = 'sb2-achieve'
+rootProject.name = 'spring-boot-2-achieve'

@@ -1,4 +1,6 @@
+apply plugin: 'org.springframework.boot'
+
 dependencies {
-    compile project(":sb2-service")
     compile project(":sb2-web")
+    compile project(":sb2-service")
 }
