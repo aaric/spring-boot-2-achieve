@@ -26,7 +26,7 @@ public class Swagger2Configuration extends DefaultSwagger2Configuration {
                 .groupName("v1")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.incarcloud.sb2"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.regex("/api/app/.*"))
                 .build();
     }
 }
