@@ -1,6 +1,6 @@
 # Tomcat settings
 server:
-  port: ${TOMCAT_PLAT_PORT:9080}
+  port: ${TOMCAT_PLAT_PORT:9090}
   context-path: /
   compression:
     enabled: true
@@ -12,7 +12,7 @@ server:
 spring:
   profiles:
     active: dev
-      http:
-  multipart:
-    max-file-size: ${HTTP_MULTIPART_MAX_FILE_SIZE:100MB}
-    max-request-size: ${HTTP_MULTIPART_MAX_REQUEST_SIZE:100MB}
+  http:
+    multipart:
+      max-file-size: ${HTTP_MULTIPART_MAX_FILE_SIZE:100MB}
+      max-request-size: ${HTTP_MULTIPART_MAX_REQUEST_SIZE:100MB}
