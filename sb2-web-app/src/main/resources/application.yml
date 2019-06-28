@@ -1,6 +1,6 @@
 # Tomcat settings
 server:
-  port: ${TOMCAT_PLAT_PORT:9090}
+  port: ${TOMCAT_PLAT_PORT:9080}
   context-path: /
   compression:
     enabled: true
@@ -16,3 +16,16 @@ spring:
     multipart:
       max-file-size: ${HTTP_MULTIPART_MAX_FILE_SIZE:100MB}
       max-request-size: ${HTTP_MULTIPART_MAX_REQUEST_SIZE:100MB}
+
+# Incar settings
+incar:
+  document:
+    api:
+      title: 英卡SB2示例项目在线API文档（APP端）
+      description: 本文档包含手机端全部业务接口，注意保密。
+      service-url: http://localhost:9080/doc.html
+      version: 0.2.1-SNAPSHOT
+    author:
+      name: 英卡科技
+      website-url: www.incarcloud.com
+      email: incar@incarcloud.com
