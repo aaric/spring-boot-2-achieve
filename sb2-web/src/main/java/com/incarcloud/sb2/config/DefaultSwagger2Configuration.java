@@ -1,6 +1,8 @@
 package com.incarcloud.sb2.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.incarcloud.sb2.config.settings.DocumentApiProperties;
+import com.incarcloud.sb2.config.settings.DocumentAuthorProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
@@ -20,34 +22,19 @@ import java.util.List;
  */
 public abstract class DefaultSwagger2Configuration {
 
-    @Value("${incar.document.api.title}")
-    private String apiDocTitle;
+    @Autowired
+    protected DocumentApiProperties documentApiProperties;
 
-    @Value("${incar.document.api.description}")
-    private String apiDocDescription;
-
-    @Value("${incar.document.api.service-url}")
-    private String apiDocServiceUrl;
-
-    @Value("${incar.document.api.version}")
-    private String apiDocVersion;
-
-    @Value("${incar.document.author.name}")
-    private String authorName;
-
-    @Value("${incar.document.author.website-url}")
-    private String authorWebsiteUrl;
-
-    @Value("${incar.document.author.email}")
-    private String authorEmail;
+    @Autowired
+    protected DocumentAuthorProperties documentAuthorProperties;
 
     protected ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(apiDocTitle)
-                .description(apiDocDescription)
-                .termsOfServiceUrl(apiDocServiceUrl)
-                .version(apiDocVersion)
-                .contact(new Contact(authorName, authorWebsiteUrl, authorEmail))
+                .title(documentApiProperties.getTitle())
+                .description(documentApiProperties.getDescription())
+                .termsOfServiceUrl(documentApiProperties.getServiceUrl())
+                .version(documentApiProperties.getVersion())
+                .contact(new Contact(documentAuthorProperties.getName(), documentAuthorProperties.getWebsiteUrl(), documentAuthorProperties.getEmail()))
                 .build();
     }
 

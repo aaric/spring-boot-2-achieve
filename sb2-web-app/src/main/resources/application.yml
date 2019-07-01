@@ -24,8 +24,4 @@ incar:
       title: 英卡SB2示例项目在线API文档（APP端）
       description: 本文档包含手机端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
-      version: 0.2.1-SNAPSHOT
-    author:
-      name: 英卡科技
-      website-url: www.incarcloud.com
-      email: incar@incarcloud.com
+      version: 0.2.2-SNAPSHOT
