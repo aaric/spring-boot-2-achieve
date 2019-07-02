@@ -20,7 +20,7 @@ import java.util.List;
  * @author Aaric, created on 2019-06-27T17:27.
  * @since 0.2.1-SNAPSHOT
  */
-public abstract class DefaultSwagger2Configuration {
+public abstract class Swagger2ConfigurationSupport {
 
     @Autowired
     protected DocumentApiProperties documentApiProperties;
