@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Aaric, created on 2019-07-03T12:40.
  * @since 0.3.0-SNAPSHOT
  */
-@Api(tags = "测试框架模块API")
+@Api(description = "测试框架模块API")
 public interface TestApi {
 
     @ApiOperation(value = "验证国际化配置")
