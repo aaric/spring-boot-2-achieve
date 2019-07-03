@@ -17,6 +17,9 @@ import java.util.Map;
 @Api(tags = "测试框架模块API")
 public interface TestApi {
 
+    @ApiOperation(value = "国际化验证")
+    Map<String, Object> i18n();
+
     @ApiOperation(value = "根据ID返回登录用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "登录用户信息ID", dataType = "int", paramType = "path", required = true, example = "1")

@@ -2,6 +2,9 @@ package com.incarcloud.sb2.controller.test.controller;
 
 import com.incarcloud.sb2.controller.test.api.TestApi;
 import com.incarcloud.sb2.dto.user.LoginUserDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -16,6 +19,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/plat/test")
 public class TestController implements TestApi {
+
+    @Autowired
+    private MessageSource messageSource;
+
+    @Override
+    public Map<String, Object> i18n() {
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("message", messageSource.getMessage("default.success", null, LocaleContextHolder.getLocale()));
+        return returnData;
+    }
 
     @Override
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)

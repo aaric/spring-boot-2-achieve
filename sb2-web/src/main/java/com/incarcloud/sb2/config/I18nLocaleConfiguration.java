@@ -17,7 +17,7 @@ import java.util.Locale;
  * @author Aaric, created on 2019-07-02T17:46.
  * @since 0.3.0-SNAPSHOT
  */
-@Configuration
+//@Configuration
 public class I18nLocaleConfiguration extends WebMvcConfigurationSupport {
 
     @Bean
