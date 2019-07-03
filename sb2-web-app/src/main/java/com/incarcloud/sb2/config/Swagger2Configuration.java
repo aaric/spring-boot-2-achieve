@@ -23,7 +23,7 @@ public class Swagger2Configuration extends Swagger2ConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .globalOperationParameters(globalOperationParameters())
-                .groupName("v1")
+                /*.groupName("v1")*/
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.incarcloud.sb2"))
                 .paths(PathSelectors.regex("/api/app/.*"))

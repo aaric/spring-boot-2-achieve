@@ -1,6 +1,6 @@
-package com.incarcloud.sb2.controller.test.controller;
+package com.incarcloud.sb2.test.controller;
 
-import com.incarcloud.sb2.controller.test.api.TestApi;
+import com.incarcloud.sb2.test.api.TestApi;
 import com.incarcloud.sb2.dto.user.LoginUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -24,6 +24,7 @@ public class TestController implements TestApi {
     private MessageSource messageSource;
 
     @Override
+    @RequestMapping(value = "/i18n", method = RequestMethod.GET)
     public Map<String, Object> i18n() {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");

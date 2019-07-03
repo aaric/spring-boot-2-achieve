@@ -43,9 +43,9 @@ public abstract class Swagger2ConfigurationSupport {
 
         parameterBuilder.name(LocaleChangeInterceptor.DEFAULT_PARAM_NAME)
                 .description("地区语言代码，默认zh_CN(简体中文), en_US(英文)")
-                .defaultValue("zh_CN")
                 .modelRef(new ModelRef("string"))
                 .parameterType("query")
+                .defaultValue("zh_CN")
                 .required(false);
 
         List<Parameter> parameters = new ArrayList<Parameter>();
