@@ -28,4 +28,4 @@ incar:
       title: 英卡SB2示例项目在线API文档（APP端）
       description: 本文档包含手机端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
-      version: 0.3.1-SNAPSHOT
+      version: 0.3.2-SNAPSHOT
