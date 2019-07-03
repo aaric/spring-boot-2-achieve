@@ -1,4 +1,4 @@
-package com.incarcloud.sb2.controller.test.api;
+package com.incarcloud.sb2.test.api;
 
 import com.incarcloud.sb2.dto.user.LoginUserDto;
 import io.swagger.annotations.Api;
@@ -14,8 +14,11 @@ import java.util.Map;
  * @author Aaric, created on 2019-06-26T15:35.
  * @since 0.2.1-SNAPSHOT
  */
-@Api(tags = "测试框架模块API")
+@Api(description = "测试框架模块API")
 public interface TestApi {
+
+    @ApiOperation(value = "验证国际化配置")
+    Map<String, Object> i18n();
 
     @ApiOperation(value = "根据ID返回登录用户信息")
     @ApiImplicitParams({

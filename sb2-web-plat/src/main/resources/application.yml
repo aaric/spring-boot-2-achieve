@@ -16,6 +16,10 @@ spring:
     multipart:
       max-file-size: ${HTTP_MULTIPART_MAX_FILE_SIZE:100MB}
       max-request-size: ${HTTP_MULTIPART_MAX_REQUEST_SIZE:100MB}
+  messages:
+    basename: i18n/tips
+    cache-duration: 86400
+    encoding: UTF-8
 
 # Incar settings
 incar:
@@ -24,4 +28,4 @@ incar:
       title: 英卡SB2示例项目在线API文档（平台端）
       description: 本文档包含平台端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
-      version: 0.2.2-SNAPSHOT
+      version: 0.3.1-SNAPSHOT
