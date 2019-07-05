@@ -37,7 +37,7 @@ public class TestController implements TestApi {
     public Map<String, Object> get(@PathVariable("id") Integer id) {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
-        returnData.put("data", new LoginUserDto("root", "root"));
+        returnData.put("data", new LoginUserDto("root", "root", "root@incarcloud.com"));
         return returnData;
     }
 
