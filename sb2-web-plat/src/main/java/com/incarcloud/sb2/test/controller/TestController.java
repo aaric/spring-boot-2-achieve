@@ -7,6 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +44,7 @@ public class TestController implements TestApi {
 
     @Override
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Map<String, Object> login(@RequestBody LoginUserDto loginUserDto) {
+    public Map<String, Object> login(@Valid @RequestBody LoginUserDto loginUserDto) {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
         returnData.put("data", loginUserDto);
