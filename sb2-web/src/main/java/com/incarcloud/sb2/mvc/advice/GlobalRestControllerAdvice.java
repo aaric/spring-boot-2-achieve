@@ -21,7 +21,7 @@ public class GlobalRestControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public Map<String, Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fliedName = ((FieldError) error).getField();
@@ -33,6 +33,6 @@ public class GlobalRestControllerAdvice {
         returnData.put("code", "0001");
         returnData.put("data", errors);
 
-        return errors;
+        return returnData;
     }
 }

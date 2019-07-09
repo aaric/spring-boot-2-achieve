@@ -15,14 +15,14 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 import java.util.Locale;
 
 /**
- * 国际化配置
+ * 本地化配置
  *
  * @author Aaric, created on 2019-07-02T17:46.
  * @since 0.3.0-SNAPSHOT
  */
 @Configuration
 @ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
-public class I18nLocaleConfiguration extends WebMvcConfigurationSupport {
+public class GlobalLocaleConfiguration extends WebMvcConfigurationSupport {
 
     @Bean
     @ConditionalOnMissingBean(LocaleResolver.class)

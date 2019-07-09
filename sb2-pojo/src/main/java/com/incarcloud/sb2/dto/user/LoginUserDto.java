@@ -4,9 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * 登录用户信息DTO
@@ -18,13 +17,11 @@ import javax.validation.constraints.NotBlank;
 public class LoginUserDto {
 
     @NotBlank(message = "{validate.login.user.username.not.blank}") //用户名不能为空
-    @Min(value = 5, message = "{validate.login.user.username.min5}") //用户名最少5个字符
-    @Max(value = 10, message = "{validate.login.user.username.max10}") //用户名最多10个字符
+    @Size(min = 5, max = 10, message = "{validate.login.user.username.size}") //用户名要求5-10个字符
     @ApiModelProperty(position = 1, value = "用户名", example = "root", required = true)
     private String username;
 
-    @Min(value = 8, message = "{validate.login.user.password.min8}") //密码最少8个字符
-    @Max(value = 32, message = "{validate.login.user.password.max32}") //密码最多32个字符
+    @Size(min = 5, max = 10, message = "{validate.login.user.password.size}") //密码要求8-32个字符
     @ApiModelProperty(position = 2, value = "登录密码", example = "root", required = true)
     private String password;
 
