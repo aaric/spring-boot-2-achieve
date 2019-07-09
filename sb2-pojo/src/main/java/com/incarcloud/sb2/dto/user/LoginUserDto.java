@@ -16,16 +16,16 @@ import javax.validation.constraints.Size;
 @ApiModel(description = "登录用户信息")
 public class LoginUserDto {
 
-    @NotBlank(message = "{validate.login.user.username.not.blank}") //用户名不能为空
-    @Size(min = 5, max = 10, message = "{validate.login.user.username.size}") //用户名要求5-10个字符
+    @NotBlank(message = "{validate.login-user.username.not-blank}") //用户名不能为空
+    @Size(min = 5, max = 10, message = "{validate.login-user.username.size}") //用户名要求5-10个字符
     @ApiModelProperty(position = 1, value = "用户名", example = "root", required = true)
     private String username;
 
-    @Size(min = 5, max = 10, message = "{validate.login.user.password.size}") //密码要求8-32个字符
+    @Size(min = 5, max = 10, message = "{validate.login-user.password.size}") //密码要求8-32个字符
     @ApiModelProperty(position = 2, value = "登录密码", example = "root", required = true)
     private String password;
 
-    @Email(message = "{validate.login.user.email}") //邮箱格式不正确
+    @Email(message = "{validate.login-user.email.error}") //邮箱格式不正确
     @ApiModelProperty(position = 2, value = "登录密码", example = "root", required = true)
     private String email;
 
