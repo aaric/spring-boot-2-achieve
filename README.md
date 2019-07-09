@@ -4,4 +4,4 @@ Spring Boot 2.x Learning.
 ## 更新日志
 - 1.集成Swagger2组件，指定SwaggerBootstrapUi配置(版本：0.2.2-SNAPSHOT)；
 - 2.支持国际化，使用I18nLocaleConfiguration配置（版本：0.3.2-SNAPSHOT）。；
-- 3.支持数据校验，使用validation-api注解（版本：0.4.1-SNAPSHOT）。
+- 3.支持数据校验，使用validation-api注解（版本：0.4.2-SNAPSHOT）。

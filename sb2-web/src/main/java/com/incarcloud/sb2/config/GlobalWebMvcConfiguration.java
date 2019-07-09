@@ -1,9 +1,13 @@
 package com.incarcloud.sb2.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,14 +19,17 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 import java.util.Locale;
 
 /**
- * 本地化配置
+ * SpringMVC配置
  *
- * @author Aaric, created on 2019-07-02T17:46.
- * @since 0.3.0-SNAPSHOT
+ * @author Aaric, created on 2019-07-09T13:51.
+ * @since 0.4.1-SNAPSHOT
  */
 @Configuration
 @ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
-public class GlobalLocaleConfiguration extends WebMvcConfigurationSupport {
+public class GlobalWebMvcConfiguration extends WebMvcConfigurationSupport {
+
+    @Autowired
+    protected MessageSource messageSource;
 
     @Bean
     @ConditionalOnMissingBean(LocaleResolver.class)
@@ -47,5 +54,19 @@ public class GlobalLocaleConfiguration extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(Validator.class)
+    public Validator validator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        System.out.println("-->" + messageSource);
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+
+    @Override
+    protected Validator getValidator() {
+        return validator();
     }
 }
