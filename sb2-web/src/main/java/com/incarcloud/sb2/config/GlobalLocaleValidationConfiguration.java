@@ -1,10 +1,10 @@
 package com.incarcloud.sb2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
@@ -21,8 +21,9 @@ public class GlobalLocaleValidationConfiguration {
 
     @Bean
     //@ConditionalOnMissingBean(LocalValidatorFactoryBean.class)
-    public LocalValidatorFactoryBean localValidatorFactoryBean() {
+    public Validator validator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        //System.out.println("-->" + messageSource);
         bean.setValidationMessageSource(messageSource);
         return bean;
     }
