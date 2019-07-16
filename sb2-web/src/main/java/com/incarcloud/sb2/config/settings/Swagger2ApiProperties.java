@@ -1,13 +1,14 @@
 package com.incarcloud.sb2.config.settings;
 
+import com.incarcloud.sb2.share.Constant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * Swagger2在线文档API配置类<br>
  *
- * # Incar settings
- * incar:
+ * # Incarcloud settings
+ * incarcloud:
  *   document:
  *     api:
  *       title: 英卡示例项目在线API文档
@@ -19,8 +20,8 @@ import org.springframework.stereotype.Component;
  * @since 0.2.2-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = "incar.document.api")
-public class DocumentApiProperties {
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".swagger2.api")
+public class Swagger2ApiProperties {
 
     private static final String DEFAULT_TITLE = "英卡示例项目在线API文档";
 

@@ -1,11 +1,9 @@
 package com.incarcloud.sb2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
@@ -14,19 +12,16 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 
 import java.util.Locale;
 
 /**
- * SpringMVC配置
+ * 默认SpringMVC配置
  *
  * @author Aaric, created on 2019-07-09T13:51.
  * @since 0.4.1-SNAPSHOT
  */
-@Configuration
-@ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
-public class GlobalWebMvcConfiguration extends WebMvcConfigurationSupport {
+public abstract class DefaultWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
     @Autowired
     protected MessageSource messageSource;

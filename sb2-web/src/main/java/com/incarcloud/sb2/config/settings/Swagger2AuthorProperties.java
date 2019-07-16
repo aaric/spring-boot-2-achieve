@@ -1,13 +1,14 @@
 package com.incarcloud.sb2.config.settings;
 
+import com.incarcloud.sb2.share.Constant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * Swagger2在线文档开发者配置类<br>
  *
- * # Incar settings
- * incar:
+ * # Incarcloud settings
+ * incarcloud:
  *   document:
  *     author:
  *       name: 英卡科技
@@ -18,8 +19,8 @@ import org.springframework.stereotype.Component;
  * @since 0.2.2-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = "incar.document.author")
-public class DocumentAuthorProperties {
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".swagger2.author")
+public class Swagger2AuthorProperties {
 
     private static final String DEFAULT_NAME = "英卡科技";
 

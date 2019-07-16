@@ -21,11 +21,11 @@ spring:
     cache-duration: 86400
     encoding: UTF-8
 
-# Incar settings
-incar:
-  document:
+# Incarcloud settings
+incarcloud:
+  swagger2:
     api:
       title: 英卡SB2示例项目在线API文档（平台端）
       description: 本文档包含平台端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
-      version: 0.3.2-SNAPSHOT
+      version: 0.4.2-SNAPSHOT
