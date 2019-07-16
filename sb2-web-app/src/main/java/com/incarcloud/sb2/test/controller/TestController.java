@@ -29,7 +29,7 @@ public class TestController implements TestApi {
     public Map<String, Object> i18n() {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
-        returnData.put("message", messageSource.getMessage("tipsdefault.success", null, LocaleContextHolder.getLocale()));
+        returnData.put("message", messageSource.getMessage("tips.default.success", null, LocaleContextHolder.getLocale()));
         return returnData;
     }
 }

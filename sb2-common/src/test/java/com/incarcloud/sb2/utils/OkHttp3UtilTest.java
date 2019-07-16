@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 public class OkHttp3UtilTest {
 
     @Test
-    public void testShowDocList() throws Exception {
+    public void testShowApiNameList() throws Exception {
         // Init
-        int serverPort = 8080;
+        int serverPort = 9090;
         String serverHost = "127.0.0.1";
 
         // OkHttpClient3
@@ -56,9 +56,7 @@ public class OkHttp3UtilTest {
         if (null != apiNameList) {
             List<String> sortNameList = apiNameList.stream().distinct().sorted().collect(Collectors.toList());
             System.out.println(sortNameList.size());
-            sortNameList.forEach(object -> System.out.println(object.substring(0, 9)));
-            //sortNameList.forEach(object -> System.out.println(object.substring(10)));
-            //sortNameList.forEach(object -> System.out.println("车厂端-" + object.substring(10)));
+            sortNameList.forEach(object -> System.out.println(object));
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.incarcloud.sb2.test.controller;
 
-import com.incarcloud.sb2.test.api.TestApi;
 import com.incarcloud.sb2.dto.user.LoginUserDto;
+import com.incarcloud.sb2.test.api.TestApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -34,20 +34,20 @@ public class TestController implements TestApi {
     }
 
     @Override
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public Map<String, Object> validate(@Valid @RequestBody LoginUserDto loginUserDto) {
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("data", loginUserDto);
+        return returnData;
+    }
+
+    @Override
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public Map<String, Object> get(@PathVariable("id") Integer id) {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
         returnData.put("data", new LoginUserDto("root", "root", "root@incarcloud.com"));
-        return returnData;
-    }
-
-    @Override
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Map<String, Object> login(@Valid @RequestBody LoginUserDto loginUserDto) {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0000");
-        returnData.put("data", loginUserDto);
         return returnData;
     }
 }
