@@ -1,6 +1,13 @@
+apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile project(":sb2-common")
     compile project(":sb2-pojo")
+}
+
+buildscript {
+    dependencies {
+        classpath "org.flywaydb:flyway-gradle-plugin:5.2.4"
+    }
 }
