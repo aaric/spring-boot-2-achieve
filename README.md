@@ -35,5 +35,5 @@ sql> flush privileges;
 
 > [Migrations - Flyway by Boxfuse • Database Migrations Made Easy.](https://flywaydb.org/documentation/migrations "Flyway Documentation Online")
 
-![Flyway](.\flyway_naming.png "Flyway Naming Rule")
+![Flyway](https://github.com/aaric/spring-boot-2-achieve/raw/master/flyway_naming.png "Flyway Naming Rule")
 
