@@ -1,6 +1,3 @@
-apply plugin: 'org.springframework.boot'
-
 dependencies {
-    compile project(":sb2-common")
-    compile project(":sb2-pojo")
+    // add your dependencies
 }
