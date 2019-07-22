@@ -18,9 +18,7 @@ Spring Boot 2.x Learning.
 
 
 ## 三、其他
-### 3.1 使用数据库
-
-#### 3.1.1 MySQL建库语句
+### 3.1 MySQL建库语句
 
 > 注意: **MySQL 8.0** 以后，`charset`默认为`utf8mb4`非`latin1`，`collate`默认`utf8mb4_0900_ai_ci`。
 
@@ -31,7 +29,7 @@ sql> grant all privileges on testdb.* to 'testdb'@'%' identified by 'testdb' wit
 sql> flush privileges;
 ```
 
-#### 3.1.2 Flyway命名规范
+### 3.2 Flyway命名规范
 
 > [Migrations - Flyway by Boxfuse • Database Migrations Made Easy.](https://flywaydb.org/documentation/migrations "Flyway Documentation Online")
 
