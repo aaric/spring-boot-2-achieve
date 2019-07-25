@@ -1,6 +1,5 @@
 package com.incarcloud.sb2.utils;
 
-import junit.framework.TestCase;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,7 +10,7 @@ import org.junit.Test;
  * @author Aaric, created on 2019-04-30T14:05.
  * @since 0.0.2-SNAPSHOT
  */
-public class HtmlXssUtilTest extends TestCase {
+public class HtmlXssUtilTest {
 
     @Test
     public void testTripXSS() {
@@ -23,7 +22,7 @@ public class HtmlXssUtilTest extends TestCase {
 
         String result = HtmlXssUtil.stripXSS(htmlText);
         System.out.println(result);
-        assertEquals("_alert('hello')<p>hello</p><s>_alert('hello')<p>hello</p>_alert('hello')somethingxxx", result);
+        Assert.assertEquals("_alert('hello')<p>hello</p><s>_alert('hello')<p>hello</p>_alert('hello')somethingxxx", result);
     }
 
     @Test
@@ -37,6 +36,6 @@ public class HtmlXssUtilTest extends TestCase {
         if (!(StringUtils.endsWith(fileName, ".jpg") || StringUtils.endsWith(fileName, ".png"))) {
             flag = false;
         }
-        assertTrue(flag);
+        Assert.assertTrue(flag);
     }
 }

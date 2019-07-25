@@ -22,5 +22,12 @@ pipeline {
                 echo 'Hello, Deploy!'
             }
         }
+        stage('Post Mail') {
+            steps {
+                emailext to: 'qlhan@incarcloud.com',
+                    subject: 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName}',
+                    body: 'RESULT: ${currentBuild.result}'
+            }
+        }
     }
 }

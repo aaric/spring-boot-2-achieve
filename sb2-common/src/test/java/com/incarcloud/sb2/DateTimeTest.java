@@ -1,7 +1,7 @@
 package com.incarcloud.sb2;
 
-import junit.framework.TestCase;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.function.Function;
@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  * @author Aaric, created on 2019-07-25T10:51.
  * @since 0.6.0-SNAPSHOT
  */
-public class DateTimeTest extends TestCase {
+public class DateTimeTest {
 
     @Test
     public void testCompute() {
@@ -37,6 +37,9 @@ public class DateTimeTest extends TestCase {
         // 47985 | 109567
 
         // end
-        System.out.println("--> " + (System.nanoTime() - start) / 1_000_000);
+        long end = (System.nanoTime() - start) / 1_000_000;
+        System.out.println("--> " + end);
+
+        Assert.assertNotEquals(0, end);
     }
 }
