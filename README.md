@@ -36,3 +36,12 @@ sql> flush privileges;
 
 ![Flyway](https://github.com/aaric/spring-boot-2-achieve/raw/master/flyway_naming.png "Flyway Naming Rule")
 
+
+## 四、FAQ
+1. **建议MySQL使用`utf8mb`字符集的理由**
+    - 技术趋势。MySQL 8.0之后，已经将`utf8mb`设置为数据库默认字符集；
+    - 关注手机输入法，支持*emoji*表情存储，显得非常必要。
+
+2. **选择Security安全框架，弃用Shiro的理由**
+    - *Spring Boot*对*Security*框架的约定配置，很大程度上减小*Security*框架的集成难度；
+    - 以后支持*Spring Cloud*框架比较容易，使用*Apache Shiro*框架明显不合适了。
