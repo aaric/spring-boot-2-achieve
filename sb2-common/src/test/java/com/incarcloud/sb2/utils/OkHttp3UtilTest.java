@@ -2,9 +2,11 @@ package com.incarcloud.sb2.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import junit.framework.TestCase;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,9 +21,10 @@ import java.util.stream.Collectors;
  * @author Aaric, created on 2019-07-15T14:43.
  * @since 0.4.2-SNAPSHOT
  */
-public class OkHttp3UtilTest {
+public class OkHttp3UtilTest extends TestCase {
 
     @Test
+    @Ignore
     public void testShowApiNameList() throws Exception {
         // Init
         int serverPort = 9090;
@@ -53,10 +56,13 @@ public class OkHttp3UtilTest {
         //System.out.println(apiNameList.size());
 
         // Sort
+        List<String> sortNameList = null;
         if (null != apiNameList) {
-            List<String> sortNameList = apiNameList.stream().distinct().sorted().collect(Collectors.toList());
+            sortNameList = apiNameList.stream().distinct().sorted().collect(Collectors.toList());
             System.out.println(sortNameList.size());
             sortNameList.forEach(object -> System.out.println(object));
         }
+
+        assertNotNull(sortNameList);
     }
 }
