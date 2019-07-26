@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Post Mail') {
             steps {
-                emailext to: 'qlhan@incarcloud.com',
+                mail to: 'qlhan@incarcloud.com',
                     subject: 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName}',
                     body: 'RESULT: ${currentBuild.result}'
             }
