@@ -55,7 +55,7 @@ public abstract class DefaultWebMvcConfigurationSupport extends WebMvcConfigurat
     @ConditionalOnMissingBean(Validator.class)
     public Validator validator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        System.out.println("-->" + messageSource);
+        //System.out.println("-->" + messageSource);
         bean.setValidationMessageSource(messageSource);
         return bean;
     }

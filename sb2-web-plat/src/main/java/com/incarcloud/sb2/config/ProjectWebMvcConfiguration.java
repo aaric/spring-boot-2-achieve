@@ -1,9 +1,7 @@
 package com.incarcloud.sb2.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 
 /**
  * 项目SpringMVC配置
@@ -12,7 +10,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
  * @since 0.4.2-SNAPSHOT
  */
 @Configuration
-@ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
+//@ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
 public class ProjectWebMvcConfiguration extends DefaultWebMvcConfigurationSupport {
 
     @Override
