@@ -50,4 +50,34 @@ public class TestController implements TestApi {
         returnData.put("data", new LoginUserDto("root", "root", "root@incarcloud.com"));
         return returnData;
     }
+
+    @Override
+    @RequestMapping(value = "/authRedirect", method = RequestMethod.GET)
+    public Map<String, Object> authRedirect() {
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("message", "authRedirect");
+        return returnData;
+    }
+
+    @Override
+    @RequestMapping(value = "/authLogin", method = RequestMethod.GET)
+    public Map<String, Object> authLogin(@RequestBody LoginUserDto loginUserDto) {
+        System.out.println(loginUserDto);
+
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("message", "authLogin");
+        return returnData;
+    }
+
+    @Override
+    @RequestMapping(value = "/authLogout", method = RequestMethod.GET)
+    public Map<String, Object> authLogout() {
+
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("message", "authLogout");
+        return returnData;
+    }
 }

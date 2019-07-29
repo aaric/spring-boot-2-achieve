@@ -28,4 +28,13 @@ public interface TestApi {
             @ApiImplicitParam(name = "id", value = "登录用户信息ID", dataType = "int", paramType = "path", required = true, example = "1")
     })
     Map<String, Object> get(Integer id);
+
+    @ApiOperation(value = "安全框架->处理跳转")
+    Map<String, Object> authRedirect();
+
+    @ApiOperation(value = "安全框架->登录")
+    Map<String, Object> authLogin(LoginUserDto loginUserDto);
+
+    @ApiOperation(value = "安全框架->登出")
+    Map<String, Object> authLogout();
 }
