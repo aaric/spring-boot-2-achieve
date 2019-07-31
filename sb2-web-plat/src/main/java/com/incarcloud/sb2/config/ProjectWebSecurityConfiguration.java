@@ -3,6 +3,7 @@ package com.incarcloud.sb2.config;
 import com.alibaba.fastjson.JSON;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -57,7 +58,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                     returnData.put("message", "登录成功");
                     returnData.put("data", authentication.getPrincipal());
 
-                    response.setContentType("application/json;charset=utf-8");
+                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
                     PrintWriter output = response.getWriter();
                     output.write(JSON.toJSONString(returnData));
@@ -71,7 +72,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                     returnData.put("code", "0002");
                     returnData.put("message", "用户名或密码错误");
 
-                    response.setContentType("application/json;charset=utf-8");
+                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
                     PrintWriter output = response.getWriter();
                     output.write(JSON.toJSONString(returnData));
@@ -93,7 +94,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                     returnData.put("code", "0000");
                     returnData.put("message", "注销成功");
 
-                    response.setContentType("application/json;charset=utf-8");
+                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
                     PrintWriter output = response.getWriter();
                     output.write(JSON.toJSONString(returnData));
@@ -112,7 +113,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                     returnData.put("code", "0003");
                     returnData.put("message", "权限不足，禁止访问");
 
-                    response.setContentType("application/json;charset=utf-8");
+                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
                     PrintWriter output = response.getWriter();
                     output.write(JSON.toJSONString(returnData));
