@@ -48,7 +48,7 @@ sql> flush privileges;
 
 
 ## 五、附录
-1. ** Spring Security简易配置模板 **
+1. **Spring Security简易配置模板**
 ```java
 public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
