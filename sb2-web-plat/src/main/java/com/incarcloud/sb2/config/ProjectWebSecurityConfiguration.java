@@ -103,6 +103,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 })
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
+                /* 权限异常处理 */
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {  //定义访问失败后处理器
@@ -119,6 +120,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                     output.close();
 
                 })
+                /* CSRF */
                 .and()
                 .csrf().disable(); //关闭CSRF防护机制
     }
