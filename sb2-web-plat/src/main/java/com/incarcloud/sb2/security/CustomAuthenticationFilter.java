@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,10 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if(StringUtils.equals(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())) {
+
+        System.out.println("------->" + request.getContentType());
+
+        if(!StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())) {
             throw new AuthenticationServiceException("Authentication media type not supported: " + request.getContentType());
         }
 
@@ -34,7 +38,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         try(InputStream input = request.getInputStream()) {
             LoginUserInfo loginUserInfo = JSON.parseObject(IOUtils.toString(input), LoginUserInfo.class);
             System.out.println(loginUserInfo);
-            authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getV());
+            authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getP());
 
         } catch (IOException e) {
             e.printStackTrace();
