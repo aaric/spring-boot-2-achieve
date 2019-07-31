@@ -1,5 +1,7 @@
 package com.incarcloud.sb2.config;
 
+import com.incarcloud.sb2.security.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,7 +33,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers("/api/plat/test/authLogin", "/api/plat/test/authRedirect").permitAll() // 设置不拦截登录地址
+                .antMatchers("/api/plat/test/authLogin", "/api/plat/test/authRedirect", "/api/plat/test/authLoginFailure").permitAll() // 设置不拦截登录地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
@@ -38,8 +43,8 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .loginProcessingUrl("/api/plat/test/authLogin") //定义登录处理接口
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
-                .defaultSuccessUrl("/success") //定义登录成功后跳转地址
-                .failureUrl("/failure")
+                .defaultSuccessUrl("/api/plat/test/authLoginSuccess") //定义登录成功后跳转地址
+                .failureUrl("/api/plat/test/authLoginFailure")
                 /* 会话管理 */
                 .and()
                 .sessionManagement()
@@ -47,6 +52,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 /* 登出 */
                 .and().and()
                 .logout()
+                .logoutSuccessUrl("/api/plat/test/authLogout")
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
                 /*.and()

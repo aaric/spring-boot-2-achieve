@@ -61,7 +61,7 @@ public class TestController implements TestApi {
     }
 
     @Override
-    @RequestMapping(value = "/authLogin", method = RequestMethod.GET)
+    //@RequestMapping(value = "/authLogin", method = RequestMethod.GET)
     public Map<String, Object> authLogin(@RequestBody LoginUserDto loginUserDto) {
         System.out.println(loginUserDto);
 
@@ -72,7 +72,25 @@ public class TestController implements TestApi {
     }
 
     @Override
-    @RequestMapping(value = "/authLogout", method = RequestMethod.GET)
+    @RequestMapping(value = "/authLoginSuccess", method = RequestMethod.GET)
+    public Map<String, Object> authLoginSuccess() {
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0000");
+        returnData.put("message", "authLoginSuccess");
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/authLoginFailure", method = RequestMethod.GET)
+    public Map<String, Object> authLoginFailure() {
+        Map<String, Object> returnData = new HashMap<>();
+        returnData.put("code", "0002");
+        returnData.put("message", "authLoginFailure");
+        return null;
+    }
+
+    @Override
+    //@RequestMapping(value = "/authLogout", method = RequestMethod.GET)
     public Map<String, Object> authLogout() {
 
         Map<String, Object> returnData = new HashMap<>();

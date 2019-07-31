@@ -35,6 +35,12 @@ public interface TestApi {
     @ApiOperation(value = "安全框架->登录")
     Map<String, Object> authLogin(LoginUserDto loginUserDto);
 
+    @ApiOperation(value = "安全框架->登录成功")
+    Map<String, Object> authLoginSuccess();
+
+    @ApiOperation(value = "安全框架->登录失败")
+    Map<String, Object> authLoginFailure();
+
     @ApiOperation(value = "安全框架->登出")
     Map<String, Object> authLogout();
 }
