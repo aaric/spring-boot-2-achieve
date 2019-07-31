@@ -5,7 +5,6 @@ import com.incarcloud.sb2.security.CustomAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.ServletException;
@@ -71,7 +71,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 /* 权限异常处理 */
                 .and()
                 .exceptionHandling()
-                .accessDeniedHandler(this::accessDeniedHandler)
+                .authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //403-请求资源的访问被服务器拒绝
                 /* CSRF */
                 .and()
                 .csrf().disable(); //关闭CSRF防护机制
@@ -146,24 +146,6 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
         returnData.put("message", "注销成功");
-
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-        PrintWriter output = response.getWriter();
-        output.write(JSON.toJSONString(returnData));
-        output.flush();
-        output.close();
-    }
-
-    /**
-     * 定义访问失败后处理器
-     *
-     * @throws IOException
-     */
-    private void accessDeniedHandler(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0003");
-        returnData.put("message", "权限不足，禁止访问");
 
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
