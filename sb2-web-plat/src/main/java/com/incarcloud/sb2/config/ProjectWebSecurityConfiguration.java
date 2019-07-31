@@ -1,7 +1,6 @@
 package com.incarcloud.sb2.config;
 
-import com.incarcloud.sb2.security.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.fastjson.JSON;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,6 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 项目Spring Security配置
@@ -34,16 +37,6 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http.formLogin().loginPage("/api/plat/test/authRedirect") //定义登录页面
-                .loginProcessingUrl("/api/plat/test/authLogin") //定义登录处理接口
-                .and()
-                .authorizeRequests()
-                .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**", "/api/plat/test/authRedirect").permitAll() //设置所有人都可以访问在线文档
-                .anyRequest() //登录后可用访问任何请求
-                .authenticated()
-                .and()
-                .csrf().disable(); //关闭CSRF防护机制*/
-
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
@@ -57,8 +50,35 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .loginProcessingUrl("/api/plat/test/authLogin") //定义登录处理接口
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
-                .defaultSuccessUrl("/api/plat/test/authLoginSuccess") //定义登录成功后跳转地址
-                .failureUrl("/api/plat/test/authLoginFailure")
+                .successHandler((request, response, authentication) -> { //定义登录成功后处理器
+                    // 返回json数据
+                    Map<String, Object> returnData = new HashMap<>();
+                    returnData.put("code", "0000");
+                    returnData.put("message", "登录成功");
+                    returnData.put("data", authentication.getPrincipal());
+
+                    response.setContentType("application/json;charset=utf-8");
+
+                    PrintWriter output = response.getWriter();
+                    output.write(JSON.toJSONString(returnData));
+                    output.flush();
+                    output.close();
+
+                })
+                .failureHandler((request, response, exception) -> {  //定义登录失败后处理器
+                    // 返回json数据
+                    Map<String, Object> returnData = new HashMap<>();
+                    returnData.put("code", "0002");
+                    returnData.put("message", "用户名或密码错误");
+
+                    response.setContentType("application/json;charset=utf-8");
+
+                    PrintWriter output = response.getWriter();
+                    output.write(JSON.toJSONString(returnData));
+                    output.flush();
+                    output.close();
+
+                })
                 /* 会话管理 */
                 .and()
                 .sessionManagement()
@@ -67,10 +87,38 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .and().and()
                 .logout()
                 .logoutUrl("/api/plat/test/authLogout")
+                .logoutSuccessHandler((request, response, authentication) -> {  //定义注销成功后处理器
+                    // 返回json数据
+                    Map<String, Object> returnData = new HashMap<>();
+                    returnData.put("code", "0000");
+                    returnData.put("message", "注销成功");
+
+                    response.setContentType("application/json;charset=utf-8");
+
+                    PrintWriter output = response.getWriter();
+                    output.write(JSON.toJSONString(returnData));
+                    output.flush();
+                    output.close();
+
+                })
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
-                /*.and()
-                .httpBasic()*/
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler((request, response, accessDeniedException) -> {  //定义访问失败后处理器
+                    // 返回json数据
+                    Map<String, Object> returnData = new HashMap<>();
+                    returnData.put("code", "0003");
+                    returnData.put("message", "权限不足，禁止访问");
+
+                    response.setContentType("application/json;charset=utf-8");
+
+                    PrintWriter output = response.getWriter();
+                    output.write(JSON.toJSONString(returnData));
+                    output.flush();
+                    output.close();
+
+                })
                 .and()
                 .csrf().disable(); //关闭CSRF防护机制
     }
