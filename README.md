@@ -136,25 +136,10 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                     output.flush();
                     output.close();
 
-                })/* CSRF */
-                .and()
-                .csrf().disable(); //关闭CSRF防护机制
-
-        http.authorizeRequests()
-                /* 公共访问资源 */
-                .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers("/api/user/Login", "/api/user/Redirect").permitAll() // 设置不拦截登录地址
-                .anyRequest()
-                .authenticated()
-                /* 登录 */
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/api/user/Login")
+                })
                 /* CSRF */
                 .and()
                 .csrf().disable(); //关闭CSRF防护机制
-
-        http.addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
 ```
