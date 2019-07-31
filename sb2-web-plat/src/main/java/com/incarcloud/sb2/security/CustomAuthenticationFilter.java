@@ -22,7 +22,7 @@ import java.io.InputStream;
  * @author Aaric, created on 2019-07-31T15:31.
  * @since 0.6.0-SNAPSHOT
  */
-public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
