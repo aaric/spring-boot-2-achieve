@@ -2,9 +2,13 @@ package com.incarcloud.sb2.config;
 
 import com.incarcloud.sb2.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 项目Spring Security配置
@@ -15,8 +19,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+    //@Autowired
+    //private UserService userService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("admin");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -52,7 +66,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 /* 登出 */
                 .and().and()
                 .logout()
-                .logoutSuccessUrl("/api/plat/test/authLogout")
+                .logoutUrl("/api/plat/test/authLogout")
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
                 /*.and()
