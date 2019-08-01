@@ -64,7 +64,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 /* 登出 */
                 .and().and()
                 .logout()
-                .logoutUrl("/api/user/Logout")
+                .logoutUrl("/api/plat/test/authLogout")
                 .logoutSuccessHandler(this::logoutSuccessHandler)
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息

@@ -1,10 +1,8 @@
 package com.incarcloud.sb2.test.api;
 
 import com.incarcloud.sb2.dto.user.LoginUserDto;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import com.incarcloud.sb2.security.LoginUserInfo;
+import io.swagger.annotations.*;
 
 import java.util.Map;
 
@@ -21,6 +19,9 @@ public interface TestApi {
     Map<String, Object> i18n();
 
     @ApiOperation(value = "验证数据校验")
+    @ApiResponses({
+            @ApiResponse(code = 1, message = "0001-数据校验失败")
+    })
     Map<String, Object> validate(LoginUserDto loginUserDto);
 
     @ApiOperation(value = "根据ID返回登录用户信息")
@@ -33,5 +34,5 @@ public interface TestApi {
     Map<String, Object> authRedirect();
 
     @ApiOperation(value = "安全框架->登录")
-    Map<String, Object> authLogin(LoginUserDto loginUserDto);
+    Map<String, Object> fakeAuthLogin(LoginUserInfo loginUserInfo);
 }

@@ -1,6 +1,7 @@
 package com.incarcloud.sb2.test.controller;
 
 import com.incarcloud.sb2.dto.user.LoginUserDto;
+import com.incarcloud.sb2.security.LoginUserInfo;
 import com.incarcloud.sb2.test.api.TestApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -25,7 +26,7 @@ public class TestController implements TestApi {
     private MessageSource messageSource;
 
     @Override
-    @RequestMapping(value = "/i18n", method = RequestMethod.GET)
+    @GetMapping(value = "/i18n")
     public Map<String, Object> i18n() {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
@@ -34,7 +35,7 @@ public class TestController implements TestApi {
     }
 
     @Override
-    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    @PostMapping(value = "/validate")
     public Map<String, Object> validate(@Valid @RequestBody LoginUserDto loginUserDto) {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
@@ -43,7 +44,7 @@ public class TestController implements TestApi {
     }
 
     @Override
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/get/{id}")
     public Map<String, Object> get(@PathVariable("id") Integer id) {
         Map<String, Object> returnData = new HashMap<>();
         returnData.put("code", "0000");
@@ -61,13 +62,8 @@ public class TestController implements TestApi {
     }
 
     @Override
-    //@RequestMapping(value = "/authLogin", method = RequestMethod.GET)
-    public Map<String, Object> authLogin(@RequestBody LoginUserDto loginUserDto) {
-        System.out.println(loginUserDto);
-
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0000");
-        returnData.put("message", "authLogin");
-        return returnData;
+    @PostMapping(value = "/authLogin")
+    public Map<String, Object> fakeAuthLogin(@RequestBody LoginUserInfo loginUserInfo) {
+        throw new IllegalStateException("This method shouldn't be called. It's implemented by Spring Security filters.");
     }
 }

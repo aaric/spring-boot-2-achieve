@@ -3,7 +3,6 @@ package com.incarcloud.sb2.security;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,59 +42,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         } finally {
             setDetails(request, authRequest);
             return getAuthenticationManager().authenticate(authRequest);
-        }
-    }
-
-    static class LoginUserInfo {
-        private Long id;
-        private String u;
-        private String p;
-        private Long ts;
-        private String v;
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getU() {
-            return u;
-        }
-
-        public void setU(String u) {
-            this.u = u;
-        }
-
-        public String getP() {
-            return p;
-        }
-
-        public void setP(String p) {
-            this.p = p;
-        }
-
-        public Long getTs() {
-            return ts;
-        }
-
-        public void setTs(Long ts) {
-            this.ts = ts;
-        }
-
-        public String getV() {
-            return v;
-        }
-
-        public void setV(String v) {
-            this.v = v;
-        }
-
-        @Override
-        public String toString() {
-            return ToStringBuilder.reflectionToString(this);
         }
     }
 }
