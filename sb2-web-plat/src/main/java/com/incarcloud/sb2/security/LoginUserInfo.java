@@ -16,7 +16,7 @@ public class LoginUserInfo {
     @ApiModelProperty(position = 1, value = "用户名", example = "admin", required = true)
     private String u;
 
-    @ApiModelProperty(position = 1, value = "密码", example = "root", required = true)
+    @ApiModelProperty(position = 1, value = "密码", example = "admin", required = true)
     private String p;
 
     @ApiModelProperty(position = 1, value = "时间戳", example = "12346", required = true)
@@ -24,6 +24,14 @@ public class LoginUserInfo {
 
     @ApiModelProperty(position = 1, value = "校验字符串", example = "NA", required = true)
     private String v;
+
+    public LoginUserInfo() {
+    }
+
+    public LoginUserInfo(String u, String p) {
+        this.u = u;
+        this.p = p;
+    }
 
     public String getU() {
         return u;

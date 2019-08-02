@@ -1,7 +1,6 @@
 package com.incarcloud.sb2.test.controller;
 
 import com.incarcloud.sb2.dto.user.LoginUserDto;
-import com.incarcloud.sb2.security.LoginUserInfo;
 import com.incarcloud.sb2.test.api.TestApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -59,11 +58,5 @@ public class TestController implements TestApi {
         returnData.put("code", "0000");
         returnData.put("message", "authRedirect");
         return returnData;
-    }
-
-    @Override
-    @PostMapping(value = "/authLogin")
-    public Map<String, Object> fakeAuthLogin(@RequestBody LoginUserInfo loginUserInfo) {
-        throw new IllegalStateException("This method shouldn't be called. It's implemented by Spring Security filters.");
     }
 }

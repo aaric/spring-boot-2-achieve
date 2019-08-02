@@ -1,11 +1,17 @@
 package com.incarcloud.sb2.config;
 
+import com.incarcloud.sb2.security.Swagger2LoginOperations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.spring.web.plugins.DocumentationPluginsManager;
+import springfox.documentation.spring.web.scanners.ApiDescriptionReader;
+import springfox.documentation.spring.web.scanners.ApiListingScanner;
+import springfox.documentation.spring.web.scanners.ApiModelReader;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -28,5 +34,16 @@ public class ProjectSwagger2Configuration extends DefaultSwagger2ConfigurationSu
                 .apis(RequestHandlerSelectors.basePackage("com.incarcloud.sb2"))
                 .paths(PathSelectors.regex("/api/plat/.*"))
                 .build();
+    }
+
+    /**
+     * 追加Spring Security登录与注销操作
+     *
+     * @return
+     */
+    @Bean
+    @Primary
+    public ApiListingScanner addExtraOperations(ApiDescriptionReader apiDescriptionReader, ApiModelReader apiModelReader, DocumentationPluginsManager pluginsManager) {
+        return new Swagger2LoginOperations(apiDescriptionReader, apiModelReader, pluginsManager);
     }
 }
