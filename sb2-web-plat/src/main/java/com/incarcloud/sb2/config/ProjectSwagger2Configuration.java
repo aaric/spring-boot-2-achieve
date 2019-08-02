@@ -37,7 +37,7 @@ public class ProjectSwagger2Configuration extends DefaultSwagger2ConfigurationSu
     }
 
     /**
-     * 追加Spring Security登录与注销操作
+     * Spring Security登录与注销操作API
      *
      * @return
      */
