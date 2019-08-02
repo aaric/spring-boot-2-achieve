@@ -50,13 +50,4 @@ public class TestController implements TestApi {
         returnData.put("data", new LoginUserDto("root", "root", "root@incarcloud.com"));
         return returnData;
     }
-
-    @Override
-    @RequestMapping(value = "/authRedirect", method = RequestMethod.GET)
-    public Map<String, Object> authRedirect() {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0000");
-        returnData.put("message", "authRedirect");
-        return returnData;
-    }
 }

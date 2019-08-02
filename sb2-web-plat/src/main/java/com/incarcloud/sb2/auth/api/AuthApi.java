@@ -1,0 +1,37 @@
+package com.incarcloud.sb2.auth.api;
+
+import com.incarcloud.sb2.security.LoginUserInfo;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Map;
+
+/**
+ * 授权模块API
+ *
+ * @author Aaric, created on 2019-08-02T17:58.
+ * @since 0.6.0-SNAPSHOT
+ */
+public interface AuthApi {
+
+    @ApiOperation("登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "loginUserInfo", value = "登录用户信息", dataType = "LoginUserInfo", paramType = "body", required = true)
+    })
+    @PostMapping("/authLogin")
+    default void fakeLogin(@RequestBody LoginUserInfo loginUserInfo) {
+        throw new IllegalStateException("Add Spring Security to handle authentication");
+    };
+
+    @ApiOperation("注销登录")
+    @PostMapping("/logout")
+    default void fakeLogout() {
+        throw new IllegalStateException("Add Spring Security to handle authentication");
+    };
+
+    @ApiOperation("授权失败")
+    Map<String, Object> failure();
+}
