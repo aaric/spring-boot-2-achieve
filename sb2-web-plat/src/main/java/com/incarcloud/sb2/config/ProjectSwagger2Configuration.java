@@ -41,9 +41,9 @@ public class ProjectSwagger2Configuration extends DefaultSwagger2ConfigurationSu
      *
      * @return
      */
-    @Bean
-    @Primary
-    public ApiListingScanner addExtraOperations(ApiDescriptionReader apiDescriptionReader, ApiModelReader apiModelReader, DocumentationPluginsManager pluginsManager) {
-        return new Swagger2LoginOperations(apiDescriptionReader, apiModelReader, pluginsManager);
-    }
+//    @Bean
+//    @Primary
+//    public ApiListingScanner addExtraOperations(ApiDescriptionReader apiDescriptionReader, ApiModelReader apiModelReader, DocumentationPluginsManager pluginsManager) {
+//        return new Swagger2LoginOperations(apiDescriptionReader, apiModelReader, pluginsManager);
+//    }
 }

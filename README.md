@@ -68,32 +68,10 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
                 .successHandler((request, response, authentication) -> { //定义登录成功后处理器
-                    // 返回json数据
-                    Map<String, Object> returnData = new HashMap<>();
-                    returnData.put("code", "0000");
-                    returnData.put("message", "登录成功");
-                    returnData.put("data", authentication.getPrincipal());
-
-                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-                    PrintWriter output = response.getWriter();
-                    output.write(JSON.toJSONString(returnData));
-                    output.flush();
-                    output.close();
-
+                    // 自定义登录成功处理
                 })
                 .failureHandler((request, response, exception) -> {  //定义登录失败后处理器
-                    // 返回json数据
-                    Map<String, Object> returnData = new HashMap<>();
-                    returnData.put("code", "0002");
-                    returnData.put("message", "用户名或密码错误");
-
-                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-                    PrintWriter output = response.getWriter();
-                    output.write(JSON.toJSONString(returnData));
-                    output.flush();
-                    output.close();
+                    // 自定义登录失败处理
 
                 })
                 /* 会话管理 */
@@ -105,18 +83,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .logout()
                 .logoutUrl("/api/user/Logout")
                 .logoutSuccessHandler((request, response, authentication) -> {  //定义注销成功后处理器
-                    // 返回json数据
-                    Map<String, Object> returnData = new HashMap<>();
-                    returnData.put("code", "0000");
-                    returnData.put("message", "注销成功");
-
-                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-                    PrintWriter output = response.getWriter();
-                    output.write(JSON.toJSONString(returnData));
-                    output.flush();
-                    output.close();
-
+                    // 自定义注销成功处理
                 })
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
@@ -124,18 +91,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {  //定义访问失败后处理器
-                    // 返回json数据
-                    Map<String, Object> returnData = new HashMap<>();
-                    returnData.put("code", "0003");
-                    returnData.put("message", "权限不足，禁止访问");
-
-                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-                    PrintWriter output = response.getWriter();
-                    output.write(JSON.toJSONString(returnData));
-                    output.flush();
-                    output.close();
-
+                    // 自定义无权限访问处理
                 })
                 /* CSRF */
                 .and()

@@ -25,14 +25,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if(!StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())) {
+        if(!(StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())
+                || StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_VALUE, request.getContentType()))) {
             throw new AuthenticationServiceException("Authentication media type not supported: " + request.getContentType());
         }
 
         UsernamePasswordAuthenticationToken authRequest = null;
         try(InputStream input = request.getInputStream()) {
             LoginUserInfo loginUserInfo = JSON.parseObject(IOUtils.toString(input), LoginUserInfo.class);
-            System.out.println(loginUserInfo);
             authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getP());
 
         } catch (IOException e) {
