@@ -1,4 +1,4 @@
-package com.incarcloud.sb2.utils;
+package com.incarcloud.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

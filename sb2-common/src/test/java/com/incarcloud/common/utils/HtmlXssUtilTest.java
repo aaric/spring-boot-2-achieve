@@ -1,5 +1,6 @@
-package com.incarcloud.sb2.utils;
+package com.incarcloud.common.utils;
 
+import com.incarcloud.common.utils.HtmlXssUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;

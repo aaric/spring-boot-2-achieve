@@ -1,5 +1,6 @@
 package com.incarcloud.sb2.config;
 
+import com.incarcloud.mvc.config.AbstractWebMvcConfigurationSupport;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
  */
 @Configuration
 //@ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
-public class BizWebMvcConfiguration extends DefaultWebMvcConfigurationSupport {
+public class BizWebMvcConfiguration extends AbstractWebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {

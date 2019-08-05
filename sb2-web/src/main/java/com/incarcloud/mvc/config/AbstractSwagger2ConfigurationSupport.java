@@ -1,7 +1,7 @@
-package com.incarcloud.sb2.config;
+package com.incarcloud.mvc.config;
 
-import com.incarcloud.sb2.config.settings.Swagger2ApiProperties;
-import com.incarcloud.sb2.config.settings.Swagger2AuthorProperties;
+import com.incarcloud.mvc.config.settings.Swagger2ApiProperties;
+import com.incarcloud.mvc.config.settings.Swagger2AuthorProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,7 +20,7 @@ import java.util.List;
  * @author Aaric, created on 2019-06-27T17:27.
  * @since 0.2.1-SNAPSHOT
  */
-public abstract class DefaultSwagger2ConfigurationSupport {
+public abstract class AbstractSwagger2ConfigurationSupport {
 
     @Autowired
     protected Swagger2ApiProperties swagger2ApiProperties;

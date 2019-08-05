@@ -1,6 +1,6 @@
-package com.incarcloud.sb2.config.settings;
+package com.incarcloud.mvc.config.settings;
 
-import com.incarcloud.sb2.share.Constant;
+import com.incarcloud.common.share.Constant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

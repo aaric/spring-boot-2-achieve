@@ -1,5 +1,6 @@
 package com.incarcloud.sb2.config;
 
+import com.incarcloud.mvc.config.AbstractSwagger2ConfigurationSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -16,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-public class BizSwagger2Configuration extends DefaultSwagger2ConfigurationSupport {
+public class Swagger2Configuration extends AbstractSwagger2ConfigurationSupport {
 
     @Bean
     public Docket createRestApi() {

@@ -1,4 +1,4 @@
-package com.incarcloud.sb2.config;
+package com.incarcloud.mvc.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -21,7 +21,7 @@ import java.util.Locale;
  * @author Aaric, created on 2019-07-09T13:51.
  * @since 0.4.1-SNAPSHOT
  */
-public abstract class DefaultWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
+public abstract class AbstractWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
     @Autowired
     protected MessageSource messageSource;

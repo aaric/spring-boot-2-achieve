@@ -1,4 +1,4 @@
-package com.incarcloud.sb2;
+package com.incarcloud.common;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Assert;
