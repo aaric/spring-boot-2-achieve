@@ -1,9 +1,8 @@
 package com.incarcloud.sb2.test.api;
 
+import com.incarcloud.common.data.ResponseData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-import java.util.Map;
 
 /**
  * 测试框架模块API
@@ -15,5 +14,5 @@ import java.util.Map;
 public interface TestApi {
 
     @ApiOperation(value = "验证国际化配置")
-    Map<String, Object> i18n();
+    ResponseData<Object> i18n();
 }

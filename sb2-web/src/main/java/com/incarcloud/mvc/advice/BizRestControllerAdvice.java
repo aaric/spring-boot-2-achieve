@@ -1,5 +1,6 @@
 package com.incarcloud.mvc.advice;
 
+import com.incarcloud.common.data.ResponseData;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,7 +22,7 @@ public class BizRestControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseData<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fliedName = ((FieldError) error).getField();
@@ -29,10 +30,7 @@ public class BizRestControllerAdvice {
             errors.put(fliedName, errorMessage);
         });
 
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0001");
-        returnData.put("data", errors);
-
-        return returnData;
+        // 提示：数据校验失败
+        return ResponseData.error(ResponseData.ERROR_0021, errors).extraMsg("数据校验失败");
     }
 }

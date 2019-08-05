@@ -1,9 +1,8 @@
 package com.incarcloud.sb2.test.api;
 
+import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.sb2.dto.user.LoginUserDto;
 import io.swagger.annotations.*;
-
-import java.util.Map;
 
 /**
  * 测试框架模块API
@@ -15,7 +14,7 @@ import java.util.Map;
 public interface TestApi {
 
     @ApiOperation(value = "验证国际化配置")
-    Map<String, Object> i18n();
+    ResponseData<Object> i18n();
 
     @ApiOperation(value = "验证数据校验")
     @ApiImplicitParams({
@@ -24,11 +23,11 @@ public interface TestApi {
     @ApiResponses({
             @ApiResponse(code = 1, message = "0001-数据校验失败")
     })
-    Map<String, Object> validate(LoginUserDto loginUserDto);
+    ResponseData<Object> validate(LoginUserDto loginUserDto);
 
     @ApiOperation(value = "根据ID返回登录用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "登录用户信息ID", dataType = "int", paramType = "path", required = true, example = "1")
     })
-    Map<String, Object> get(Integer id);
+    ResponseData<LoginUserDto> get(Integer id);
 }

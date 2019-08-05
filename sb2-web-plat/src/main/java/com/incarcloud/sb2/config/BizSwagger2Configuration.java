@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-public class Swagger2Configuration extends AbstractSwagger2ConfigurationSupport {
+public class BizSwagger2Configuration extends AbstractSwagger2ConfigurationSupport {
 
     @Bean
     public Docket createRestApi() {
@@ -27,7 +27,7 @@ public class Swagger2Configuration extends AbstractSwagger2ConfigurationSupport 
                 /*.groupName("v1")*/
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.incarcloud.sb2"))
-                .paths(PathSelectors.regex("/api/app/.*"))
+                .paths(PathSelectors.regex("/api/plat/.*"))
                 .build();
     }
 }

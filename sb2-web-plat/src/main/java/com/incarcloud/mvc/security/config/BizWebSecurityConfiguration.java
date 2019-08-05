@@ -1,6 +1,7 @@
 package com.incarcloud.mvc.security.config;
 
 import com.alibaba.fastjson.JSON;
+import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.mvc.security.filter.BizAuthenticationFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
@@ -16,13 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 项目Spring Security配置
@@ -118,17 +116,8 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      * @throws IOException
      */
     private void loginSuccessHandler(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0000");
-        returnData.put("message", "登录成功");
-        returnData.put("data", authentication.getPrincipal());
-
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-        PrintWriter output = response.getWriter();
-        output.write(JSON.toJSONString(returnData));
-        output.flush();
-        output.close();
+        // 登录成功，返回身份信息
+        doResponse(response, ResponseData.ok(authentication.getPrincipal()));
     }
 
     /**
@@ -137,33 +126,27 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      * @throws IOException
      */
     private void loginFailureHandler(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0002");
-        returnData.put("message", "用户名或密码错误");
-
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-        PrintWriter output = response.getWriter();
-        output.write(JSON.toJSONString(returnData));
-        output.flush();
-        output.close();
+        // 登录失败，提示：用户名或密码错误
+        doResponse(response, ResponseData.error(ResponseData.ERROR_0032).extraMsg("用户名或密码错误"));
     }
 
     /**
      * 定义注销成功后处理器
      *
      * @throws IOException
-     * @throws ServletException
      */
     private void logoutSuccessHandler(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        Map<String, Object> returnData = new HashMap<>();
-        returnData.put("code", "0000");
-        returnData.put("message", "注销成功");
+        // 注销成功
+        doResponse(response, ResponseData.ok().extraMsg("注销成功"));
+    }
 
+    private <T> void doResponse(HttpServletResponse response, T data) throws IOException {
+        // 设置JSON数据格式
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
+        // 返回数据
         PrintWriter output = response.getWriter();
-        output.write(JSON.toJSONString(returnData));
+        output.write(JSON.toJSONString(data));
         output.flush();
         output.close();
     }

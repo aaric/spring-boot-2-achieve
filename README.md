@@ -15,7 +15,7 @@ Spring Boot 2.x Learning.
 2. 支持国际化，继承`AbstractWebMvcConfigurationSupport`配置（版本：0.3.2-SNAPSHOT）；
 3. 支持数据校验，使用`validation-api`注解（版本：0.4.2-SNAPSHOT）；
 4. 支持自动化的数据库版本管理，使用`Flyway`插件（版本：0.5.1-SNAPSHOT）；
-5. 集成Spring Security，实现简单授权控制-NoDB（0.6.2-SNAPSHOT）。
+5. 集成Spring Security，实现简单授权控制-NoDB（0.6.3-SNAPSHOT）。
 
 
 ## 三、其他

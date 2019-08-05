@@ -1,5 +1,6 @@
 package com.incarcloud.sb2.auth.api;
 
+import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.mvc.security.entity.LoginUserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * 登录授权模块API
@@ -36,5 +36,5 @@ public interface AuthApi {
     }
 
     @ApiOperation("当前登录用户")
-    Map<String, Object> current(HttpServletRequest request);
+    ResponseData<String> current(HttpServletRequest request);
 }
