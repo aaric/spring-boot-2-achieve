@@ -1,4 +1,4 @@
-package com.incarcloud.sb2.mvc.advice;
+package com.incarcloud.mvc.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @since 0.4.0-SNAPSHOT
  */
 @RestControllerAdvice
-public class GlobalRestControllerAdvice {
+public class BizRestControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

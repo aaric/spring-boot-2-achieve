@@ -5,5 +5,4 @@ dependencies {
     compile("com.github.xiaoymin:swagger-bootstrap-ui:1.9.4")
 
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 }

@@ -1,10 +1,7 @@
 package com.incarcloud.sb2.test.api;
 
 import com.incarcloud.sb2.dto.user.LoginUserDto;
-import com.incarcloud.sb2.security.LoginUserInfo;
 import io.swagger.annotations.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
 

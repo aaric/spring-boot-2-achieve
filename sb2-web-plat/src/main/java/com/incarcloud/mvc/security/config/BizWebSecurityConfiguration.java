@@ -1,7 +1,7 @@
-package com.incarcloud.sb2.config;
+package com.incarcloud.mvc.security.config;
 
 import com.alibaba.fastjson.JSON;
-import com.incarcloud.sb2.security.CustomAuthenticationFilter;
+import com.incarcloud.mvc.security.filter.BizAuthenticationFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,15 +31,12 @@ import java.util.Map;
  * @since 0.6.0-SNAPSHOT
  */
 @Configuration
-public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 默认授权路由前缀
      */
     private final static String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
-
-    //@Autowired
-    //private UserService userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,7 +45,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("$2a$10$5PkWw0ceheJxbLt0.RbAke609QgcB0SEOxjJG1XD5f88A8cC1slZa").roles("admin");
+        auth.inMemoryAuthentication().withUser("root").password("$2a$10$I8l1l4U7LyYVQGQDNbUH1eiQDG.n0SS6yuEcRl9SXVkTfBYhtc4sK").roles("root");
     }
 
     @Override
@@ -86,8 +83,8 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     }
 
     @Bean
-    public CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
-        CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
+    public BizAuthenticationFilter customAuthenticationFilter() throws Exception {
+        BizAuthenticationFilter filter = new BizAuthenticationFilter();
 
         // 设置登录处理接口地址
         filter.setFilterProcessesUrl(getApiRoute("/login"));

@@ -1,6 +1,7 @@
-package com.incarcloud.sb2.security;
+package com.incarcloud.mvc.security.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.incarcloud.mvc.security.entity.LoginUserInfo;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
@@ -16,12 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 自定义用户认证过滤器
+ * 自定义业务认证过滤器
  *
  * @author Aaric, created on 2019-07-31T15:31.
  * @since 0.6.0-SNAPSHOT
  */
-public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class BizAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {

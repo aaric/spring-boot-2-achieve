@@ -15,7 +15,7 @@ Spring Boot 2.x Learning.
 2. 支持国际化，继承`DefaultWebMvcConfigurationSupport`配置（版本：0.3.2-SNAPSHOT）；
 3. 支持数据校验，使用`validation-api`注解（版本：0.4.2-SNAPSHOT）；
 4. 支持自动化的数据库版本管理，使用`Flyway`插件（版本：0.5.1-SNAPSHOT）；
-5. 集成Spring Security，实现简单授权控制（0.6.0-SNAPSHOT）。
+5. 集成Spring Security，实现简单授权控制-NoDB（0.6.1-SNAPSHOT）。
 
 
 ## 三、其他
@@ -57,14 +57,14 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers("/api/user/Login", "/api/user/Redirect").permitAll() // 设置不拦截登录地址
+                .antMatchers("/api/auth/Login", "/api/auth/current").permitAll() // 设置不拦截登录地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage("/api/user/current") //定义登录页面
-                .loginProcessingUrl("/api/user/login") //定义登录处理接口
+                .loginPage("/api/auth/current") //定义登录页面
+                .loginProcessingUrl("/api/auth/login") //定义登录处理接口
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
                 .successHandler((request, response, authentication) -> { //定义登录成功后处理器
@@ -81,7 +81,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 /* 登出 */
                 .and().and()
                 .logout()
-                .logoutUrl("/api/user/logout")
+                .logoutUrl("/api/auth/logout")
                 .logoutSuccessHandler((request, response, authentication) -> {  //定义注销成功后处理器
                     // 自定义注销成功处理
                 })

@@ -6,12 +6,12 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 /**
  * 项目SpringMVC配置
  *
- * @author Aaric, created on 2019-07-16T11:21.
+ * @author Aaric, created on 2019-07-16T11:17.
  * @since 0.4.2-SNAPSHOT
  */
 @Configuration
 //@ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
-public class ProjectWebMvcConfiguration extends DefaultWebMvcConfigurationSupport {
+public class BizWebMvcConfiguration extends DefaultWebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {

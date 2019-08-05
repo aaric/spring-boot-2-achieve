@@ -1,8 +1,12 @@
-package com.incarcloud.sb2.security;
+package com.incarcloud.mvc.security.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 /**
  * 登录用户信息
@@ -11,15 +15,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @since 0.6.0-SNAPSHOT
  */
 @ApiModel(description = "登录用户信息")
-public class LoginUserInfo {
+public class LoginUserInfo implements UserDetails {
 
-    @ApiModelProperty(position = 1, value = "用户名", example = "admin", required = true)
+    @ApiModelProperty(position = 1, value = "用户名", example = "root", required = true)
     private String u;
 
-    @ApiModelProperty(position = 1, value = "密码", example = "admin", required = true)
+    @ApiModelProperty(position = 1, value = "密码", example = "root", required = true)
     private String p;
 
-    @ApiModelProperty(position = 1, value = "时间戳", example = "12346", required = true)
+    @ApiModelProperty(position = 1, value = "时间戳", example = "123456", required = true)
     private Long ts;
 
     @ApiModelProperty(position = 1, value = "校验字符串", example = "NA", required = true)
@@ -31,6 +35,41 @@ public class LoginUserInfo {
     public LoginUserInfo(String u, String p) {
         this.u = u;
         this.p = p;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return getP();
+    }
+
+    @Override
+    public String getUsername() {
+        return getU();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public String getU() {
