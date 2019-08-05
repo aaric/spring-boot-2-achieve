@@ -2,6 +2,7 @@ package com.incarcloud.sb2.config;
 
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.sb2.security.CustomAuthenticationFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -32,6 +33,11 @@ import java.util.Map;
 @Configuration
 public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 默认授权路由前缀
+     */
+    private final static String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
+
     //@Autowired
     //private UserService userService;
 
@@ -50,13 +56,13 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers("/api/plat/test/authLogin", "/api/plat/test/authRedirect").permitAll() // 设置不拦截登录地址
+                .antMatchers(getApiRoute("/login"), getApiRoute("/current")).permitAll() // 设置不拦截登录地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage("/api/plat/test/authRedirect") //定义登录页面
+                .loginPage(getApiRoute("/current")) //定义登录页面
                 /* 会话管理 */
                 .and()
                 .sessionManagement()
@@ -64,7 +70,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 /* 登出 */
                 .and().and()
                 .logout()
-                .logoutUrl("/api/plat/test/authLogout")
+                .logoutUrl(getApiRoute("/logout"))
                 .logoutSuccessHandler(this::logoutSuccessHandler)
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
@@ -84,7 +90,7 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
         CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
 
         // 设置登录处理接口地址
-        filter.setFilterProcessesUrl("/api/plat/test/authLogin");
+        filter.setFilterProcessesUrl(getApiRoute("/login"));
         //filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/plat/test/authLogin", "POST"));
 
         // 设置登录成功后处理器
@@ -97,6 +103,16 @@ public class ProjectWebSecurityConfiguration extends WebSecurityConfigurerAdapte
         filter.setAuthenticationManager(authenticationManagerBean());
 
         return filter;
+    }
+
+    /**
+     * 获得API路由字符串
+     *
+     * @param name 方法名称
+     * @return
+     */
+    private static String getApiRoute(String name) {
+        return StringUtils.appendIfMissing(DEFAULT_AUTH_ROUTE_PREFIX, name);
     }
 
     /**

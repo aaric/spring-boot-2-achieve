@@ -48,7 +48,7 @@ sql> flush privileges;
 
 
 ## 五、附录
-1. **Spring Security简易配置模板**
+1. **Spring Security配置参考**
 ```java
 public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -63,8 +63,8 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage("/api/user/Redirect") //定义登录页面
-                .loginProcessingUrl("/api/user/Login") //定义登录处理接口
+                .loginPage("/api/user/current") //定义登录页面
+                .loginProcessingUrl("/api/user/login") //定义登录处理接口
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
                 .successHandler((request, response, authentication) -> { //定义登录成功后处理器
@@ -81,7 +81,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 /* 登出 */
                 .and().and()
                 .logout()
-                .logoutUrl("/api/user/Logout")
+                .logoutUrl("/api/user/logout")
                 .logoutSuccessHandler((request, response, authentication) -> {  //定义注销成功后处理器
                     // 自定义注销成功处理
                 })
