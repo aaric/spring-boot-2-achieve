@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    environment {
+        HELLO_WORK = 'Hello, Pipeline!'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "${env.HELLO_WORK}"
+                echo 'Hello, Build!'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Hello, Test!'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello, Deploy!'
+            }
+        }
+        stage('Post Mail') {
+            steps {
+                mail to: 'qlhan@incarcloud.com',
+                    subject: 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName}',
+                    body: 'RESULT: ${currentBuild.result}'
+            }
+        }
+    }
+}
