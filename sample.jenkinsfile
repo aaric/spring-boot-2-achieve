@@ -1,33 +1,16 @@
-pipeline {
-    agent any
+node {
+   stage('Preparation') {
+        git branch: 'dev-aaric', url: 'https://github.com/aaric/spring-boot-2-achieve'
+   }
 
-    environment {
-        HELLO_WORK = 'Hello, Pipeline!'
-    }
+    stage('Build') {
+        // no 'java' --> sudo ln -s /usr/java/jdk1.8.0_172/bin/java /usr/bin/java
+        if (isUnix()) {
+            sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
+        }
+   }
 
-    stages {
-        stage('Build') {
-            steps {
-                echo "${env.HELLO_WORK}"
-                echo 'Hello, Build!'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Hello, Test!'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Hello, Deploy!'
-            }
-        }
-        stage('Post Mail') {
-            steps {
-                mail to: 'qlhan@incarcloud.com',
-                    subject: 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName}',
-                    body: 'RESULT: ${currentBuild.result}'
-            }
-        }
-    }
+   stage('Test Reports') {
+       junit '**/build/test-results/test/*.xml'
+   }
 }
