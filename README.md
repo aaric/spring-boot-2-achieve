@@ -56,8 +56,16 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 /* 公共访问资源 */
-                .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers("/api/auth/Login", "/api/auth/current").permitAll() // 设置不拦截登录地址
+                .antMatchers(
+                    "/swagger-resources",
+                    "/v2/api-docs",
+                    "/doc.html",
+                    "/webjars/bycdao-ui/**")
+                .permitAll() //设置所有人都可以访问在线文档
+                .antMatchers(
+                    "/api/auth/Login",
+                    "/api/auth/current")
+                .permitAll() // 设置不拦截登录地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
