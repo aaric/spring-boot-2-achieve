@@ -76,10 +76,10 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .usernameParameter("u") //定义用户名接收字段
                 .passwordParameter("p") //定义密码接收字段
                 .successHandler((request, response, authentication) -> { //定义登录成功后处理器
-                    // 自定义登录成功处理
+                    // 定义登录成功处理
                 })
                 .failureHandler((request, response, exception) -> {  //定义登录失败后处理器
-                    // 自定义登录失败处理
+                    // 定义登录失败处理
 
                 })
                 /* 会话管理 */
@@ -91,7 +91,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .logout()
                 .logoutUrl("/api/auth/logout")
                 .logoutSuccessHandler((request, response, authentication) -> {  //定义注销成功后处理器
-                    // 自定义注销成功处理
+                    // 定义注销成功处理
                 })
                 .invalidateHttpSession(true) //设置会话失效
                 .clearAuthentication(true) //清除认证信息
@@ -99,7 +99,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {  //定义访问失败后处理器
-                    // 自定义无权限访问处理
+                    // 定义无权限访问处理
                 })
                 /* CSRF */
                 .and()
