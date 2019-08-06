@@ -21,11 +21,6 @@ spring:
     cache-duration: 86400
     encoding: UTF-8
 
-# Security settings
-#security:
-#  basic:
-#    enabled: false
-
 # Incarcloud settings
 incarcloud:
   swagger2:

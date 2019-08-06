@@ -1,6 +1,7 @@
 package com.incarcloud.sb2.auth.controller;
 
 import com.incarcloud.common.data.ResponseData;
+import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.sb2.auth.api.AuthApi;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,23 +25,24 @@ public class AuthController implements AuthApi {
     /**
      * Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
      * if (!(authentication instanceof AnonymousAuthenticationToken)) {
-     * String currentUserName = authentication.getName();
-     * return currentUserName;
+     *     String currentUserName = authentication.getName();
+     *     return currentUserName;
      * }
      */
 
     @Override
     @RequestMapping(value = "/current", method = RequestMethod.GET)
-    public ResponseData<String> current(HttpServletRequest request) {
+    public ResponseData<String> current(HttpServletRequest request) throws ApiException {
+        // 获得当前登录用户名
         Optional<Principal> principal = Optional.ofNullable(request.getUserPrincipal());
         String userName = principal.map(Principal::getName).orElse(null);
 
-        // 返回用户信息
-        if (StringUtils.isNotEmpty(userName)) {
-            return ResponseData.ok(userName);
+        // 提示：用户未登录
+        if (StringUtils.isEmpty(userName)) {
+            throw new ApiException(ResponseData.ERROR_0031, "用户未登录");
         }
 
-        // 提示：权限不足
-        return ResponseData.error(ResponseData.ERROR_0031).extraMsg("权限不足");
+        // 返回用户信息
+        return ResponseData.ok(userName);
     }
 }

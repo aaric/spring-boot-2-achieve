@@ -2,11 +2,12 @@ package com.incarcloud.mvc.security.config;
 
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.common.data.ResponseData;
-import com.incarcloud.mvc.security.filter.BizAuthenticationFilter;
+import com.incarcloud.mvc.security.filter.CustomJsonAuthenticationFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +32,7 @@ import java.io.PrintWriter;
 public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
-     * 默认授权路由前缀
+     * 默认授权路由前缀字符串
      */
     private final static String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
 
@@ -72,17 +72,18 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* 权限异常处理 */
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //403-请求资源的访问被服务器拒绝
+                /*.authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //403-请求资源的访问被服务器拒绝*/
+                .accessDeniedHandler(this::accessDeniedHandler)
                 /* CSRF */
                 .and()
                 .csrf().disable(); //关闭CSRF防护机制
 
-        http.addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(customJsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    public BizAuthenticationFilter customAuthenticationFilter() throws Exception {
-        BizAuthenticationFilter filter = new BizAuthenticationFilter();
+    public CustomJsonAuthenticationFilter customJsonAuthenticationFilter() throws Exception {
+        CustomJsonAuthenticationFilter filter = new CustomJsonAuthenticationFilter();
 
         // 设置登录处理接口地址
         filter.setFilterProcessesUrl(getApiRoute("/login"));
@@ -127,7 +128,7 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     private void loginFailureHandler(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
         // 登录失败，提示：用户名或密码错误
-        doResponse(response, ResponseData.error(ResponseData.ERROR_0032).extraMsg("用户名或密码错误"));
+        doResponse(response, ResponseData.error(ResponseData.ERROR_0033).extraMsg("用户名或密码错误"));
     }
 
     /**
@@ -140,6 +141,21 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         doResponse(response, ResponseData.ok().extraMsg("注销成功"));
     }
 
+    /**
+     * 定义无权限访问处理器
+     *
+     * @throws IOException
+     */
+    private void accessDeniedHandler(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+        // 提示：权限不足
+        doResponse(response, ResponseData.error(ResponseData.ERROR_0032).extraMsg("权限不足"));
+    }
+
+    /**
+     * 处理请求
+     *
+     * @throws IOException
+     */
     private <T> void doResponse(HttpServletResponse response, T data) throws IOException {
         // 设置JSON数据格式
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);

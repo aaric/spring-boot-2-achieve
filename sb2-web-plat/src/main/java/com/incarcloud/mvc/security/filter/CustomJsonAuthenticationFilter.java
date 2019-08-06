@@ -17,22 +17,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 自定义业务认证过滤器
+ * 自定义JSON认证过滤器
  *
  * @author Aaric, created on 2019-07-31T15:31.
  * @since 0.6.0-SNAPSHOT
  */
-public class BizAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomJsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if(!(StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())
+        if (!(StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE, request.getContentType())
                 || StringUtils.endsWithIgnoreCase(MediaType.APPLICATION_JSON_VALUE, request.getContentType()))) {
             throw new AuthenticationServiceException("Authentication media type not supported: " + request.getContentType());
         }
 
         UsernamePasswordAuthenticationToken authRequest = null;
-        try(InputStream input = request.getInputStream()) {
+        try (InputStream input = request.getInputStream()) {
             LoginUserInfo loginUserInfo = JSON.parseObject(IOUtils.toString(input), LoginUserInfo.class);
             authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getP());
 

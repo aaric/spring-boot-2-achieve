@@ -26,12 +26,15 @@ public interface ResponseFailureState {
     /**
      * 0031 - 0050: 定义授权错误码
      */
-    // 权限不足
+    // 用户未登录
     String ERROR_0031 = "0031";
 
-    // 用户名不存在
+    // 权限不足
     String ERROR_0032 = "0032";
 
-    // 用户名或密码错误
+    // 用户名不存在
     String ERROR_0033 = "0033";
+
+    // 用户名或密码错误
+    String ERROR_0034 = "0034";
 }

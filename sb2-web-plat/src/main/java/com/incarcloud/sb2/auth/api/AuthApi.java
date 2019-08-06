@@ -1,11 +1,9 @@
 package com.incarcloud.sb2.auth.api;
 
 import com.incarcloud.common.data.ResponseData;
+import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.mvc.security.entity.LoginUserInfo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -36,5 +34,8 @@ public interface AuthApi {
     }
 
     @ApiOperation("当前登录用户")
-    ResponseData<String> current(HttpServletRequest request);
+    @ApiResponses({
+            @ApiResponse(code = 31, message = "用户未登录")
+    })
+    ResponseData<String> current(HttpServletRequest request) throws ApiException;
 }
