@@ -11,11 +11,12 @@ Spring Boot 2.x Learning.
 
 
 ## 二、`milestone-1.0`更新日志
-1. 集成Swagger2组件，指定`SwaggerBootstrapUi`风格(版本：0.2.2-SNAPSHOT)；
+1. 集成**Swagger2**组件，指定`SwaggerBootstrapUi`风格(版本：0.2.2-SNAPSHOT)；
 2. 支持国际化，继承`AbstractWebMvcConfigurationSupport`配置（版本：0.3.2-SNAPSHOT）；
 3. 支持数据校验，使用`validation-api`注解（版本：0.4.2-SNAPSHOT）；
 4. 支持自动化的数据库版本管理，使用`Flyway`插件（版本：0.5.1-SNAPSHOT）；
-5. 集成Spring Security，实现简单授权控制-NoDB（0.6.3-SNAPSHOT）。
+5. WEB端集成**Spring Security**，实现简单授权控制-NoDB（0.6.3-SNAPSHOT）；
+6. APP端集成**JWT**，支持JSON Token验证（0.7.0-SNAPSHOT）。
 
 
 ## 三、其他

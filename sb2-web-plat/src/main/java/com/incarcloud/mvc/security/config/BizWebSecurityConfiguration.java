@@ -87,7 +87,6 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // 设置登录处理接口地址
         filter.setFilterProcessesUrl(getApiRoute("/login"));
-        //filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/plat/test/authLogin", "POST"));
 
         // 设置登录成功后处理器
         filter.setAuthenticationSuccessHandler(this::loginSuccessHandler);
