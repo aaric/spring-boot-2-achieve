@@ -10,7 +10,8 @@ subprojects {
     targetCompatibility = JavaVersion.VERSION_1_8
 
     ext {
-        springBootVersion = "2.1.6.RELEASE"
+        springBootVersion = "2.1.+"
+        jjwtVersion = "0.10.+"
     }
 
     repositories {
