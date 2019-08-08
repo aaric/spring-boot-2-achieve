@@ -7,7 +7,7 @@ Spring Boot 2.x Learning.
 |:-:|:--:|:-----|:--:|:--|
 |1|`milestone-1.0`|基础集成与约定（**渗透测试+等保建议**）|开发中|需要区分WEB端和APP端技术细节|
 |2|`milestone-2.0`|WEB网站**机构-用户-权限**基础功能|未来|引入*Jenkins*进行*CI/CD*|
-|3|`milestone-3.0`|通用**核心业务**功能|未来||
+|3|`milestone-3.0`|通用**核心业务**功能|未来|JDK11+Gradle5.4+|
 
 
 ## 二、`milestone-1.0`更新日志
