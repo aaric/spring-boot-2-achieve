@@ -1,5 +1,6 @@
 package com.incarcloud.mvc.token.filter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,8 +21,20 @@ import java.io.IOException;
 @WebFilter(filterName = "bizWebJwtFilter", urlPatterns = "/api/app/**")
 public class BizWebJwtFilter extends OncePerRequestFilter {
 
+    /**
+     * 默认授权登录路由，设置所有人都可以访问
+     */
+    private final static String DEFAULT_AUTH_ROUTE_LOGIN = "/api/app/auth/login";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("path: " + request.getRequestURI());
+        // 验证用户Token信息
+        /*if (!StringUtils.equals(DEFAULT_AUTH_ROUTE_LOGIN, request.getRequestURI())) {
+            // TODO
+        }*/
+
+        // 权限验证成功，执行后面的操作
+        filterChain.doFilter(request, response);
     }
 }

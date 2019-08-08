@@ -1,7 +1,8 @@
 # Tomcat settings
 server:
   port: ${TOMCAT_PLAT_PORT:9080}
-  context-path: /
+  servlet:
+    context-path: /
   compression:
     enabled: true
   tomcat:

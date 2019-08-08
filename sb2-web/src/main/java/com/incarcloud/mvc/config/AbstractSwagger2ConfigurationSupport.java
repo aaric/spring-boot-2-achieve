@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 默认Swagger2默认配置
+ * 默认Swagger2配置
  *
  * @author Aaric, created on 2019-06-27T17:27.
  * @since 0.2.1-SNAPSHOT
