@@ -19,7 +19,6 @@ public interface AuthApi {
 
     @ApiOperation("登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "x-access-cid", value = "客户端ID", dataType = "string", paramType = "header", required = true),
             @ApiImplicitParam(name = "loginUserInfo", value = "登录用户信息", dataType = "LoginUserInfo", paramType = "body", required = true)
     })
     ResponseData<AuthTokenInfo> login(LoginUserInfo loginUserInfo, String cid);

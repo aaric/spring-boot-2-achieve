@@ -51,8 +51,8 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
         }
 
         // 获得客户端ID和Token字符串
-        String cid = request.getHeader(AuthJwtProperties.DEFAULT_CID_HEADER_NAME);
-        String token = request.getHeader(AuthJwtProperties.DEFAULT_TOKEN_HEADER_NAME);
+        String cid = request.getHeader(authJwtProperties.getCidHeaderName());
+        String token = request.getHeader(authJwtProperties.getTokenHeaderName());
 
         // 考虑未携带Token非法请求的情况
         if (StringUtils.isBlank(cid) || StringUtils.isBlank(token)) {

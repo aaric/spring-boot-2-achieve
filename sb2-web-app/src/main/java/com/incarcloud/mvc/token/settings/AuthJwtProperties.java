@@ -17,6 +17,7 @@ import java.util.Base64;
  *   auth:
  *     jwt:
  *       secret-key: A3MZkHTQ6db/kOP6Q3F3IGmXTfES9BUIN0PHfnG8uCY=
+ *       token-header-cid: x-access-cid
  *       token-header-name: x-access-token
  *       token-lease-seconds: 7*24*60*60
  * </pre>
@@ -51,6 +52,8 @@ public class AuthJwtProperties {
 
     private String secretKey = DEFAULT_SECRET_KEY;
 
+    private String cidHeaderName = DEFAULT_CID_HEADER_NAME;
+
     private String tokenHeaderName = DEFAULT_TOKEN_HEADER_NAME;
 
     private Long tokenLeaseSeconds = DEFAULT_TOKEN_LEASE_SECONDS;
@@ -61,6 +64,14 @@ public class AuthJwtProperties {
 
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
+    }
+
+    public String getCidHeaderName() {
+        return cidHeaderName;
+    }
+
+    public void setCidHeaderName(String cidHeaderName) {
+        this.cidHeaderName = cidHeaderName;
     }
 
     public String getTokenHeaderName() {

@@ -30,6 +30,6 @@ public class AuthController implements AuthApi {
     @Override
     @PostMapping("/logout")
     public ResponseData<Object> logout() {
-        return ResponseData.ok().extraMsg("清除本地存储的Token字符串");
+        return ResponseData.ok().extraMsg("清除本地存储的Token字符串即可");
     }
 }

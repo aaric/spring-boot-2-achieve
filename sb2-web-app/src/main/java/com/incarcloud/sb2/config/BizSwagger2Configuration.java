@@ -2,6 +2,7 @@ package com.incarcloud.sb2.config;
 
 import com.incarcloud.mvc.config.AbstractSwagger2ConfigurationSupport;
 import com.incarcloud.mvc.token.settings.AuthJwtProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ParameterBuilder;
@@ -26,6 +27,9 @@ import java.util.List;
 @EnableSwagger2
 public class BizSwagger2Configuration extends AbstractSwagger2ConfigurationSupport {
 
+    @Autowired
+    protected AuthJwtProperties authJwtProperties;
+
     /**
      * 注册JWT验证参数信息
      *
@@ -35,7 +39,7 @@ public class BizSwagger2Configuration extends AbstractSwagger2ConfigurationSuppo
         List<Parameter> parameters = new ArrayList<>();
 
         ParameterBuilder parameterBuilder = new ParameterBuilder();
-        parameterBuilder.name(AuthJwtProperties.DEFAULT_CID_HEADER_NAME)
+        parameterBuilder.name(authJwtProperties.getCidHeaderName())
                 .description("客户端ID")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
@@ -44,7 +48,7 @@ public class BizSwagger2Configuration extends AbstractSwagger2ConfigurationSuppo
         parameters.add(parameterBuilder.build());
 
         parameterBuilder = new ParameterBuilder();
-        parameterBuilder.name(AuthJwtProperties.DEFAULT_TOKEN_HEADER_NAME)
+        parameterBuilder.name(authJwtProperties.getTokenHeaderName())
                 .description("授权字符串Token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
