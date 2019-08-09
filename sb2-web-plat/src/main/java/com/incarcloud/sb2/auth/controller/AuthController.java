@@ -33,8 +33,8 @@ public class AuthController implements AuthApi {
      */
 
     @Override
-    @RequestMapping(value = "/current", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResponseData<String> current(HttpServletRequest request) throws ApiException {
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public ResponseData<String> redirect(HttpServletRequest request) throws ApiException {
         // 获得当前登录用户名
         Optional<Principal> principal = Optional.ofNullable(request.getUserPrincipal());
         String userName = principal.map(Principal::getName).orElse(null);
