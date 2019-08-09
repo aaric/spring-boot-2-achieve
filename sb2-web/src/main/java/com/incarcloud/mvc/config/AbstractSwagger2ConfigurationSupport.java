@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 默认Swagger2默认配置
+ * 默认Swagger2配置
  *
  * @author Aaric, created on 2019-06-27T17:27.
  * @since 0.2.1-SNAPSHOT
@@ -38,10 +38,15 @@ public abstract class AbstractSwagger2ConfigurationSupport {
                 .build();
     }
 
+    /**
+     * 注册国际化参数信息
+     *
+     * @return
+     */
     protected List<Parameter> globalOperationParameters() {
-        ParameterBuilder parameterBuilder = new ParameterBuilder();
+        ParameterBuilder builder = new ParameterBuilder();
 
-        parameterBuilder.name(LocaleChangeInterceptor.DEFAULT_PARAM_NAME)
+        builder.name(LocaleChangeInterceptor.DEFAULT_PARAM_NAME)
                 .description("地区语言代码，默认zh_CN(简体中文), en_US(英文)")
                 .modelRef(new ModelRef("string"))
                 .parameterType("query")
@@ -49,7 +54,7 @@ public abstract class AbstractSwagger2ConfigurationSupport {
                 .required(false);
 
         List<Parameter> parameters = new ArrayList<Parameter>();
-        parameters.add(parameterBuilder.build());
+        parameters.add(builder.build());
         return parameters;
     }
 }

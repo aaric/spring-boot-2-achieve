@@ -1,7 +1,8 @@
 # Tomcat settings
 server:
   port: ${TOMCAT_PLAT_PORT:9080}
-  context-path: /
+  servlet:
+    context-path: /
   compression:
     enabled: true
   tomcat:
@@ -29,3 +30,9 @@ incarcloud:
       description: 本文档包含手机端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
       version: 0.4.2-SNAPSHOT
+  auth:
+    jwt:
+      secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
+      cid-header-name: x-access-cid
+      token-header-name: x-access-token
+      token-lease-seconds: 1209600

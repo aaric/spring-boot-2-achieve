@@ -33,9 +33,9 @@ public interface AuthApi {
         throw new IllegalStateException("Add Spring Security to handle authentication");
     }
 
-    @ApiOperation("当前登录用户")
+    @ApiOperation("无授权默认跳转地址")
     @ApiResponses({
             @ApiResponse(code = 31, message = "用户未登录")
     })
-    ResponseData<String> current(HttpServletRequest request) throws ApiException;
+    ResponseData<String> redirect(HttpServletRequest request) throws ApiException;
 }

@@ -23,16 +23,18 @@ import java.util.Optional;
 public class AuthController implements AuthApi {
 
     /**
+     * <pre>
      * Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
      * if (!(authentication instanceof AnonymousAuthenticationToken)) {
      *     String currentUserName = authentication.getName();
      *     return currentUserName;
      * }
+     * </pre>
      */
 
     @Override
-    @RequestMapping(value = "/current", method = RequestMethod.GET)
-    public ResponseData<String> current(HttpServletRequest request) throws ApiException {
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public ResponseData<String> redirect(HttpServletRequest request) throws ApiException {
         // 获得当前登录用户名
         Optional<Principal> principal = Optional.ofNullable(request.getUserPrincipal());
         String userName = principal.map(Principal::getName).orElse(null);

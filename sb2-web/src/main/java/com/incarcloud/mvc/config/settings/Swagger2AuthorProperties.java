@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * Swagger2在线文档开发者配置类<br>
  *
+ * <pre>
  * # Incarcloud settings
  * incarcloud:
  *   document:
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  *       name: 英卡科技
  *       website-url: www.incarcloud.com
  *       email: incar@incarcloud.com
+ * </pre>
  *
  * @author Aaric, created on 2019-07-01T12:34.
  * @since 0.2.2-SNAPSHOT
@@ -22,10 +24,19 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".swagger2.author")
 public class Swagger2AuthorProperties {
 
+    /**
+     * 开发者名称
+     */
     private static final String DEFAULT_NAME = "英卡科技";
 
+    /**
+     * 开发者主页
+     */
     private static final String DEFAULT_WEBSITE_URL = "www.incarcloud.com";
 
+    /**
+     * 开发者邮箱地址
+     */
     private static final String DEFAULT_EMAIL = "incar@incarcloud.com";
 
     private String name = DEFAULT_NAME;
