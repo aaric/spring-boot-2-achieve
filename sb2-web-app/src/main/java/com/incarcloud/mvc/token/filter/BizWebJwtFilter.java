@@ -44,7 +44,8 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 过滤掉静态资源和登录API路由
         if (StringUtils.endsWithAny(request.getRequestURI(), DEFAULT_AUTH_ROUTE_LOGIN,
-                "/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**")) {
+                "/swagger-resources", "/v2/api-docs", "/doc.html"/*, "/webjars/bycdao-ui/**"*/)
+                || StringUtils.startsWith(request.getRequestURI(), "/webjars/bycdao-ui/")) {
             // 不拦截以上请求
             filterChain.doFilter(request, response);
             return;

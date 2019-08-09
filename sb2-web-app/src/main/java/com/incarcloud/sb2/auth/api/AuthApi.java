@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 登录授权模块API
  *
@@ -21,7 +23,7 @@ public interface AuthApi {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "loginUserInfo", value = "登录用户信息", dataType = "LoginUserInfo", paramType = "body", required = true)
     })
-    ResponseData<AuthTokenInfo> login(LoginUserInfo loginUserInfo, String cid);
+    ResponseData<AuthTokenInfo> login(LoginUserInfo loginUserInfo, HttpServletRequest request);
 
     @ApiOperation("注销登录")
     ResponseData<Object> logout();

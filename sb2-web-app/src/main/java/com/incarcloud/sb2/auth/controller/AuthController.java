@@ -4,9 +4,15 @@ import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.mvc.token.JwtHelper;
 import com.incarcloud.mvc.token.entity.AuthTokenInfo;
 import com.incarcloud.mvc.token.entity.LoginUserInfo;
+import com.incarcloud.mvc.token.settings.AuthJwtProperties;
 import com.incarcloud.sb2.auth.api.AuthApi;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 登录授权模块控制器
@@ -19,11 +25,20 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController implements AuthApi {
 
     @Autowired
+    private AuthJwtProperties authJwtProperties;
+
+    @Autowired
     private JwtHelper jwtHelper;
 
     @Override
     @PostMapping("/login")
-    public ResponseData<AuthTokenInfo> login(@RequestBody LoginUserInfo loginUserInfo, @RequestHeader("x-access-cid") String cid) {
+    public ResponseData<AuthTokenInfo> login(@RequestBody LoginUserInfo loginUserInfo, HttpServletRequest request) {
+        // 获得客户端ID字符串
+        String cid = request.getHeader(authJwtProperties.getCidHeaderName());
+
+        // TODO 验证用户登录信息
+
+        // 创建并返回Token字符串
         return ResponseData.ok(new AuthTokenInfo(cid, jwtHelper.createToken(cid, 1))).extraMsg("请求成功");
     }
 

@@ -33,6 +33,6 @@ incarcloud:
   auth:
     jwt:
       secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
-      cid-header-name: x-access-id
+      cid-header-name: x-access-cid
       token-header-name: x-access-token
       token-lease-seconds: 1209600
