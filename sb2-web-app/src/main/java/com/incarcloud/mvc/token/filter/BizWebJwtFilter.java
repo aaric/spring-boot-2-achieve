@@ -1,6 +1,7 @@
 package com.incarcloud.mvc.token.filter;
 
-import org.apache.commons.lang3.StringUtils;
+import com.incarcloud.mvc.token.settings.AuthJwtProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -26,6 +27,9 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
      */
     private final static String DEFAULT_AUTH_ROUTE_LOGIN = "/api/app/auth/login";
 
+    @Autowired
+    private AuthJwtProperties authJwtProperties;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("path: " + request.getRequestURI());
@@ -33,6 +37,8 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
         /*if (!StringUtils.equals(DEFAULT_AUTH_ROUTE_LOGIN, request.getRequestURI())) {
             // TODO
         }*/
+        System.out.println(authJwtProperties.getSecretKey());
+        System.out.println(authJwtProperties.getTokenLeaseSeconds());
 
         // 权限验证成功，执行后面的操作
         filterChain.doFilter(request, response);

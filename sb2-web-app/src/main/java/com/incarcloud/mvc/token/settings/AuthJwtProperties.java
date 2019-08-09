@@ -1,8 +1,12 @@
 package com.incarcloud.mvc.token.settings;
 
 import com.incarcloud.common.share.Constant;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import java.util.Base64;
 
 /**
  * JWT服务端配置<br>
@@ -14,7 +18,7 @@ import org.springframework.stereotype.Component;
  *     jwt:
  *       secret-key: A3MZkHTQ6db/kOP6Q3F3IGmXTfES9BUIN0PHfnG8uCY=
  *       token-header-name: x-access-token
- *       token-active-seconds: 7*24*60*60
+ *       token-lease-seconds: 7*24*60*60
  * </pre>
  *
  * @author Aaric, created on 2019-08-08T12:38.
@@ -25,9 +29,10 @@ import org.springframework.stereotype.Component;
 public class AuthJwtProperties {
 
     /**
-     * 服务端创建Token密钥
+     * 服务端创建Token密钥，如果不指定，每次重启会不一样
      */
-    private static final String DEFAULT_SECRET_KEY = "";
+    private static final String DEFAULT_SECRET_KEY = Base64.getEncoder()
+            .encodeToString(Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded());
 
     /**
      * 客户端Token请求Header名称
@@ -35,15 +40,15 @@ public class AuthJwtProperties {
     private static final String DEFAULT_TOKEN_HEADER_NAME = "x-access-token";
 
     /**
-     * 客户端Token活跃周期
+     * 客户端Token租用周期
      */
-    private static final long DEFAULT_TOKEN_ACTIVE_SECONDS = 7 * 24 * 60 * 60;
+    private static final long DEFAULT_TOKEN_LEASE_SECONDS = 7 * 24 * 60 * 60;
 
     private String secretKey = DEFAULT_SECRET_KEY;
 
     private String tokenHeaderName = DEFAULT_TOKEN_HEADER_NAME;
 
-    private Long tokenActiveSeconds = DEFAULT_TOKEN_ACTIVE_SECONDS;
+    private Long tokenLeaseSeconds = DEFAULT_TOKEN_LEASE_SECONDS;
 
     public String getSecretKey() {
         return secretKey;
@@ -61,11 +66,11 @@ public class AuthJwtProperties {
         this.tokenHeaderName = tokenHeaderName;
     }
 
-    public Long getTokenActiveSeconds() {
-        return tokenActiveSeconds;
+    public Long getTokenLeaseSeconds() {
+        return tokenLeaseSeconds;
     }
 
-    public void setTokenActiveSeconds(Long tokenActiveSeconds) {
-        this.tokenActiveSeconds = tokenActiveSeconds;
+    public void setTokenLeaseSeconds(Long tokenLeaseSeconds) {
+        this.tokenLeaseSeconds = tokenLeaseSeconds;
     }
 }

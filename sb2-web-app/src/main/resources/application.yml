@@ -32,6 +32,6 @@ incarcloud:
       version: 0.4.2-SNAPSHOT
   auth:
     jwt:
-      secret-key: A3MZkHTQ6db/kOP6Q3F3IGmXTfES9BUIN0PHfnG8uCY=
+      secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
       token-header-name: x-access-token
-      token-expired-seconds: 7*24*60*60
+      token-lease-seconds: 1209600
