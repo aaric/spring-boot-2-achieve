@@ -32,12 +32,12 @@ public class JwtTest {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String token = Jwts.builder()
                 .setId(UUID.randomUUID().toString()) //JWT ID
-                .setSubject("App Login") //主题
-                .setIssuer("英卡科技") //签发机构
+                .setSubject("test") //主题
+                .setIssuer("test") //签发机构
                 .setIssuedAt(Date.from(Instant.now())) //签发时间，当前时间
                 .setAudience("admin") //使用者
                 .setNotBefore(Date.from(Instant.now())) //生效时间，立即生效
-                .setExpiration(dateFormat.parse("2019-10-01 00:00:00")) //过期时间
+                .setExpiration(dateFormat.parse("2025-03-31 00:00:00")) //过期时间
                 .signWith(key).compact();
         System.out.println("token: " + token);
 
@@ -46,10 +46,10 @@ public class JwtTest {
 
     @Test
     public void testCheckToken() {
-        String base64Key = "4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=";
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxYzcxMzZhYS04MDExLTRlZDMtYWQyMi0wOTQ4ZWQyNzkxMDUiLCJzdWIiOiJBcHAgTG9naW4iLCJpc3MiOiLoi7HljaHnp5HmioAiLCJpYXQiOjE1NjUzMTkwMDcsImF1ZCI6ImFkbWluIiwibmJmIjoxNTY1MzE5MDA3LCJleHAiOjE1Njk4NTkyMDB9.ujoNlHx-uBNieQBy-3souD_5YIYO-8TcWMtPlamSKVA";
-        // header={alg=HS256},body={jti=1c7136aa-8011-4ed3-ad22-0948ed279105, sub=App Login, iss=英卡科技, iat=1565319007, aud=admin, nbf=1565319007, exp=1569859200},signature=ujoNlHx-uBNieQBy-3souD_5YIYO-8TcWMtPlamSKVA
+        String base64Key = "gYYk2SsjEAd4p/CgCQgIpei4BI9lVctYB/dnVkZH6Uw=";
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZjk2YzRkZC01ZDRkLTQ1MzgtYWFiYi0xZjQ0MzExZWM0YzMiLCJzdWIiOiJ0ZXN0IiwiaXNzIjoidGVzdCIsImlhdCI6MTU2NTMyNjQ4MSwiYXVkIjoiYWRtaW4iLCJuYmYiOjE1NjUzMjY0ODEsImV4cCI6MTc0MzM1MDQwMH0.XC5s3HNxC0_oNJMu8HrkTkNvbu4WWpHyV2w8per0iJI";
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(Base64.getDecoder().decode(base64Key)).parseClaimsJws(token);
+        // header={alg=HS256},body={jti=0f96c4dd-5d4d-4538-aabb-1f44311ec4c3, sub=test, iss=test, iat=1565326481, aud=admin, nbf=1565326481, exp=1743350400},signature=XC5s3HNxC0_oNJMu8HrkTkNvbu4WWpHyV2w8per0iJI
         System.out.println(claimsJws);
 
         Assert.assertEquals("admin", claimsJws.getBody().getAudience());

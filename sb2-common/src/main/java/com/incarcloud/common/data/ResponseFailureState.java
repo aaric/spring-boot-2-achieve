@@ -37,4 +37,19 @@ public interface ResponseFailureState {
 
     // 用户名或密码错误
     String ERROR_0034 = "0034";
+
+    // Token字符串错误
+    String ERROR_0035 = "0035";
+
+    // Token已过期
+    String ERROR_0036 = "0036";
+
+    // Token绑定错误
+    String ERROR_0037 = "0037";
+
+    // Token授权场景错误
+    String ERROR_0038 = "0038";
+
+    // Token签发机构错误
+    String ERROR_0039 = "0039";
 }

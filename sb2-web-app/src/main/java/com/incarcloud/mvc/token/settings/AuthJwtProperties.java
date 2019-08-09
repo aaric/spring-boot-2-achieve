@@ -35,9 +35,14 @@ public class AuthJwtProperties {
             .encodeToString(Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded());
 
     /**
+     * 客户端ID请求Header名称
+     */
+    public static final String DEFAULT_CID_HEADER_NAME = "x-access-cid";
+
+    /**
      * 客户端Token请求Header名称
      */
-    private static final String DEFAULT_TOKEN_HEADER_NAME = "x-access-token";
+    public static final String DEFAULT_TOKEN_HEADER_NAME = "x-access-token";
 
     /**
      * 客户端Token租用周期

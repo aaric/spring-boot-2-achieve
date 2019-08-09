@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Aaric, created on 2019-08-05T19:21.
  * @since 0.6.3-SNAPSHOT
  */
-public class ResponseData<T> implements ResponseSuccessState, ResponseFailureState {
+public final class ResponseData<T> implements ResponseSuccessState, ResponseFailureState {
 
     @ApiModelProperty(value = "状态码(0000-请求成功，其它异常)")
     private String code;
