@@ -6,7 +6,7 @@ Spring Boot 2.x Learning.
 |序号|版本|规划清单|状态|备注|
 |:-:|:--:|:-----|:--:|:--|
 |1|`milestone-1.0`|基础集成与约定（**渗透测试+等保建议**）|开发中|基础框架|
-|2|`milestone-2.0`|WEB网站**机构-用户-权限**基础功能|增强版框架|
+|2|`milestone-2.0`|WEB网站**机构-用户-权限**基础功能|未来|增强版框架|
 |3|`milestone-3.0`|通用**核心业务**功能|未来|微服务架构，JDK11+Gradle5.4+|
 |4|`milestone-4.0`|云规划|未来|初代车联网云|
 
@@ -22,16 +22,16 @@ Spring Boot 2.x Learning.
 8. [ ] 提供可扩展的**Email**发送邮件服务（0.9.0-SNAPSHOT）；
 9. [ ] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
 10. [ ] 提供可扩展的**APP推送**（极光）服务（0.11.0-SNAPSHOT）；
-11. [ ] 提供可扩展的**位置**(高德)，IP定位+逆地理编码服务（0.12.0-SNAPSHOT）。
+11. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.12.0-SNAPSHOT）。
 
 
 ## 三、`milestone-2.0`版本规划
-1. [ ] 完善审计日志功能（1.1.0-SNAPSHOT）；
+1. [ ] 完善可扩展日志与审计功能（1.1.0-SNAPSHOT）；
 2. [ ] 完善**Jenkins Pipeline**流水线，实现自动化*CI/CD*（1.2.0-SNAPSHOT）；
 3. [ ] 实现可扩展`机构-用户-权限`业务功能（1.3.0-SNAPSHOT）；
 4. [ ] 实现可扩展`省-市-区`业务功能（1.4.0-SNAPSHOT）；
-5. [ ] 实现可扩展第三方支付业务功能（1.5.0-SNAPSHOT）；
-6. [ ] 集成Activiti工作流引擎（1.6.0-SNAPSHOT）。
+5. [ ] 实现可扩展`第三方支付`业务功能（1.5.0-SNAPSHOT）；
+6. [ ] 集成`Activiti`工作流引擎（1.6.0-SNAPSHOT）。
 
 
 ## 四、`milestone-3.0`版本规划
@@ -42,10 +42,10 @@ Spring Boot 2.x Learning.
 
 ## 五、`milestone-4.0`版本规划
 1. [ ] 完成第一版CAS单点登录平台（3.1.0-SNAPSHOT）；
-2. [ ] 集成Spring Social实现第三方登录-QQ（3.2.0-SNAPSHOT）；
-3. [ ] 集成Spring Social实现第三方登录-微信（3.3.0-SNAPSHOT）；
+2. [ ] 集成`Spring Social`实现第三方登录-QQ（3.2.0-SNAPSHOT）；
+3. [ ] 集成`Spring Social`实现第三方登录-微信（3.3.0-SNAPSHOT）；
 4. [ ] 实现支持**小程序**通用逻辑（3.4.0-SNAPSHOT）；
-5. [ ] 规划初代车联网云（待定）。
+5. [ ] 规划初代云+`5G`娱乐（待定）。
 
 
 ## 六、其他说明
@@ -142,7 +142,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 ```groovy
 node {
    stage('Preparation') {
-        git branch: 'dev-aaric', url: 'https://github.com/aaric/spring-boot-2-achieve'
+        git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
    }
 
     stage('Build') {
