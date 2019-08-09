@@ -47,19 +47,18 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
                 "/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**")) {
             // 不拦截以上请求
             filterChain.doFilter(request, response);
+            return;
         }
 
         // 获得客户端ID和Token字符串
         String cid = request.getHeader(AuthJwtProperties.DEFAULT_CID_HEADER_NAME);
         String token = request.getHeader(AuthJwtProperties.DEFAULT_TOKEN_HEADER_NAME);
 
-        System.out.println(cid);
-        System.out.println(token);
-
         // 考虑未携带Token非法请求的情况
         if (StringUtils.isBlank(cid) || StringUtils.isBlank(token)) {
             // 提示：非法请求
             doResponse(response, ResponseData.error(ResponseData.ERROR_0001).extraMsg("非法请求"));
+            return;
         }
 
         // 验证客户端Token信息
@@ -69,7 +68,7 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
                 // 验证通过
                 filterChain.doFilter(request, response);
             } else {
-                // 提示：用户未登录
+                // 验证失败，提示：用户未登录
                 doResponse(response, ResponseData.error(ResponseData.ERROR_0031).extraMsg("用户未登录"));
             }
 

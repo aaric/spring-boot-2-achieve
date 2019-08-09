@@ -45,7 +45,7 @@ public class AuthJwtProperties {
     public static final String DEFAULT_TOKEN_HEADER_NAME = "x-access-token";
 
     /**
-     * 客户端Token租用周期
+     * 客户端Token租用周期，默认一个星期
      */
     public static final long DEFAULT_TOKEN_LEASE_SECONDS = 7 * 24 * 60 * 60;
 

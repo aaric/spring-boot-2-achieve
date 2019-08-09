@@ -39,16 +39,16 @@ public class BizSwagger2Configuration extends AbstractSwagger2ConfigurationSuppo
                 .description("客户端ID")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
-                .defaultValue("cid")
+                .defaultValue("")
                 .required(false);
         parameters.add(parameterBuilder.build());
 
         parameterBuilder = new ParameterBuilder();
         parameterBuilder.name(AuthJwtProperties.DEFAULT_TOKEN_HEADER_NAME)
-                .description("授权信息")
+                .description("授权字符串Token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
-                .defaultValue("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjaWQiLCJzdWIiOiJhdXRoIiwiaXNzIjoiaW5jYXJjbG91ZCIsImlhdCI6MTU2NTMyNzg0MiwiYXVkIjoiMTAwMCIsIm5iZiI6MTU2NTMyNzg0MiwiZXhwIjoxNTY2NTM3NDQyfQ.LvB7AeIHH7szDPFcHOorHLB6K6wJ62iDaOa-x7GqRSw")
+                .defaultValue("")
                 .required(false);
         parameters.add(parameterBuilder.build());
 

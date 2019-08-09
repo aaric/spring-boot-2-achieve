@@ -5,8 +5,8 @@ import com.incarcloud.sb2.test.api.TestApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,7 +23,7 @@ public class TestController implements TestApi {
     private MessageSource messageSource;
 
     @Override
-    @RequestMapping(value = "/i18n", method = RequestMethod.GET)
+    @GetMapping("/i18n")
     public ResponseData<Object> i18n() {
         String data = messageSource.getMessage("tips.default.success", null, LocaleContextHolder.getLocale());
         return ResponseData.ok(data);
