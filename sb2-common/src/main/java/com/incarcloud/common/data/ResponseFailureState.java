@@ -17,6 +17,9 @@ public interface ResponseFailureState {
     // 系统繁忙，请稍候重试
     String ERROR_0002 = "0002";
 
+    // 未知错误
+    String ERROR_0003 = "0003";
+
     /**
      * 0021 - 0030: 定义数据校验错误码
      */

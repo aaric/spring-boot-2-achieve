@@ -151,7 +151,7 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 处理请求
+     * 处理请求，回馈JSON数据
      *
      * @throws IOException
      */

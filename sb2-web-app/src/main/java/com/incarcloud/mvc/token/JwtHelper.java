@@ -67,7 +67,7 @@ public class JwtHelper {
      * @param cid   客户端ID
      * @param token Token字符串
      * @return
-     * @throws Exception
+     * @throws ApiException
      */
     public boolean validateToken(String cid, String token) throws ApiException {
         try {

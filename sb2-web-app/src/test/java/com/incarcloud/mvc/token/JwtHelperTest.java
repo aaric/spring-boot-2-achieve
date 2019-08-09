@@ -27,11 +27,11 @@ public class JwtHelperTest {
     @Before
     public void begin() {
         token = jwtHelper.createToken("cid", 1000);
-        System.out.println(token);
     }
 
     @Test
     public void testCreateToken() {
+        System.out.println("token: " + token);
         Assert.assertNotNull(token);
     }
 
