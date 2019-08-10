@@ -5,6 +5,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -52,6 +53,19 @@ subprojects {
     compileTestJava {
         options.encoding = "UTF-8"
         options.compilerArgs << "-Xlint:unchecked"
+    }
+
+    task checkstyle(type: Checkstyle) {
+        configFile file("../checkstyle/alibaba_checks.xml")
+
+        ignoreFailures true
+        showViolations true
+
+        source = fileTree('src')
+        include '**/*.java'
+        exclude '**/build/**', '**/*Test.java'
+
+        classpath = files()
     }
 
     defaultTasks "assemble"
