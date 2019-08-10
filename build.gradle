@@ -57,14 +57,11 @@ subprojects {
 
     task checkstyle(type: Checkstyle) {
         configFile file("../checkstyle/alibaba_checks.xml")
-
         ignoreFailures true
         showViolations true
-
         source = fileTree('src')
         include '**/*.java'
-        exclude '**/build/**', '**/*Test.java'
-
+        exclude '**/gen/**', '**/build/**', '**/*Test.java'
         classpath = files()
     }
 
