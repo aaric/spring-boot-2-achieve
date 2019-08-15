@@ -72,8 +72,9 @@ public class JwtHelper {
     public boolean validateToken(String cid, String token) throws ApiException {
         try {
             // 解析Token信息
-            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(Base64.getDecoder().decode(authJwtProperties.getSecretKey())).parseClaimsJws(token);
-            //System.out.println(claimsJws);
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(Base64.getDecoder().decode(authJwtProperties.getSecretKey()))
+                    .parseClaimsJws(token);
 
             // 验证绑定ID
             if (!StringUtils.equals(claimsJws.getBody().getId(), cid)) {
