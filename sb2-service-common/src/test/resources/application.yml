@@ -1,0 +1,10 @@
+# Incarcloud settings
+incarcloud:
+  file:
+    ftp:
+      port: ${FTP_PORT}
+      host: ${FTP_HOST}
+      username: ${FTP_USERNAME}
+      password: ${FTP_PASSWORD}
+      connectTimeout: 60000
+      dataTimeout: 60000
