@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class OkHttp3UtilTest {
 
     @Test
-    @Ignore()
+    @Ignore
     public void testShowApiNameList() throws Exception {
         // Init
         int serverPort = 9090;
