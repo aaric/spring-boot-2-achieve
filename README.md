@@ -57,13 +57,10 @@ Spring Boot 2.x Learning.
 /* utf8mb4: 解决存储emoji表情问题; utf8mb4_bin: 要求区分英文字母大小写 */
 -- MySQL8已将创建用户和授权语句分离，必须分开写
 sql> create database testdb default charset utf8mb4 collate utf8mb4_bin;
+-- MySQL8默认是严格加密模式，修改为普通加密模式，并更新用户密码，建议更新Client，以下为非优雅的方式
+-- sql> create user 'testdb'@'%' identified with mysql_native_password by 'testdb';
 sql> create user 'testdb'@'%' identified by 'testdb';
 sql> grant all privileges on sonarqube.* to 'testdb'@'%';
-sql> flush privileges;
-
--- MySQL8默认是严格加密模式，修改为普通加密模式，并更新用户密码，建议更新Client，以下为非优雅的方式
-sql> alter user 'testdb'@'%' identified by 'testdb' password expire never;
-sql> alter user 'testdb'@'%' identified with mysql_native_password by 'testdb';
 sql> flush privileges;
 ```
 
@@ -163,4 +160,11 @@ node {
        junit '**/build/test-results/test/*.xml'
    }
 }
+```
+
+3. **Docker使用MySQL8数据库**
+```bash
+~>$ sudo docker pull mysql:8.0.16
+~>$ sudo docker run --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.16
+~>$ sudo docker exec -it mysql8 /bin/bash
 ```
