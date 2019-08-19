@@ -60,7 +60,7 @@ sql> create database testdb default charset utf8mb4 collate utf8mb4_bin;
 -- MySQL8默认是严格加密模式，修改为普通加密模式，并更新用户密码，建议更新Client，以下为非优雅的方式
 -- sql> create user 'testdb'@'%' identified with mysql_native_password by 'testdb';
 sql> create user 'testdb'@'%' identified by 'testdb';
-sql> grant all privileges on sonarqube.* to 'testdb'@'%';
+sql> grant all privileges on testdb.* to 'testdb'@'%';
 sql> flush privileges;
 ```
 
@@ -165,6 +165,6 @@ node {
 3. **Docker使用MySQL8数据库**
 ```bash
 ~>$ sudo docker pull mysql:8.0.16
-~>$ sudo docker run --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.16
+~>$ sudo docker run --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourpassword -d mysql:8.0.16
 ~>$ sudo docker exec -it mysql8 /bin/bash
 ```
