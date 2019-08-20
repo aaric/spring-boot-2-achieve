@@ -17,4 +17,13 @@ public interface Constant {
      * 默认域名前缀
      */
     String DEFAULT_DOMAIN_PREFIX = "com." + DEFAULT_ENTERPRISE_CODE;
+
+    /**
+     * 获得企业代码
+     *
+     * @return
+     */
+    default String getEnterpriseCode() {
+        return DEFAULT_ENTERPRISE_CODE;
+    }
 }

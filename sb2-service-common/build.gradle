@@ -1,0 +1,9 @@
+dependencies {
+    compile project(":sb2-pojo")
+    compile project(":sb2-common")
+
+    compile "commons-io:commons-io:2.6"
+    compile "commons-net:commons-net:3.6"
+
+    compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+}

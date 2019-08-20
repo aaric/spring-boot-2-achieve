@@ -4,5 +4,5 @@ dependencies {
     compile project(":sb2-web")
     compile project(":sb2-service")
 
-    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
 }

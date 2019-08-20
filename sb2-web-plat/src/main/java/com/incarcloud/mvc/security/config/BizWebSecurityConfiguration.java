@@ -34,7 +34,7 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * 默认授权路由前缀字符串
      */
-    private final static String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
+    private static final String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -43,7 +43,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root").password("$2a$10$I8l1l4U7LyYVQGQDNbUH1eiQDG.n0SS6yuEcRl9SXVkTfBYhtc4sK").roles("root");
+        auth.inMemoryAuthentication().withUser("root")
+                .password("$2a$10$I8l1l4U7LyYVQGQDNbUH1eiQDG.n0SS6yuEcRl9SXVkTfBYhtc4sK")
+                .roles("root");
     }
 
     @Override
@@ -115,7 +117,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @throws IOException
      */
-    private void loginSuccessHandler(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    private void loginSuccessHandler(HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     Authentication authentication) throws IOException {
         // 登录成功，返回身份信息
         doResponse(response, ResponseData.ok(authentication.getPrincipal()));
     }
@@ -125,7 +129,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @throws IOException
      */
-    private void loginFailureHandler(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
+    private void loginFailureHandler(HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     AuthenticationException exception) throws IOException {
         // 登录失败，提示：用户名或密码错误
         doResponse(response, ResponseData.error(ResponseData.ERROR_0033).extraMsg("用户名或密码错误"));
     }
@@ -135,7 +141,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @throws IOException
      */
-    private void logoutSuccessHandler(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    private void logoutSuccessHandler(HttpServletRequest request,
+                                      HttpServletResponse response,
+                                      Authentication authentication) throws IOException {
         // 注销成功
         doResponse(response, ResponseData.ok().extraMsg("注销成功"));
     }
@@ -145,7 +153,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @throws IOException
      */
-    private void accessDeniedHandler(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+    private void accessDeniedHandler(HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     AccessDeniedException accessDeniedException) throws IOException {
         // 提示：权限不足
         doResponse(response, ResponseData.error(ResponseData.ERROR_0032).extraMsg("权限不足"));
     }

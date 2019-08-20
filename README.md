@@ -55,8 +55,12 @@ Spring Boot 2.x Learning.
 
 ```sql
 /* utf8mb4: 解决存储emoji表情问题; utf8mb4_bin: 要求区分英文字母大小写 */
+-- MySQL8已将创建用户和授权语句分离，必须分开写
 sql> create database testdb default charset utf8mb4 collate utf8mb4_bin;
-sql> grant all privileges on testdb.* to 'testdb'@'%' identified by 'testdb' with grant option;
+-- MySQL8默认是严格加密模式，修改为普通加密模式，并更新用户密码，建议更新Client，以下为非优雅的方式
+-- sql> create user 'testdb'@'%' identified with mysql_native_password by 'testdb';
+sql> create user 'testdb'@'%' identified by 'testdb';
+sql> grant all privileges on testdb.* to 'testdb'@'%';
 sql> flush privileges;
 ```
 
@@ -64,7 +68,7 @@ sql> flush privileges;
 
 > [Migrations - Flyway by Boxfuse • Database Migrations Made Easy.](https://flywaydb.org/documentation/migrations "Flyway Documentation Online")
 
-![Flyway](https://github.com/aaric/spring-boot-2-achieve/raw/master/flyway_naming.png "Flyway Naming Rule")
+![Flyway](https://github.com/aaric/spring-boot-2-achieve/raw/master/docs/images/gradle_flyway_naming.png "Flyway Naming Rule")
 
 
 ## 七、FAQ
@@ -75,6 +79,9 @@ sql> flush privileges;
 2. **选择Security安全框架，弃用Shiro的理由**
     - *Spring Boot*对*Security*框架的约定配置，很大程度上减小*Security*框架的集成难度；
     - 以后支持*Spring Cloud*框架比较容易，使用*Apache Shiro*框架明显不合适了。
+3. **Gradle配置文件implement替换compile的理由**
+    - 加快编译速度；
+    - 隐藏对外不必要的接口。
 
 
 ## 八、附录
@@ -156,4 +163,11 @@ node {
        junit '**/build/test-results/test/*.xml'
    }
 }
+```
+
+3. **Docker使用MySQL8数据库**
+```bash
+~>$ sudo docker pull mysql:8.0.16
+~>$ sudo docker run --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourpassword -d mysql:8.0.16
+~>$ sudo docker exec -it mysql8 /bin/bash
 ```

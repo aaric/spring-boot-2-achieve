@@ -1,17 +1,22 @@
 allprojects {
     group 'com.incarcloud'
-    version '0.7.0-SNAPSHOT'
+    version '0.8.0-SNAPSHOT'
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
     ext {
-        springBootVersion = "2.1.+"
         jjwtVersion = "0.10.+"
+        lombokVersion = "1.18.8"
+        springBootVersion = "2.1.+"
+        swagger2Version = "2.9.2"
+        swaggerAnnotationsVersion = "1.5.20"
+        swaggerBootstrapUiVersion = "1.9.5"
     }
 
     repositories {
@@ -21,15 +26,21 @@ subprojects {
     }
 
     dependencies {
-        compile("org.projectlombok:lombok:1.18.8")
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-        compile("org.apache.commons:commons-io:1.3.2")
-        compile("org.apache.commons:commons-lang3:3.9")
+        compile "org.apache.commons:commons-io:1.3.2"
+        compile "org.apache.commons:commons-lang3:3.9"
 
-        compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+        compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
 
-        testCompile("junit:junit:4.12")
-        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        testCompile "junit:junit:4.12"
+        testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+        runtime "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
     }
 
     buildscript {
@@ -52,6 +63,16 @@ subprojects {
     compileTestJava {
         options.encoding = "UTF-8"
         options.compilerArgs << "-Xlint:unchecked"
+    }
+
+    task checkstyle(type: Checkstyle) {
+        configFile file("../checkstyle/alibaba_checks.xml")
+        ignoreFailures true
+        showViolations true
+        source = fileTree('src')
+        include '**/*.java'
+        exclude '**/gen/**', '**/build/**', '**/*Test.java'
+        classpath = files()
     }
 
     defaultTasks "assemble"

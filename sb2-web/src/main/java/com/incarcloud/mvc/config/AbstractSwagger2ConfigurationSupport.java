@@ -34,7 +34,9 @@ public abstract class AbstractSwagger2ConfigurationSupport {
                 .description(swagger2ApiProperties.getDescription())
                 .termsOfServiceUrl(swagger2ApiProperties.getServiceUrl())
                 .version(swagger2ApiProperties.getVersion())
-                .contact(new Contact(swagger2AuthorProperties.getName(), swagger2AuthorProperties.getWebsiteUrl(), swagger2AuthorProperties.getEmail()))
+                .contact(new Contact(swagger2AuthorProperties.getName(),
+                        swagger2AuthorProperties.getWebsiteUrl(),
+                        swagger2AuthorProperties.getEmail()))
                 .build();
     }
 

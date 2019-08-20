@@ -12,10 +12,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "授权Token信息")
 public class AuthTokenInfo {
 
-    @ApiModelProperty(position = 1, value = "用户名", required = true)
+    @ApiModelProperty(position = 1, value = "客户端ID", required = true)
     private String cid;
 
-    @ApiModelProperty(position = 2, value = "用户名", required = true)
+    @ApiModelProperty(position = 2, value = "授权Token字符串", required = true)
     private String token;
 
     public AuthTokenInfo() {

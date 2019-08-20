@@ -32,7 +32,7 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
     /**
      * 默认授权登录路由，设置所有人都可以访问
      */
-    private final static String DEFAULT_AUTH_ROUTE_LOGIN = "/api/app/auth/login";
+    private static final String DEFAULT_AUTH_ROUTE_LOGIN = "/api/app/auth/login";
 
     @Autowired
     private AuthJwtProperties authJwtProperties;
@@ -41,7 +41,9 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
     protected JwtHelper jwtHelper;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
         // 过滤掉静态资源和登录API路由
         if (StringUtils.endsWithAny(request.getRequestURI(), DEFAULT_AUTH_ROUTE_LOGIN,
                 "/swagger-resources", "/v2/api-docs", "/doc.html"/*, "/webjars/bycdao-ui/**"*/)
@@ -59,27 +61,26 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
         if (StringUtils.isBlank(cid) || StringUtils.isBlank(token)) {
             // 提示：非法请求
             doResponse(response, ResponseData.error(ResponseData.ERROR_0001).extraMsg("非法请求"));
-            return;
-        }
+        } else {
+            // 验证客户端Token信息
+            try {
+                // 使用JWT辅助类验证
+                if (jwtHelper.validateToken(cid, token)) {
+                    // 验证通过
+                    filterChain.doFilter(request, response);
+                } else {
+                    // 验证失败，提示：用户未登录
+                    doResponse(response, ResponseData.error(ResponseData.ERROR_0031).extraMsg("用户未登录"));
+                }
 
-        // 验证客户端Token信息
-        try {
-            // 使用JWT辅助类验证
-            if (jwtHelper.validateToken(cid, token)) {
-                // 验证通过
-                filterChain.doFilter(request, response);
-            } else {
-                // 验证失败，提示：用户未登录
-                doResponse(response, ResponseData.error(ResponseData.ERROR_0031).extraMsg("用户未登录"));
+            } catch (ApiException e) {
+                // 处理自定义异常
+                doResponse(response, ResponseData.error(e.getCode()).extraMsg(e.getMessage()));
+
+            } catch (Exception e) {
+                // 提示：未知错误
+                doResponse(response, ResponseData.error(ResponseData.ERROR_0003).extraMsg("未知错误"));
             }
-
-        } catch (ApiException e) {
-            // 处理自定义异常
-            doResponse(response, ResponseData.error(e.getCode()).extraMsg(e.getMessage()));
-
-        } catch (Exception e) {
-            // 提示：未知错误
-            doResponse(response, ResponseData.error(ResponseData.ERROR_0003).extraMsg("未知错误"));
         }
     }
 

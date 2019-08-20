@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 /**
  * 请求响应数据对象
  *
+ * @param <T> 支持Object泛型
  * @author Aaric, created on 2019-08-05T19:21.
  * @since 0.6.3-SNAPSHOT
  */

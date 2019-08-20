@@ -16,7 +16,7 @@ public final class HtmlXssUtil {
     /**
      * HTML Sensitive Words
      */
-    private static final String[] keyWords = {
+    private static final String[] DEFAULT_XSS_KEYWORDS = {
             "alert", "prompt", "confirm", "script", "javascript", "action", "formaction", "location", "name", "poster",
             "data", "code", "lowsrc", "bgsound", "href", "onload", "onunload", "onblur", "onchange", "onfocus",
             "onreset", "onselect", "onkeydown", "onkeypress", "onkeyup", "onclick", "ondblclick", "onmousedown", "onmousemove",
@@ -33,7 +33,7 @@ public final class HtmlXssUtil {
         if (StringUtils.isEmpty(htmlText)) {
             return "";
         }
-        for (String s : keyWords) {
+        for (String s : DEFAULT_XSS_KEYWORDS) {
             if (htmlText.contains(s)) {
                 htmlText = htmlText.replace(s, "_" + s);
             }
@@ -58,9 +58,6 @@ public final class HtmlXssUtil {
             // Avoid anything between script tags
             Pattern scriptPattern = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE);
             value = scriptPattern.matcher(value).replaceAll("");
-            // Avoid anything in a src="http://www.incarcloud.com/logo/..." type of e­xpression
-            /*scriptPattern = Pattern.compile("src[\r\n]*=[\r\n]*\\\'(.*?)\\\'", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll("");*/
             // Remove any lonesome </script> tag
             scriptPattern = Pattern.compile("</script(.*?)>", Pattern.CASE_INSENSITIVE);
             value = scriptPattern.matcher(value).replaceAll("");
