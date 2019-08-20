@@ -16,7 +16,7 @@ subprojects {
         springBootVersion = "2.1.+"
         swagger2Version = "2.9.2"
         swaggerAnnotationsVersion = "1.5.20"
-        swaggerBootstrapUiVersion = "1.9.5"
+        swaggerBootstrapUiVersion = "1.9.6"
     }
 
     repositories {
