@@ -1,8 +1,8 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    api project(":sb2-web")
-    api project(":sb2-service")
+    implementation project(":sb2-web")
+    implementation project(":sb2-service")
 
     implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
 }

@@ -1,5 +1,5 @@
 dependencies {
-    api project(":sb2-common")
+    implementation project(":sb2-common")
 
     implementation "io.springfox:springfox-swagger2:${swagger2Version}"
     implementation "com.github.xiaoymin:swagger-bootstrap-ui:${swaggerBootstrapUiVersion}"

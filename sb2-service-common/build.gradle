@@ -1,6 +1,6 @@
 dependencies {
-    api project(":sb2-pojo")
-    api project(":sb2-common")
+    implementation project(":sb2-pojo")
+    implementation project(":sb2-common")
 
     implementation "commons-io:commons-io:2.6"
     implementation "commons-net:commons-net:3.6"
