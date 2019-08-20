@@ -7,7 +7,7 @@ flyway {
 }
 
 dependencies {
-    implementation "mysql:mysql-connector-java:8.0.+"
+    compile "mysql:mysql-connector-java:8.0.+"
 }
 
 buildscript {
