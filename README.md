@@ -18,7 +18,7 @@ Spring Boot 2.x Learning.
 4. [x] 支持自动化的数据库版本管理，使用`Flyway`插件（版本：0.5.1-SNAPSHOT）；
 5. [x] 集成**Spring Security**，实现简单授权控制-NoDB（0.6.3-SNAPSHOT）；
 6. [x] 集成**JWT**，支持JSON Token验证（0.7.0-SNAPSHOT）；
-7. [ ] 提供可扩展的**FTP**文件上传服务（0.8.0-SNAPSHOT）；
+7. [x] 提供可扩展的**FTP**文件上传服务（0.8.0-SNAPSHOT）；
 8. [ ] 提供可扩展的**Email**发送邮件服务（0.9.0-SNAPSHOT）；
 9. [ ] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
 10. [ ] 提供可扩展的**APP推送**（极光）服务（0.11.0-SNAPSHOT）；
