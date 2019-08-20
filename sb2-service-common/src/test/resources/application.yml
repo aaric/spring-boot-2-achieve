@@ -1,10 +1,15 @@
+# Spring settings
+spring:
+  profiles:
+    active: dev
+
 # Incarcloud settings
 incarcloud:
   file:
     ftp:
-      port: ${FTP_PORT}
-      host: ${FTP_HOST}
-      username: ${FTP_USERNAME}
-      password: ${FTP_PASSWORD}
+      port: 21
+      hostname: 127.0.0.1
+      username: anonymous
+      password: anonymous
       connectTimeout: 60000
       dataTimeout: 60000

@@ -1,4 +1,4 @@
 dependencies {
-    compile("io.swagger:swagger-annotations:1.5.20")
-    compile("javax.validation:validation-api:2.0.1.Final")
+    implementation "io.swagger:swagger-annotations:${swaggerAnnotationsVersion}"
+    implementation "javax.validation:validation-api:2.0.1.Final"
 }

@@ -1,10 +1,10 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile project(":sb2-web")
-    compile project(":sb2-service")
+    api project(":sb2-web")
+    api project(":sb2-service")
 
-    compile("io.jsonwebtoken:jjwt-api:${jjwtVersion}")
-    compile("io.jsonwebtoken:jjwt-impl:${jjwtVersion}")
-    compile("io.jsonwebtoken:jjwt-jackson:${jjwtVersion}")
+    implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
 }

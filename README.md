@@ -79,6 +79,9 @@ sql> flush privileges;
 2. **选择Security安全框架，弃用Shiro的理由**
     - *Spring Boot*对*Security*框架的约定配置，很大程度上减小*Security*框架的集成难度；
     - 以后支持*Spring Cloud*框架比较容易，使用*Apache Shiro*框架明显不合适了。
+3. **Gradle配置文件implement替换compile的理由**
+    - 加快编译速度；
+    - 隐藏对外不必要的接口。
 
 
 ## 八、附录

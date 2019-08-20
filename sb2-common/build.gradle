@@ -1,6 +1,6 @@
 dependencies {
-    compile("com.alibaba:fastjson:1.2.58")
-    compile("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation "com.alibaba:fastjson:1.2.58"
+    implementation "com.squareup.okhttp3:okhttp:4.0.+"
 
-    compile("io.swagger:swagger-annotations:1.5.20")
+    implementation "io.swagger:swagger-annotations:${swaggerAnnotationsVersion}"
 }
