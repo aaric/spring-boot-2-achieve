@@ -13,3 +13,8 @@ incarcloud:
       password: anonymous
       connectTimeout: 60000
       dataTimeout: 60000
+  email:
+    host: smtp.incarcloud.com
+    port: 25
+    username: account@incarcloud.com
+    password: secret

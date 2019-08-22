@@ -27,8 +27,8 @@ public class FtpServiceTest {
     /**
      * 测试文件
      */
-    private static final String testFileDirectory = "C:\\Users\\root\\Desktop";
-    private static final String testFileName = "banzhuan.jpg";
+    private String testFileDirectory = "C:\\Users\\root\\Desktop";
+    private String testFileName = "banzhuan.jpg";
 
     private File testFile;
 
@@ -54,5 +54,13 @@ public class FtpServiceTest {
         uploadFiles.put("/01-" + testFileName, new File(testFileDirectory, testFileName));
         uploadFiles.put("/02-" + testFileName, new File(testFileDirectory, testFileName));
         ftpService.uploadFiles(uploadFiles);
+    }
+
+    @Test
+    @Ignore
+    public void testDownloadFile() {
+        File downloadFile = ftpService.downloadFile("/" + testFileName);
+        log.info(downloadFile.getAbsolutePath());
+        Assert.assertNotNull(downloadFile);
     }
 }

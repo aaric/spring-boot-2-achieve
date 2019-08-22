@@ -5,5 +5,8 @@ dependencies {
     compile "commons-io:commons-io:2.6"
     compile "commons-net:commons-net:3.6"
 
+    compile "javax.activation:activation:1.1.1"
+    compile "javax.mail:mail:1.4.7"
+
     compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
 }

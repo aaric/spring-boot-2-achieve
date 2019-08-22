@@ -1,6 +1,6 @@
 allprojects {
     group 'com.incarcloud'
-    version '0.8.0-SNAPSHOT'
+    version '0.8.1-SNAPSHOT'
 }
 
 subprojects {
@@ -66,12 +66,13 @@ subprojects {
     }
 
     task checkstyle(type: Checkstyle) {
-        configFile file("../checkstyle/alibaba_checks.xml")
+        configFile file("${rootDir}/config/checkstyle/checkstyle.xml")
         ignoreFailures true
         showViolations true
         source = fileTree('src')
         include '**/*.java'
-        exclude '**/gen/**', '**/build/**', '**/*Test.java'
+        exclude '**/test/**'
+        exclude '**/build/**'
         classpath = files()
     }
 
