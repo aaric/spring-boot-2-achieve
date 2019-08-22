@@ -12,12 +12,10 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * FTP文件服务实现
@@ -307,7 +305,20 @@ public class FtpServiceImpl implements FtpService {
      * @return
      */
     private File downloadFile(FTPClient ftpClient, String remotePath) {
-        // TODO 从FTP上面下载文件
+        try {
+            // 设置文件下载位置
+            String suffix = remotePath.substring(remotePath.lastIndexOf("."));
+            File download = new File(FileUtils.getTempDirectory(), UUID.randomUUID().toString() + suffix);
+
+            // 下载文件
+            OutputStream os = new FileOutputStream(download);
+            if (ftpClient.retrieveFile(remotePath, os)) {
+                return download;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

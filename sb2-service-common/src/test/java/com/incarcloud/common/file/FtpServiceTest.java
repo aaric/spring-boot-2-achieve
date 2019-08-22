@@ -55,4 +55,12 @@ public class FtpServiceTest {
         uploadFiles.put("/02-" + testFileName, new File(testFileDirectory, testFileName));
         ftpService.uploadFiles(uploadFiles);
     }
+
+    @Test
+    @Ignore
+    public void testDownloadFile() {
+        File downloadFile = ftpService.downloadFile("/" + testFileName);
+        log.info(downloadFile.getAbsolutePath());
+        Assert.assertNotNull(downloadFile);
+    }
 }
