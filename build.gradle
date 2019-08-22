@@ -66,6 +66,7 @@ subprojects {
     }
 
     task checkstyle(type: Checkstyle) {
+        toolVersion '8.6'
         configFile file("../config/checkstyle/checkstyle.xml")
         ignoreFailures true
         showViolations true
