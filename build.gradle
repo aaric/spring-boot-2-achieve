@@ -66,11 +66,13 @@ subprojects {
     }
 
     task checkstyle(type: Checkstyle) {
+        printf "${rootDir}"
         configFile file("${rootDir}/config/checkstyle/checkstyle.xml")
         ignoreFailures true
         showViolations true
         source = fileTree('src')
         include '**/*.java'
+        exclude '**/test/**'
         exclude '**/build/**'
         classpath = files()
     }
