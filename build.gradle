@@ -71,8 +71,7 @@ subprojects {
         showViolations true
         source = fileTree('src')
         include '**/*.java'
-        exclude '**/gen/**'
-        exclude '**/test/**'
+        exclude '**/build/**'
         classpath = files()
     }
 
