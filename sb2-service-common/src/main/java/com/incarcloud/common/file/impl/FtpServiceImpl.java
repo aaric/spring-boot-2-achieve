@@ -318,6 +318,14 @@ public class FtpServiceImpl implements FtpService {
 
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                // 断开连接，释放连接资源
+                ftpClient.disconnect();
+                log.info("关闭FTP连接...");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
