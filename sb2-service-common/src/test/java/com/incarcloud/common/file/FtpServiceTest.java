@@ -27,8 +27,8 @@ public class FtpServiceTest {
     /**
      * 测试文件
      */
-    private static final String testFileDirectory = "C:\\Users\\root\\Desktop";
-    private static final String testFileName = "banzhuan.jpg";
+    private String testFileDirectory = "C:\\Users\\root\\Desktop";
+    private String testFileName = "banzhuan.jpg";
 
     private File testFile;
 

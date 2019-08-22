@@ -1,6 +1,7 @@
 package com.incarcloud.mvc.token;
 
 import com.incarcloud.sb2.App;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Aaric, created on 2019-08-09T11:24.
  * @since 0.7.0-SNAPSHOT
  */
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
 public class JwtHelperTest {
@@ -31,7 +33,7 @@ public class JwtHelperTest {
 
     @Test
     public void testCreateToken() {
-        System.out.println("token: " + token);
+        log.info("token: " + token);
         Assert.assertNotNull(token);
     }
 

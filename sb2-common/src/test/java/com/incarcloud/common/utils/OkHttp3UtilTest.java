@@ -2,6 +2,7 @@ package com.incarcloud.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  * @author Aaric, created on 2019-07-15T14:43.
  * @since 0.4.2-SNAPSHOT
  */
+@Slf4j
 public class OkHttp3UtilTest {
 
     @Test
@@ -41,7 +43,7 @@ public class OkHttp3UtilTest {
                 .build();
         Response response = client.newCall(request).execute();
         String result = response.body().string();
-        //System.out.println(result);
+        //log.info(result);
 
         // FastJson
         JSONObject jsonObject;
@@ -53,14 +55,14 @@ public class OkHttp3UtilTest {
                 apiNameList.add(((JSONObject) entry2.getValue()).getString("summary"));
             }
         }
-        //System.out.println(apiNameList.size());
+        //log.info(apiNameList.size());
 
         // Sort
         List<String> sortNameList = null;
         if (null != apiNameList) {
             sortNameList = apiNameList.stream().distinct().sorted().collect(Collectors.toList());
-            System.out.println(sortNameList.size());
-            sortNameList.forEach(object -> System.out.println(object));
+            log.info("" + sortNameList.size());
+            sortNameList.forEach(object -> log.info(object));
         }
 
         Assert.assertNotNull(sortNameList);
