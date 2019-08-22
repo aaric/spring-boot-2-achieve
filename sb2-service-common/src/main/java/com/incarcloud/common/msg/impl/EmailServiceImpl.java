@@ -31,24 +31,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public boolean sendTemplate(String subject, String htmlContent, String... tos) {
-        // 加载配置
-        Properties props = new Properties();
-        props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.smtp.host", emailProperties.getHost());
-        props.setProperty("mail.stmp.port", String.valueOf(emailProperties.getPort()));
-        props.setProperty("mail.smtp.auth", "true");
-
         try {
             // 定义MimeMessage对象
-            MimeMessage msg = new MimeMessage(Session.getInstance(props, new Authenticator() {
-
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    // 设置发件人用户名和密码
-                    return new PasswordAuthentication(emailProperties.getAccount(), emailProperties.getPassword());
-                }
-
-            }));
+            MimeMessage msg = new MimeMessage(getSession());
 
             // 设置收件人/发件人信息
             msg.setFrom(new InternetAddress(emailProperties.getAccount()));
@@ -62,16 +47,6 @@ public class EmailServiceImpl implements EmailService {
             // 构建邮件内容
             Multipart mp = new MimeMultipart("related");
 
-            // LOGO
-            /*File logoFile = new File(Thread.currentThread().getContextClassLoader().getResource("logo.png").getFile());
-            if (logoFile.exists()) {
-                BodyPart logoBodyPart = new MimeBodyPart();
-                logoBodyPart.setDataHandler(new DataHandler(new FileDataSource(logoFile)));
-                logoBodyPart.setFileName(MimeUtility.encodeText("logo.png"));
-                logoBodyPart.setHeader("Content-ID", "<LOGO>");
-                mp.addBodyPart(logoBodyPart);
-            }*/
-
             // 构建HTML文本
             BodyPart htmlBodyPart = new MimeBodyPart();
             htmlBodyPart.setContent(htmlContent, EmailProperties.DEFAULT_CONTENT_TYPE);
@@ -83,9 +58,7 @@ public class EmailServiceImpl implements EmailService {
                 msg.setContent(mp);
             } else {
                 // 设置纯文本内容
-                // tos[0].endsWith("@163.com") || tos[0].endsWith("@126.com") || tos[0].endsWith("@yeah.net")
-                /*String logoImageSrc = "http://sample.com/logo.png";
-                htmlContent = htmlContent.replace("cid:LOGO", logoImageSrc);*/
+                // "@163.com | @126.com | @yeah.net
                 msg.setContent(htmlContent, EmailProperties.DEFAULT_CONTENT_TYPE);
             }
             /*** ============ 主题和内容 ============ ***/
@@ -99,5 +72,30 @@ public class EmailServiceImpl implements EmailService {
             log.error(ExceptionUtils.getStackTrace(e));
         }
         return false;
+    }
+
+    /**
+     * 配置邮件属性和Session对象
+     *
+     * @return
+     */
+    private Session getSession() {
+        // 加载配置
+        Properties props = new Properties();
+        props.setProperty("mail.transport.protocol", "smtp");
+        props.setProperty("mail.smtp.host", emailProperties.getHost());
+        props.setProperty("mail.stmp.port", String.valueOf(emailProperties.getPort()));
+        props.setProperty("mail.smtp.auth", "true");
+
+        // 返回Session对象
+        return Session.getInstance(props, new Authenticator() {
+
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                // 设置发件人用户名和密码
+                return new PasswordAuthentication(emailProperties.getAccount(), emailProperties.getPassword());
+            }
+
+        });
     }
 }
