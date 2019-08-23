@@ -20,7 +20,7 @@ Spring Boot 2.x Learning.
 6. [x] 集成**JWT**，支持JSON Token验证（0.7.0-SNAPSHOT）；
 7. [x] 提供可扩展的**FTP**文件上传服务（0.8.0-SNAPSHOT）；
 8. [x] 提供可扩展的**Email**发送邮件服务（0.9.0-SNAPSHOT）；
-9. [ ] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
+9. [x] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
 10. [ ] 提供可扩展的**APP推送**（极光）服务（0.11.0-SNAPSHOT）；
 11. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.12.0-SNAPSHOT）。
 
