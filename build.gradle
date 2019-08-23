@@ -30,7 +30,6 @@ subprojects {
     }*/
 
     repositories {
-        /*jcenter()*/
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://repository.incarcloud.com/content/groups/public' }
     }
@@ -55,10 +54,9 @@ subprojects {
 
     buildscript {
         repositories {
-            /*jcenter()*/
             maven { url 'https://plugins.gradle.org/m2/' }
-            maven { url 'https://maven.aliyun.com/repository/public' }
-            maven { url 'https://repository.incarcloud.com/content/groups/public' }
+            /*maven { url 'https://maven.aliyun.com/repository/public' }
+            maven { url 'https://repository.incarcloud.com/content/groups/public' }*/
         }
 
         dependencies {
