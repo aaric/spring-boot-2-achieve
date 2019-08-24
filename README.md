@@ -19,10 +19,10 @@ Spring Boot 2.x Learning.
 5. [x] 集成**Spring Security**，实现简单授权控制-NoDB（0.6.3-SNAPSHOT）；
 6. [x] 集成**JWT**，支持JSON Token验证（0.7.0-SNAPSHOT）；
 7. [x] 提供可扩展的**FTP**文件上传服务（0.8.0-SNAPSHOT）；
-8. [x] 提供可扩展的**Email**发送邮件服务（0.8.1-SNAPSHOT）；
-9. [x] 提供可扩展的**SMS**发送验证码+短信通知服务（0.8.2-SNAPSHOT）；
-10. [ ] 提供可扩展的**APP推送**（极光）服务（0.8.3-SNAPSHOT）；
-11. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.8.4-SNAPSHOT）。
+8. [x] 提供可扩展的**Email**发送邮件服务（0.9.0-SNAPSHOT）；
+9. [x] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
+10. [x] 提供可扩展的**APP推送**（极光）服务（0.11.0-SNAPSHOT）；
+11. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.12.0-SNAPSHOT）。
 
 
 ## 三、`milestone-2.0`版本规划
@@ -45,7 +45,7 @@ Spring Boot 2.x Learning.
 2. [ ] 集成`Spring Social`实现第三方登录-QQ（3.2.0-SNAPSHOT）；
 3. [ ] 集成`Spring Social`实现第三方登录-微信（3.3.0-SNAPSHOT）；
 4. [ ] 实现支持**小程序**通用逻辑（3.4.0-SNAPSHOT）；
-5. [ ] 规划初代云+`5G`娱乐（待定）。
+5. [ ] 实现Harbor初代PaaS平台（待定）。
 
 
 ## 六、其他说明

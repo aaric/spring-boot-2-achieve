@@ -5,16 +5,25 @@ spring:
 
 # Incarcloud settings
 incarcloud:
-  file:
-    ftp:
+  file: # FTP OR FastDFS
+    ftp: # FTP配置
       port: 21
       hostname: 127.0.0.1
       username: anonymous
       password: anonymous
       connectTimeout: 60000
       dataTimeout: 60000
-  email:
+  email: # Email配置
     host: smtp.incarcloud.com
     port: 25
     username: account@incarcloud.com
     password: secret
+  sms: # Aliyun OR Huawei, Others...
+    aliyun: # Aliyun 配置
+      endpoint: cn-hangzhou
+      regionId: cn-hangzhou
+      connectTimeout: 10000
+      readTimeout: 10000
+      signName: 英卡科技
+      accessKeyId: yourid
+      accessKeySecret: yoursecret
