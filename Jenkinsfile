@@ -4,13 +4,16 @@ node {
    }
 
     stage('Build') {
-        // no 'java' --> sudo ln -s /usr/java/jdk1.8.0_172/bin/java /usr/bin/java
-        if (isUnix()) {
-            sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
-        }
+        sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
    }
 
-   stage('Test Reports') {
+   stage('JUnit Test Reports') {
        junit '**/build/test-results/test/*.xml'
+   }
+
+   stage('SonarQube Analysis') {
+       withSonarQubeEnv('SonarQube') {
+           sh "${tool 'sonar-scanner-4.0'}/bin/sonar-scanner"
+       }
    }
 }
