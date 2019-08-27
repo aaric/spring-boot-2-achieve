@@ -1,7 +1,7 @@
 # CentOS 7 with JDK 8
 # Author: Aaric
 # Version: 1.0
-# Build: sudo docker build -t dev/centos7-jdk8:1.0 .
+# Build: sudo docker build -t dev/centos7-jdk8:latest -t dev/centos7-jdk8:1.0 .
 # Usage: sudo docker run --name jdk8 -it dev/centos7-jdk8:1.0 /bin/bash
 FROM centos:7.6.1810
 
