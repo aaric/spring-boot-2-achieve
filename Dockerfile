@@ -1,15 +1,16 @@
-# CentOS 7 with JDK 8
+# JDK 8 with Spring Boot Project
 # Author: Aaric
 # Version: 1.0
-# Build: sudo docker build -t dev/centos7-jdk8:latest -t dev/centos7-jdk8:1.0 .
-# Usage: sudo docker run --name jdk8 -it dev/centos7-jdk8:1.0 /bin/bash
-FROM centos:7.6.1810
+# Build: sudo docker build -t dev/sb2-web-plat:latest -t dev/sb2-web-plat:0.11.0 .
+# Usage: sudo docker run --name sb2 -p 9090:8080 -d dev/sb2-web-plat:0.11.0
+FROM dev/centos7-jdk8
 
 MAINTAINER Aaric
 
-RUN mkdir /usr/java
+ENV TOMCAT_PLAT_PORT 8080
 
-ADD jdk-8u172-linux-x64.tar.gz /usr/java
+EXPOSE 8080
 
-ENV JAVA_HOME /usr/java/jdk1.8.0_172
-ENV PATH $PATH:$JAVA_HOME/bin
+ADD sb2-web-plat-0.11.0-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "/app.jar"]
