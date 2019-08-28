@@ -18,7 +18,7 @@ pipeline {
 
   stages {
     //---------BEGIN----------//
-    stage('Infomation') {
+    stage('Information') {
       steps {
         echo "${env.HELLO_TIPS}"
         echo "Repo Address: ${params.repoUrl}"
