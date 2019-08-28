@@ -3,8 +3,8 @@ pipeline {
   agent any
 
   parameters {
-    string(name: 'repoUrl', defaultValue: 'http://linux7-3:3000/aaric/spring-boot-2-achieve.git', description: 'Git仓库地址')
-    string(name: 'repoBranch', defaultValue: 'master', description: 'Git仓库分支名称')
+    string(name: 'repoUrl', defaultValue: 'https://github.com/aaric/spring-boot-2-achieve', description: 'Git仓库地址')
+    string(name: 'repoBranch', defaultValue: 'dev-aaric', description: 'Git仓库分支名称')
   }
 
   tools {
