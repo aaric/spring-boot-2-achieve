@@ -148,20 +148,24 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 2. **Jenkins Pipeline（非标准DSL）配置参考**
 ```groovy
 node {
-   stage('Preparation') {
-        git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
-   }
+ stage('Preparation') {
+   git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
+ }
 
-    stage('Build') {
-        // no 'java' --> sudo ln -s /usr/java/jdk1.8.0_172/bin/java /usr/bin/java
-        if (isUnix()) {
-            sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
-        }
-   }
+ stage('Build') {
+   sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
+ }
 
-   stage('Test Reports') {
-       junit '**/build/test-results/test/*.xml'
+ stage('JUnit Test Reports') {
+   junit '**/build/test-results/test/*.xml'
+ }
+
+ stage('SonarQube Analysis') {
+   // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-gradle/
+   withSonarQubeEnv() {
+     sh "${tool 'gradle-5.2.1'}/bin/gradle sonarqube -x test --info"
    }
+ }
 }
 ```
 
