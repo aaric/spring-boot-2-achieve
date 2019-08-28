@@ -73,14 +73,14 @@ pipeline {
     stage('Automated Testing') {
       steps {
         // TODO 执行自动化测试脚本
-        echo '自动化测试, 待完善...'
+        echo '执行自动化测试脚本, 待完善...'
       }
     }
 
     stage('Performance Testing') {
       steps {
         // TODO 执行JMeter性能测试
-        echo '待完善...'
+        echo '执行JMeter性能测试, 待完善...'
       }
     }
 
