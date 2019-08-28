@@ -12,8 +12,8 @@ node {
    }
 
    stage('SonarQube Analysis') {
-       withSonarQubeEnv('SonarQube') {
-           sh "${tool 'sonar-scanner-4.0'}/bin/sonar-scanner"
+       withSonarQubeEnv() {
+           sh "${tool 'gradle-5.2.1'}/bin/gradle sonarqube -x test"
        }
    }
 }
