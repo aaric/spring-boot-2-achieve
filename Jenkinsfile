@@ -12,6 +12,7 @@ node {
    }
 
    stage('SonarQube Analysis') {
+       // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-gradle/
        withSonarQubeEnv() {
            sh "${tool 'gradle-5.2.1'}/bin/gradle sonarqube -x test"
        }
