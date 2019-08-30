@@ -17,7 +17,7 @@ pipeline {
     }
 
     stages {
-        //---------BEGIN----------//
+        //--------------- BEGIN ---------------//
         stage('Information') {
             steps {
                 echo '//---------  Information ----------//'
@@ -92,7 +92,7 @@ pipeline {
             }
         }
 
-        //---------END----------//
+        //--------------- END ---------------//
     }
 
     post() {
@@ -101,7 +101,7 @@ pipeline {
             echo '//---------  Notification ----------//'
             mail to: "account@incarcloud.com", //for many with ',' separate
                 subject: "Jenkins Notification: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) ",
-                body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention."
+                body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention!"
         }
     }
 }
