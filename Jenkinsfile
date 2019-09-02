@@ -18,7 +18,7 @@ pipeline {
 
     stages {
         //-------------------- BEGIN --------------------//
-        stage('Information') {
+        /*stage('Information') {
             steps {
                 echo '//---------  Information ----------//'
                 echo "${env.DEFAULT_CUSTOM_TITLE}"
@@ -28,7 +28,7 @@ pipeline {
                 sh 'java -version'
                 sh 'gradle --version'
             }
-        }
+        }*/
 
         stage('Preparation') {
             steps {
@@ -56,7 +56,7 @@ pipeline {
             steps {
                 echo '//---------  SonarQube Analysis ----------//'
                 withSonarQubeEnv('SonarQube') {
-                    sh "gradle sonarqube -x test --info"
+                    sh "gradle sonarqube --info"
                 }
             }
         }

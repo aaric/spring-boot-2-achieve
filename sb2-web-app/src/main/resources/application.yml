@@ -29,7 +29,7 @@ incarcloud:
       title: 英卡SB2示例项目在线API文档（APP端）
       description: 本文档包含手机端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
-      version: 1.0
+      version: 1.0-Milestone
   auth:
     jwt:
       secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
