@@ -47,10 +47,11 @@ pipeline {
             }
         }
 
-        stage('JUnit Test Reports') {
+        stage('Reports') {
             steps {
-                echo '//---------  JUnit Test Reports ----------//'
+                echo '//---------  Reports ----------//'
                 junit '**/build/test-results/test/*.xml'
+                checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/build/reports/checkstyle/*.xml', unHealthy: ''
             }
         }
 
