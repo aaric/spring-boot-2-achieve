@@ -21,18 +21,6 @@ pipeline {
 
     stages {
         //-------------------- BEGIN --------------------//
-        /*stage('Information') {
-            steps {
-                echo '//---------  Information ----------//'
-                echo "${env.DEFAULT_CUSTOM_TITLE}"
-                echo "Repo Address: ${params.repoUrl}"
-                echo "Repo Branch: ${params.repoBranch}"
-                sh 'git --version'
-                sh 'java -version'
-                sh 'gradle --version'
-            }
-        }*/
-
         stage('Preparation') {
             steps {
                 echo '//---------  Preparation ----------//'
@@ -65,21 +53,6 @@ pipeline {
             }
         }
 
-        /*stage('Quality Gate') { //忽略，状态无法返回给Jenkins
-            // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-jenkins/
-            steps {
-                echo '//---------  Quality Gate ----------//'
-                script {
-                    timeout(time: 10, unit: 'MINUTES') { //1-HOURS
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }*/
-
         stage('Automated Testing') {
             steps {
                 // TODO 执行自动化测试脚本
@@ -101,8 +74,6 @@ pipeline {
                 echo '//---------  Deployment ----------//'
                 script {
                     // 编译镜像并运行容器
-                    //sh 'docker build --build-arg deployPkg=sb2-web-plat-0.11.0-SNAPSHOT.jar -t local/sb2-web-plat:0.11.0 ./sb2-web-plat/build/libs -f ./Dockerfile'
-                    //sh 'docker run --name sb2-web-plat -p 9090:8080 -d local/sb2-web-plat:0.11.0'
                     def deployPkgName = 'sb2-web-plat'
                     def deployPkgVersion = sh (
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
@@ -151,6 +122,7 @@ pipeline {
                     sh "docker push ${params.registryHostname}/dev/${deployPkgName}"
                     sh "docker push ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
 
+                    // 删除已发布的镜像
                     sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}"
                     sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
                 }
