@@ -7,7 +7,7 @@ pipeline {
         string(name: 'repoBranch', defaultValue: 'master', description: 'Git Repo Branch')
         string(name: 'registryHostname', defaultValue: 'linux7-2:5000', description: 'Registry Hostname')
         string(name: 'registryAuthLogin', defaultValue: 'aaric', description: 'Registry Login')
-        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Secret')
+        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Login Secret')
     }
 
     tools {
