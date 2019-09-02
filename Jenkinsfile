@@ -96,8 +96,7 @@ pipeline {
             steps {
                 echo '//---------  Deployment ----------//'
                 script {
-                    //sh 'docker stop sb2-web-plat'
-                    //sh 'docker rm sb2-web-plat'
+                    // 编译镜像并运行容器
                     //sh 'docker build --build-arg deployPkg=sb2-web-plat-0.11.0-SNAPSHOT.jar -t local/sb2-web-plat:0.11.0 ./sb2-web-plat/build/libs -f ./Dockerfile'
                     //sh 'docker run --name sb2-web-plat -p 9090:8080 -d local/sb2-web-plat:0.11.0'
                     def deployPkgName = 'sb2-web-plat'
@@ -106,6 +105,10 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     sh "docker build --build-arg deployPkg=${deployPkgName}-${deployPkgVersion}.jar -t local/${deployPkgName}:${deployPkgVersion} ./${deployPkgName}/build/libs -f ./Dockerfile"
+
+                    //
+                    //sh 'docker stop sb2-web-plat'
+                    //sh 'docker rm sb2-web-plat'
                     sh "docker run --name ${deployPkgName} -p 9090:8080 -d local/${deployPkgName}:${deployPkgVersion}"
                 }
 
@@ -116,11 +119,20 @@ pipeline {
             steps {
                 echo '//---------  Publish ----------//'
                 script {
-                    /*def projectVersion = sh (
+                    // 发布镜像到Harbor
+                    def deployPkgName = 'sb2-web-plat'
+                    def deployPkgVersion = sh (
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
                         returnStdout: true
-                    )*/
-                    // TODO 发布镜像到Harbor
+                    ).trim()
+                    sh "docker login linux7-2:5000 -u aaric -p aaricT01"
+                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} linux7-2:5000/dev/${deployPkgName}"
+                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
+                    sh "docker push linux7-2:5000/dev/${deployPkgName}"
+                    sh "docker push linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
+
+                    sh "docker rmi linux7-2:5000/dev/${deployPkgName}"
+                    sh "docker rmi linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
                 }
             }
         }
