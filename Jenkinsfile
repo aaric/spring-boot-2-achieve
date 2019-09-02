@@ -96,9 +96,9 @@ pipeline {
             steps {
                 echo '//---------  Deployment ----------//'
                 script {
-                    sh 'docker stop sb2-web-plat'
-                    sh 'docker rm sb2-web-plat'
-                    sh 'docker build --build-arg deployPkg=sb2-web-app-0.11.0-SNAPSHOT.jar -t local/sb2-web-plat:0.11.0 -f ./Dockerfile ./sb2-web-plat/build/libs'
+                    //sh 'docker stop sb2-web-plat'
+                    //sh 'docker rm sb2-web-plat'
+                    sh 'docker build --build-arg deployPkg=sb2-web-plat-0.11.0-SNAPSHOT.jar -t local/sb2-web-plat:0.11.0 ./sb2-web-plat/build/libs -f ./Dockerfile'
                     sh 'docker run --name sb2-web-plat -p 9090:8080 -d local/sb2-web-plat:0.11.0'
                 }
 
