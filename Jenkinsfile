@@ -5,6 +5,9 @@ pipeline {
     parameters {
         string(name: 'repoUrl', defaultValue: 'https://github.com/aaric/spring-boot-2-achieve', description: 'Git Repo Address')
         string(name: 'repoBranch', defaultValue: 'master', description: 'Git Repo Branch')
+        string(name: 'registryHostname', defaultValue: 'linux7-2:5000', description: 'Registry Hostname')
+        string(name: 'registryAuthLogin', defaultValue: 'aaric', description: 'Registry Login')
+        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Secret')
     }
 
     tools {
@@ -106,9 +109,25 @@ pipeline {
                     ).trim()
                     sh "docker build --build-arg deployPkg=${deployPkgName}-${deployPkgVersion}.jar -t local/${deployPkgName}:${deployPkgVersion} ./${deployPkgName}/build/libs -f ./Dockerfile"
 
-                    //
-                    //sh 'docker stop sb2-web-plat'
-                    //sh 'docker rm sb2-web-plat'
+                    // 如果旧容器正在运行则停止
+                    def dockerPsId = sh (
+                        script: "docker ps | grep ${deployPkgName} | awk '{print \$1}'",
+                        returnStdout: true
+                    )?.trim()
+                    if (dockerPsId) {
+                        sh "docker stop ${deployPkgName}"
+                    }
+
+                    // 如果旧容器存储则删除
+                    def dockerPsAId = sh (
+                        script: "docker ps -a | grep ${deployPkgName} | awk '{print \$1}'",
+                        returnStdout: true
+                    )?.trim()
+                    if (dockerPsAId) {
+                        sh "docker rm ${deployPkgName}"
+                    }
+
+                    // 运行编译好的新容器
                     sh "docker run --name ${deployPkgName} -p 9090:8080 -d local/${deployPkgName}:${deployPkgVersion}"
                 }
 
@@ -125,14 +144,14 @@ pipeline {
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
                         returnStdout: true
                     ).trim()
-                    sh "docker login linux7-2:5000 -u aaric -p aaricT01"
-                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} linux7-2:5000/dev/${deployPkgName}"
-                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
-                    sh "docker push linux7-2:5000/dev/${deployPkgName}"
-                    sh "docker push linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
+                    sh "docker login ${params.registryHostname} -u ${params.registryAuthLogin} -p ${params.registryAuthSecret}"
+                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} ${params.registryHostname}/dev/${deployPkgName}"
+                    sh "docker tag local/${deployPkgName}:${deployPkgVersion} ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
+                    sh "docker push ${params.registryHostname}/dev/${deployPkgName}"
+                    sh "docker push ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
 
-                    sh "docker rmi linux7-2:5000/dev/${deployPkgName}"
-                    sh "docker rmi linux7-2:5000/dev/${deployPkgName}:${deployPkgVersion}"
+                    sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}"
+                    sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
                 }
             }
         }
