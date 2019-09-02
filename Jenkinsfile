@@ -16,15 +16,17 @@ pipeline {
     }
 
     environment {
-        DEFAULT_CUSTOM_TITLE = 'Hello, Pipeline!'
+        DEFAULT_CUSTOM_TITLE = 'Hello, Jenkins Pipeline!'
     }
 
     stages {
         //-------------------- BEGIN --------------------//
         stage('Preparation') {
             steps {
+                echo "${env.DEFAULT_CUSTOM_TITLE}"
+
                 echo '//---------  Preparation ----------//'
-                git branch: params.repoBranch, url: params.repoUrl
+                git branch: params.repoBranch, credentialsId: 'auth-git-web', url: params.repoUrl
             }
         }
 
