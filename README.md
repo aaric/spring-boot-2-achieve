@@ -21,17 +21,17 @@ Spring Boot 2.x Learning.
 7. [x] 提供可扩展的**FTP**文件上传服务（0.8.0-SNAPSHOT）；
 8. [x] 提供可扩展的**Email**发送邮件服务（0.9.0-SNAPSHOT）；
 9. [x] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
-10. [ ] 提供可扩展的**APP推送**（极光）服务（0.11.0-SNAPSHOT）；
-11. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.12.0-SNAPSHOT）。
+10. [x] 完善**Jenkins Pipeline**流水线，实现自动化*CI/CD*（0.11.0-SNAPSHOT）；
+11. [ ] 提供可扩展的**APP推送**（极光）服务（0.12.0-SNAPSHOT）；
+12. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.13.0-SNAPSHOT）。
 
 
 ## 三、`milestone-2.0`版本规划
 1. [ ] 完善可扩展日志与审计功能（1.1.0-SNAPSHOT）；
-2. [ ] 完善**Jenkins Pipeline**流水线，实现自动化*CI/CD*（1.2.0-SNAPSHOT）；
-3. [ ] 实现可扩展`机构-用户-权限`业务功能（1.3.0-SNAPSHOT）；
-4. [ ] 实现可扩展`省-市-区`业务功能（1.4.0-SNAPSHOT）；
-5. [ ] 实现可扩展`第三方支付`业务功能（1.5.0-SNAPSHOT）；
-6. [ ] 集成`Activiti`工作流引擎（1.6.0-SNAPSHOT）。
+2. [ ] 实现可扩展`机构-用户-权限`业务功能（1.2.0-SNAPSHOT）；
+3. [ ] 实现可扩展`省-市-区`业务功能（1.3.0-SNAPSHOT）；
+4. [ ] 实现可扩展`第三方支付`业务功能（1.4.0-SNAPSHOT）；
+5. [ ] 集成`Activiti`工作流引擎（1.5.0-SNAPSHOT）。
 
 
 ## 四、`milestone-3.0`版本规划
@@ -45,7 +45,7 @@ Spring Boot 2.x Learning.
 2. [ ] 集成`Spring Social`实现第三方登录-QQ（3.2.0-SNAPSHOT）；
 3. [ ] 集成`Spring Social`实现第三方登录-微信（3.3.0-SNAPSHOT）；
 4. [ ] 实现支持**小程序**通用逻辑（3.4.0-SNAPSHOT）；
-5. [ ] 规划初代云+`5G`娱乐（待定）。
+5. [ ] 实现Harbor初代PaaS平台（待定）。
 
 
 ## 六、其他说明
@@ -148,20 +148,24 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 2. **Jenkins Pipeline（非标准DSL）配置参考**
 ```groovy
 node {
-   stage('Preparation') {
-        git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
-   }
+ stage('Preparation') {
+   git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
+ }
 
-    stage('Build') {
-        // no 'java' --> sudo ln -s /usr/java/jdk1.8.0_172/bin/java /usr/bin/java
-        if (isUnix()) {
-            sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
-        }
-   }
+ stage('Build') {
+   sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
+ }
 
-   stage('Test Reports') {
-       junit '**/build/test-results/test/*.xml'
+ stage('JUnit Test Reports') {
+   junit '**/build/test-results/test/*.xml'
+ }
+
+ stage('SonarQube Analysis') {
+   // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-gradle/
+   withSonarQubeEnv() {
+     sh "${tool 'gradle-5.2.1'}/bin/gradle sonarqube -x test --info"
    }
+ }
 }
 ```
 
