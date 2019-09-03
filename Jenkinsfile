@@ -5,6 +5,7 @@ pipeline {
     parameters {
         string(name: 'repoUrl', defaultValue: 'https://github.com/aaric/spring-boot-2-achieve', description: 'Git Repo Address')
         string(name: 'repoBranch', defaultValue: 'master', description: 'Git Repo Branch')
+        string(name: 'repoCredentialsId', defaultValue: 'auth-git-web', description: 'Git Repo Auth')
         string(name: 'registryHostname', defaultValue: 'linux7-2:5000', description: 'Registry Hostname')
         string(name: 'registryAuthLogin', defaultValue: 'aaric', description: 'Registry Login')
         string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Login Secret')
@@ -16,17 +17,17 @@ pipeline {
     }
 
     environment {
-        DEFAULT_CUSTOM_TITLE = 'Hello, Jenkins Pipeline!'
+        HELLO_CUSTOM_TITLE = 'Hello, Jenkins Pipeline!'
     }
 
     stages {
         //-------------------- BEGIN --------------------//
         stage('Preparation') {
             steps {
-                echo "${env.DEFAULT_CUSTOM_TITLE}"
+                echo "${env.HELLO_CUSTOM_TITLE}"
 
                 echo '//---------  Preparation ----------//'
-                git branch: params.repoBranch, credentialsId: 'auth-git-web', url: params.repoUrl
+                git branch: params.repoBranch, credentialsId: params.repoCredentialsId, url: params.repoUrl
             }
         }
 
@@ -55,21 +56,21 @@ pipeline {
             }
         }
 
-        stage('Automated Testing') {
+        /*stage('Automated Testing') {
             steps {
                 // TODO 执行自动化测试脚本
                 echo '//---------  Automated Testing ----------//'
                 echo '执行自动化测试脚本, 待完善...(未来)'
             }
-        }
+        }*/
 
-        stage('Performance Testing') {
+        /*stage('Performance Testing') {
             steps {
                 // TODO 执行JMeter性能测试
                 echo '//---------  Performance Testing ----------//'
                 echo '执行JMeter性能测试, 待完善...(未来)'
             }
-        }
+        }*/
 
         stage('Deployment') {
             steps {

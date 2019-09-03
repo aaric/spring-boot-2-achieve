@@ -1,0 +1,7 @@
+version: '3'
+services:
+  sb2-web-plat:
+    image: linux7-2:5000/dev/sb2-web-plat:0.12.0-SNAPSHOT
+    container_name: sb2-web-plat
+    ports:
+      - 9090:8080
