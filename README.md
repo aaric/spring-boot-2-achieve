@@ -23,7 +23,7 @@ Spring Boot 2.x Learning.
 9. [x] 提供可扩展的**SMS**发送验证码+短信通知服务（0.10.0-SNAPSHOT）；
 10. [x] 完善**Jenkins Pipeline**流水线，实现自动化*CI/CD*（0.11.0-SNAPSHOT）；
 11. [x] 提供可扩展的**APP推送**（极光）服务（0.12.0-SNAPSHOT）；
-12. [ ] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.13.0-SNAPSHOT）。
+12. [x] 提供可扩展的**位置**(高德)IP定位+逆地理编码服务（0.13.0-SNAPSHOT）。
 
 
 ## 三、`milestone-2.0`版本规划
