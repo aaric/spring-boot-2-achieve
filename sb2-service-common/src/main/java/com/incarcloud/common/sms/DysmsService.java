@@ -8,7 +8,7 @@ import java.util.Map;
  * @author Aaric, created on 2019-08-23T14:27.
  * @since 0.10.0-SNAPSHOT
  */
-public interface AliyunSmsService {
+public interface DysmsService {
 
     /**
      * 发送短信

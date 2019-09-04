@@ -8,8 +8,8 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.incarcloud.common.config.settings.AliyunSmsProperties;
-import com.incarcloud.common.sms.AliyunSmsService;
+import com.incarcloud.common.config.settings.DysmsProperties;
+import com.incarcloud.common.sms.DysmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -26,24 +26,24 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class AliyunSmsServiceImpl implements AliyunSmsService {
+public class DysmsServiceImpl implements DysmsService {
 
     @Autowired
-    private AliyunSmsProperties aliyunSmsProperties;
+    private DysmsProperties dysmsProperties;
 
     @Override
     @SuppressWarnings("deprecation")
     public String sendTemplate(String templateCode, Map<String, String> templateParams, String outId, String... tos) {
         // 可自助调整超时时间
-        System.setProperty("sun.net.client.defaultConnectTimeout", String.valueOf(aliyunSmsProperties.getConnectTimeout()));
-        System.setProperty("sun.net.client.defaultReadTimeout", String.valueOf(aliyunSmsProperties.getReadTimeout()));
+        System.setProperty("sun.net.client.defaultConnectTimeout", String.valueOf(dysmsProperties.getConnectTimeout()));
+        System.setProperty("sun.net.client.defaultReadTimeout", String.valueOf(dysmsProperties.getReadTimeout()));
 
         try {
             // 初始化acsClient,暂不支持region化
-            IClientProfile profile = DefaultProfile.getProfile(aliyunSmsProperties.getRegionId(),
-                    aliyunSmsProperties.getAccessKeyId(), aliyunSmsProperties.getAccessKeySecret());
-            DefaultProfile.addEndpoint(aliyunSmsProperties.getEndpoint(), aliyunSmsProperties.getRegionId(),
-                    AliyunSmsProperties.DEFAULT_PRODUCT, AliyunSmsProperties.DEFAULT_DOMAIN);
+            IClientProfile profile = DefaultProfile.getProfile(dysmsProperties.getRegionId(),
+                    dysmsProperties.getAccessKeyId(), dysmsProperties.getAccessKeySecret());
+            DefaultProfile.addEndpoint(dysmsProperties.getEndpoint(), dysmsProperties.getRegionId(),
+                    DysmsProperties.DEFAULT_PRODUCT, DysmsProperties.DEFAULT_DOMAIN);
             IAcsClient acsClient = new DefaultAcsClient(profile);
 
             // 组装请求对象-具体描述见控制台-文档部分内容
@@ -51,7 +51,7 @@ public class AliyunSmsServiceImpl implements AliyunSmsService {
             // 必填:待发送手机号
             request.setPhoneNumbers(StringUtils.join(tos, ","));
             // 必填:短信签名-可在短信控制台中找到
-            request.setSignName(aliyunSmsProperties.getSignName());
+            request.setSignName(dysmsProperties.getSignName());
             // 必填:短信模板-可在短信控制台中找到
             request.setTemplateCode(templateCode);
             // 可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为

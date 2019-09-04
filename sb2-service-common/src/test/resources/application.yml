@@ -19,7 +19,7 @@ incarcloud:
     username: account@incarcloud.com
     password: secret
   sms: # Aliyun OR Huawei, Others...
-    aliyun: # Aliyun 配置
+    dysms: # Aliyun SMS 配置
       endpoint: cn-hangzhou
       regionId: cn-hangzhou
       connectTimeout: 10000
@@ -27,3 +27,8 @@ incarcloud:
       signName: 英卡科技
       accessKeyId: yourid
       accessKeySecret: yoursecret
+  push: # 极光推送 OR 个推服务
+    jiguang: # 极光推送配置
+      appKey: yourkey
+      masterSecret: yoursecret
+      apnsProduction: false

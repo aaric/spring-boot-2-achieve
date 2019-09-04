@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * # Incarcloud settings
  * incarcloud:
  *   sms:
- *     aliyun:
+ *     dysms:
  *       endpoint: cn-hangzhou
  *       regionId: cn-hangzhou
  *       connectTimeout: 10000
@@ -25,8 +25,8 @@ import org.springframework.stereotype.Component;
  * @since 0.10.0-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".sms.aliyun")
-public class AliyunSmsProperties {
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".sms.dysms")
+public class DysmsProperties {
 
     /**
      * 产品名称:云通信短信API产品,开发者无需替换
