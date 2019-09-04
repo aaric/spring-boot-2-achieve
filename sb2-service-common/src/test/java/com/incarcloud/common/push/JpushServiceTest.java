@@ -24,7 +24,7 @@ public class JpushServiceTest {
     protected JpushService jpushService;
 
     @Test
-    //@Ignore
+    @Ignore
     public void testPushToAndroid() {
         Long msgId = jpushService.pushToAndroid("title", "content", null, "8c46788b6fceef3f2897b9001c43db55");
         log.info("msgId: {}", msgId);
@@ -32,7 +32,7 @@ public class JpushServiceTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void testPushToApple() {
         Long msgId = jpushService.pushToApple("title", "content", null, "ED28AF6401DD4C0C986F9E26EA372006");
         log.info("msgId: {}", msgId);
