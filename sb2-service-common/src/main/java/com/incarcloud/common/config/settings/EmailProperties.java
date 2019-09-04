@@ -1,6 +1,7 @@
 package com.incarcloud.common.config.settings;
 
 import com.incarcloud.common.share.Constant;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -87,5 +88,10 @@ public class EmailProperties {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

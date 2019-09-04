@@ -10,13 +10,14 @@ import cn.jpush.api.push.model.audience.Audience;
 import cn.jpush.api.push.model.notification.AndroidNotification;
 import cn.jpush.api.push.model.notification.IosNotification;
 import cn.jpush.api.push.model.notification.Notification;
-import com.incarcloud.common.config.settings.JPushProperties;
-import com.incarcloud.common.push.JPushService;
+import com.incarcloud.common.config.settings.JpushProperties;
+import com.incarcloud.common.push.JpushService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,7 +28,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class JPushServiceImpl implements JPushService {
+public class JpushServiceImpl implements JpushService {
 
     /**
      * 默认iOS提示音
@@ -35,7 +36,7 @@ public class JPushServiceImpl implements JPushService {
     private static final String DEFAULT_IOS_SOUND_NAME = "happy";
 
     @Autowired
-    private JPushProperties jPushProperties;
+    private JpushProperties jpushProperties;
 
     @Override
     public Long pushToAndroid(String title, String content, Map<String, String> extraMsg, String... clientId) {
@@ -52,6 +53,11 @@ public class JPushServiceImpl implements JPushService {
 
     @Override
     public Long pushToApple(String title, String content, Map<String, String> extraMsg, String... clientId) {
+        // 处理透传消息为空的情况
+        if (null == extraMsg) {
+            extraMsg = new HashMap<>();
+        }
+
         // 构建消息主体
         PushPayload pushPayload = PushPayload.newBuilder()
                 .setPlatform(Platform.ios()) //指定iOS平台
@@ -66,7 +72,7 @@ public class JPushServiceImpl implements JPushService {
                                 .build())
                         .build())
                 .setOptions(Options.newBuilder()
-                        .setApnsProduction(jPushProperties.getApnsProduction()) //指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
+                        .setApnsProduction(jpushProperties.getApnsProduction()) //指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
                         .build())
                 .setMessage(Message.newBuilder()
                         .setMsgContent(content)
@@ -80,6 +86,11 @@ public class JPushServiceImpl implements JPushService {
 
     @Override
     public Long pushToAll(String title, String content, Map<String, String> extraMsg) {
+        // 处理透传消息为空的情况
+        if (null == extraMsg) {
+            extraMsg = new HashMap<>();
+        }
+        
         // 构建消息主体
         PushPayload pushPayload = PushPayload.newBuilder()
                 .setPlatform(Platform.all()) //指定iOS平台
@@ -99,7 +110,7 @@ public class JPushServiceImpl implements JPushService {
                                 .build())
                         .build())
                 .setOptions(Options.newBuilder()
-                        .setApnsProduction(jPushProperties.getApnsProduction()) //指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
+                        .setApnsProduction(jpushProperties.getApnsProduction()) //指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
                         .build())
                 .setMessage(Message.newBuilder()
                         .setMsgContent(content)
@@ -117,7 +128,7 @@ public class JPushServiceImpl implements JPushService {
      * @return
      */
     private JPushClient getJPushClient() {
-        return new JPushClient(jPushProperties.getMasterSecret(), jPushProperties.getAppKey());
+        return new JPushClient(jpushProperties.getMasterSecret(), jpushProperties.getAppKey());
     }
 
     /**

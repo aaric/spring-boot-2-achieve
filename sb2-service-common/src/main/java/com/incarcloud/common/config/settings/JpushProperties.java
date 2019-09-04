@@ -1,6 +1,7 @@
 package com.incarcloud.common.config.settings;
 
 import com.incarcloud.common.share.Constant;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   push:
- *     jiguang:
+ *   push: # 极光推送 OR 个推服务
+ *     jpush: # JPush配置
  *       appKey: yourkey
  *       masterSecret: yoursecret
  *       apnsProduction: false
@@ -21,11 +22,11 @@ import org.springframework.stereotype.Component;
  * @since 0.12.0-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".push.jiguang")
-public class JPushProperties {
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".push.jpush")
+public class JpushProperties {
 
     /**
-     * 指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
+     * 默认iOS环境APN证书为生产模式
      */
     public static final boolean DEFAULT_APNS_PRODUCTION = false;
 
@@ -39,6 +40,9 @@ public class JPushProperties {
      */
     private String masterSecret = "";
 
+    /**
+     * 指定iOS环境APN证书模式: true-为生产模式, false-为测试模式
+     */
     private Boolean apnsProduction = DEFAULT_APNS_PRODUCTION;
 
     public String getAppKey() {
@@ -63,5 +67,10 @@ public class JPushProperties {
 
     public void setApnsProduction(Boolean apnsProduction) {
         this.apnsProduction = apnsProduction;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
