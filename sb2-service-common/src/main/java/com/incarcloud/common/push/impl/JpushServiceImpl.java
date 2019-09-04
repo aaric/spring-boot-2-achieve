@@ -90,7 +90,7 @@ public class JpushServiceImpl implements JpushService {
         if (null == extraMsg) {
             extraMsg = new HashMap<>();
         }
-        
+
         // 构建消息主体
         PushPayload pushPayload = PushPayload.newBuilder()
                 .setPlatform(Platform.all()) //指定iOS平台
@@ -145,7 +145,10 @@ public class JpushServiceImpl implements JpushService {
                 return result.msg_id;
             } else {
                 // 打印错误信息
-                log.error("JPush Failure: msgId = {}, errorCode = {}, errorMessage = {}", result.msg_id, result.error.getCode(), result.error.getMessage());
+                log.error("JPush Failure: msgId = {}, errorCode = {}, errorMessage = {}",
+                        result.msg_id,
+                        result.error.getCode(),
+                        result.error.getMessage());
             }
 
         } catch (Exception e) {

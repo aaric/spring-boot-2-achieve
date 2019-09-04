@@ -22,7 +22,7 @@ public class AmapServiceImpl implements AmapService {
 
     @Override
     public String getGeoAddress(GeoPoint point) {
-        System.out.println(amapProperties);
+        log.info("AmapProperties: " + amapProperties.toString());
         return null;
     }
 }
