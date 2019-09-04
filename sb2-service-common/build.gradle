@@ -8,8 +8,10 @@ dependencies {
     compile "javax.activation:activation:1.1.1"
     compile "javax.mail:mail:1.4.7"
 
-    compile("com.aliyun:aliyun-java-sdk-core:4.4.3")
-    compile("com.aliyun:aliyun-java-sdk-dysmsapi:1.1.0")
+    compile "com.aliyun:aliyun-java-sdk-core:4.4.3"
+    compile "com.aliyun:aliyun-java-sdk-dysmsapi:1.1.0"
+
+    compile "cn.jpush.api:jpush-client:3.3.10"
 
     compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
 }

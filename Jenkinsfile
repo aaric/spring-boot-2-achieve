@@ -5,9 +5,10 @@ pipeline {
     parameters {
         string(name: 'repoUrl', defaultValue: 'https://github.com/aaric/spring-boot-2-achieve', description: 'Git Repo Address')
         string(name: 'repoBranch', defaultValue: 'master', description: 'Git Repo Branch')
+        string(name: 'repoCredentialsId', defaultValue: 'auth-git-web', description: 'Git Repo Auth')
         string(name: 'registryHostname', defaultValue: 'linux7-2:5000', description: 'Registry Hostname')
         string(name: 'registryAuthLogin', defaultValue: 'aaric', description: 'Registry Login')
-        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Secret')
+        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Login Secret')
     }
 
     tools {
@@ -16,27 +17,17 @@ pipeline {
     }
 
     environment {
-        DEFAULT_CUSTOM_TITLE = 'Hello, Pipeline!'
+        HELLO_CUSTOM_TITLE = 'Hello, Jenkins Pipeline!'
     }
 
     stages {
         //-------------------- BEGIN --------------------//
-        /*stage('Information') {
-            steps {
-                echo '//---------  Information ----------//'
-                echo "${env.DEFAULT_CUSTOM_TITLE}"
-                echo "Repo Address: ${params.repoUrl}"
-                echo "Repo Branch: ${params.repoBranch}"
-                sh 'git --version'
-                sh 'java -version'
-                sh 'gradle --version'
-            }
-        }*/
-
         stage('Preparation') {
             steps {
+                echo "${env.HELLO_CUSTOM_TITLE}"
+
                 echo '//---------  Preparation ----------//'
-                git branch: params.repoBranch, url: params.repoUrl
+                git branch: params.repoBranch, credentialsId: params.repoCredentialsId, url: params.repoUrl
             }
         }
 
@@ -65,44 +56,27 @@ pipeline {
             }
         }
 
-        /*stage('Quality Gate') { //忽略，状态无法返回给Jenkins
-            // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-jenkins/
-            steps {
-                echo '//---------  Quality Gate ----------//'
-                script {
-                    timeout(time: 10, unit: 'MINUTES') { //1-HOURS
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }*/
-
-        stage('Automated Testing') {
+        /*stage('Automated Testing') {
             steps {
                 // TODO 执行自动化测试脚本
                 echo '//---------  Automated Testing ----------//'
                 echo '执行自动化测试脚本, 待完善...(未来)'
             }
-        }
+        }*/
 
-        stage('Performance Testing') {
+        /*stage('Performance Testing') {
             steps {
                 // TODO 执行JMeter性能测试
                 echo '//---------  Performance Testing ----------//'
                 echo '执行JMeter性能测试, 待完善...(未来)'
             }
-        }
+        }*/
 
         stage('Deployment') {
             steps {
                 echo '//---------  Deployment ----------//'
                 script {
                     // 编译镜像并运行容器
-                    //sh 'docker build --build-arg deployPkg=sb2-web-plat-0.11.0-SNAPSHOT.jar -t local/sb2-web-plat:0.11.0 ./sb2-web-plat/build/libs -f ./Dockerfile'
-                    //sh 'docker run --name sb2-web-plat -p 9090:8080 -d local/sb2-web-plat:0.11.0'
                     def deployPkgName = 'sb2-web-plat'
                     def deployPkgVersion = sh (
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
@@ -151,6 +125,7 @@ pipeline {
                     sh "docker push ${params.registryHostname}/dev/${deployPkgName}"
                     sh "docker push ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
 
+                    // 删除已发布的镜像
                     sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}"
                     sh "docker rmi ${params.registryHostname}/dev/${deployPkgName}:${deployPkgVersion}"
                 }

@@ -23,10 +23,10 @@ import java.util.Random;
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class AliyunSmsServiceTest {
+public class DysmsServiceTest {
 
     @Autowired
-    protected AliyunSmsService aliyunSmsService;
+    protected DysmsService dysmsService;
 
     @Test
     @Ignore
@@ -34,7 +34,7 @@ public class AliyunSmsServiceTest {
         Map<String, String> templateParams = new HashMap<>();
         templateParams.put("code", MessageFormat.format("{0,number,000000}", new Random().nextInt(999999)));
 
-        String bizId = aliyunSmsService.sendTemplate("SMS_150740230", templateParams, null, "1340000xxxx");
+        String bizId = dysmsService.sendTemplate("SMS_150740230", templateParams, null, "1340000xxxx");
         log.info(bizId);
         Assert.assertNotNull(bizId);
     }
