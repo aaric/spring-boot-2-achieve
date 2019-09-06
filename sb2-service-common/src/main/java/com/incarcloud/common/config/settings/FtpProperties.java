@@ -1,6 +1,7 @@
 package com.incarcloud.common.config.settings;
 
 import com.incarcloud.common.share.Constant;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   file:
- *     ftp:
+ *   file: # FTP OR FastDFS
+ *     ftp: # FTP配置
  *       port: 127.0.0.1
  *       hostname: 21
  *       username: anonymous
@@ -125,5 +126,10 @@ public class FtpProperties {
 
     public void setDataTimeout(Integer dataTimeout) {
         this.dataTimeout = dataTimeout;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
  * @author Aaric, created on 2019-09-04T11:25.
  * @since 0.12.0-SNAPSHOT
  */
-public interface JPushService {
+public interface JpushService {
 
     /**
      * 推送消息给Android设备

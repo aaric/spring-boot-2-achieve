@@ -19,7 +19,7 @@ incarcloud:
     username: account@incarcloud.com
     password: secret
   sms: # Aliyun OR Huawei, Others...
-    dysms: # Aliyun SMS 配置
+    dysms: # Dysms配置
       endpoint: cn-hangzhou
       regionId: cn-hangzhou
       connectTimeout: 10000
@@ -28,7 +28,11 @@ incarcloud:
       accessKeyId: yourid
       accessKeySecret: yoursecret
   push: # 极光推送 OR 个推服务
-    jiguang: # 极光推送配置
+    jpush: # JPush配置
       appKey: yourkey
       masterSecret: yoursecret
       apnsProduction: false
+  map: # 高德地图 OR 百度地图 OR 腾讯地图, Others...
+    amap: # 高德地图配置
+      hostname: restapi.amap.com
+      key: yourkey

@@ -26,6 +26,12 @@ import java.util.stream.Collectors;
 public class OkHttp3UtilTest {
 
     @Test
+    public void testGet() throws Exception {
+        String result = OkHttp3Util.get("https://www.baidu.com", null);
+        Assert.assertNotNull(result);
+    }
+
+    @Test
     @Ignore
     public void testShowApiNameList() throws Exception {
         // Init

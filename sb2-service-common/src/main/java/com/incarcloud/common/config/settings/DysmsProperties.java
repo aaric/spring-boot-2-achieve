@@ -1,6 +1,7 @@
 package com.incarcloud.common.config.settings;
 
 import com.incarcloud.common.share.Constant;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   sms:
- *     dysms:
+ *   sms: # Aliyun OR Huawei, Others...
+ *     dysms: # Dysms配置
  *       endpoint: cn-hangzhou
  *       regionId: cn-hangzhou
  *       connectTimeout: 10000
@@ -137,5 +138,10 @@ public class DysmsProperties {
 
     public void setAccessKeySecret(String accessKeySecret) {
         this.accessKeySecret = accessKeySecret;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
