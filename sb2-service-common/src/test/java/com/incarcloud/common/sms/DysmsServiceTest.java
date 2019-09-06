@@ -25,7 +25,7 @@ import java.util.Random;
 @RunWith(SpringRunner.class)
 public class DysmsServiceTest {
 
-    @Autowired
+    @Autowired(required = false)
     protected DysmsService dysmsService;
 
     @Test

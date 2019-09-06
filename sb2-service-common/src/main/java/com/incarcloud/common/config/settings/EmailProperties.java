@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * 邮件配置类<br>
+ * 发送邮件服务配置类<br>
  *
  * <pre>
  * # Incarcloud settings

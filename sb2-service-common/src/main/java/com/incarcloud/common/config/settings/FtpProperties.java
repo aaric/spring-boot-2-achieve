@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * FTP配置类<br>
+ * 文件服务配置类<br>
  *
  * <pre>
  * # Incarcloud settings

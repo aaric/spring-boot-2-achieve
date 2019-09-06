@@ -13,8 +13,6 @@ import com.incarcloud.common.sms.DysmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -25,11 +23,16 @@ import java.util.Map;
  * @since 0.10.0-SNAPSHOT
  */
 @Slf4j
-@Service
 public class DysmsServiceImpl implements DysmsService {
 
-    @Autowired
+    /**
+     * 阿里云短信服务配置
+     */
     private DysmsProperties dysmsProperties;
+
+    public DysmsServiceImpl(DysmsProperties dysmsProperties) {
+        this.dysmsProperties = dysmsProperties;
+    }
 
     @Override
     @SuppressWarnings("deprecation")

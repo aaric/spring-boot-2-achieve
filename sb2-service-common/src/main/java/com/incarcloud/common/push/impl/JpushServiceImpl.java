@@ -14,8 +14,6 @@ import com.incarcloud.common.config.settings.JpushProperties;
 import com.incarcloud.common.push.JpushService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +25,6 @@ import java.util.Map;
  * @since 0.12.0-SNAPSHOT
  */
 @Slf4j
-@Service
 public class JpushServiceImpl implements JpushService {
 
     /**
@@ -35,8 +32,14 @@ public class JpushServiceImpl implements JpushService {
      */
     private static final String DEFAULT_IOS_SOUND_NAME = "happy";
 
-    @Autowired
+    /**
+     * 极光推送服务配置
+     */
     private JpushProperties jpushProperties;
+
+    public JpushServiceImpl(JpushProperties jpushProperties) {
+        this.jpushProperties = jpushProperties;
+    }
 
     @Override
     public Long pushToAndroid(String title, String content, Map<String, String> extraMsg, String... clientId) {

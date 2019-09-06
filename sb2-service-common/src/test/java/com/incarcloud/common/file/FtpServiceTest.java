@@ -32,7 +32,7 @@ public class FtpServiceTest {
 
     private File testFile;
 
-    @Autowired
+    @Autowired(required = false)
     protected FtpService ftpService;
 
     @Test

@@ -5,8 +5,6 @@ import com.incarcloud.common.msg.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -23,11 +21,16 @@ import java.util.Properties;
  * @since 0.8.1-SNAPSHOT
  */
 @Slf4j
-@Service
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
+    /**
+     * 发送邮件服务配置
+     */
     private EmailProperties emailProperties;
+
+    public EmailServiceImpl(EmailProperties emailProperties) {
+        this.emailProperties = emailProperties;
+    }
 
     @Override
     public boolean sendTemplate(String subject, String htmlContent, String... tos) {

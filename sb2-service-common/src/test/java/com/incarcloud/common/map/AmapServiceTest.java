@@ -26,7 +26,7 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 public class AmapServiceTest {
 
-    @Autowired
+    @Autowired(required = false)
     protected AmapService amapService;
 
     @Test

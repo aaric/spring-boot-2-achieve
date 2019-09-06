@@ -9,8 +9,6 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.Iterator;
@@ -24,11 +22,16 @@ import java.util.UUID;
  * @since 0.8.0-SNAPSHOT
  */
 @Slf4j
-@Service
 public class FtpServiceImpl implements FtpService {
 
-    @Autowired
+    /**
+     * FTP文件服务配置
+     */
     private FtpProperties ftpProperties;
+
+    public FtpServiceImpl(FtpProperties ftpProperties) {
+        this.ftpProperties = ftpProperties;
+    }
 
     @Override
     public boolean isHasFile(String remotePath) {

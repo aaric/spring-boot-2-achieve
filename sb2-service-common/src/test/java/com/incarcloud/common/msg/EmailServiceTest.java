@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class EmailServiceTest {
 
-    @Autowired
+    @Autowired(required = false)
     private EmailService emailService;
 
     @Test

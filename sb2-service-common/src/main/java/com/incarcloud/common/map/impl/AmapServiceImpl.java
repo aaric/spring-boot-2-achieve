@@ -9,8 +9,6 @@ import com.incarcloud.common.utils.OkHttp3Util;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -23,7 +21,6 @@ import java.util.stream.Collectors;
  * @since 0.13.0-SNAPSHOT
  */
 @Slf4j
-@Service
 public class AmapServiceImpl implements AmapService {
 
     /**
@@ -31,8 +28,14 @@ public class AmapServiceImpl implements AmapService {
      */
     private static final String DEFAULT_INVALID_ADDRESS = "未知";
 
-    @Autowired
+    /**
+     * 高德地图服务配置
+     */
     private AmapProperties amapProperties;
+
+    public AmapServiceImpl(AmapProperties amapProperties) {
+        this.amapProperties = amapProperties;
+    }
 
     @Override
     public String getReGeoAddress(@NonNull GeoPoint point) throws Exception {
