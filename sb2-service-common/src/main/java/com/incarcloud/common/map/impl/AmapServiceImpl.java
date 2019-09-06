@@ -64,6 +64,40 @@ public class AmapServiceImpl implements AmapService {
         return null;
     }
 
+    /**
+     * 解析批量地址数据
+     *
+     * @param root              JSON对象
+     * @param originPoints      原始地理位置
+     * @param legalPointStrings 合法地理位置字符串
+     * @return
+     */
+    private List<String> batchAddressList(JSONObject root, List<GeoPoint> originPoints, List<String> legalPointStrings) {
+        String address;
+        JSONArray regeocodes = root.getJSONArray("regeocodes");
+        if (null != regeocodes && 0 != regeocodes.size()) {
+            // 构建合法逆编码地址MAP集合
+            Map<String, String> legalAddressMap = new HashMap<>();
+            for (int i = 0; i < legalPointStrings.size(); i++) {
+                address = regeocodes.getJSONObject(i).getString("formatted_address"); //error deal
+                legalAddressMap.put(legalPointStrings.get(i), address);
+            }
+
+            // 构建返回正确的地址信息集合
+            List<String> returnAddressList = new ArrayList<>();
+            for (GeoPoint point : originPoints) {
+                address = legalAddressMap.get(point.getLongitude() + "," + point.getLatitude());
+                if (StringUtils.isNotBlank(address)) {
+                    returnAddressList.add(address);
+                } else {
+                    returnAddressList.add(DEFAULT_INVALID_ADDRESS);
+                }
+            }
+            return returnAddressList;
+        }
+        return null;
+    }
+
     @Override
     public List<String> batchQueryReGeoAddress(@NonNull List<GeoPoint> points) throws Exception {
         // 构建location参数集合
@@ -93,36 +127,15 @@ public class AmapServiceImpl implements AmapService {
             // 解析json字符串
             if (StringUtils.isNotBlank(result)) {
                 JSONObject root = JSONObject.parseObject(result);
-                if ("1".equals(root.getString("status"))) {
-                    // 返回地址信息
-                    String address;
-                    JSONArray regeocodes = root.getJSONArray("regeocodes");
-                    if (null != regeocodes && 0 != regeocodes.size()) {
-                        // 构建合法逆编码地址MAP集合
-                        Map<String, String> legalAddressMap = new HashMap<>();
-                        for (int i = 0; i < legalPointStrings.size(); i++) {
-                            address = regeocodes.getJSONObject(i).getString("formatted_address");//error deal
-                            legalAddressMap.put(legalPointStrings.get(i), address);
-                            //System.out.println(legalPointStrings.get(i) + ":" + address);
-                        }
-
-                        // 构建返回正确的地址信息集合
-                        List<String> returnAddressList = new ArrayList<>();
-                        for (GeoPoint point : points) {
-                            address = legalAddressMap.get(point.getLongitude() + "," + point.getLatitude());
-                            if (StringUtils.isNotBlank(address)) {
-                                returnAddressList.add(address);
-                            } else {
-                                returnAddressList.add(DEFAULT_INVALID_ADDRESS);
-                            }
-                        }
-                        return returnAddressList;
-                    }
-                } else {
+                if (!"1".equals(root.getString("status"))) {
                     // 打印错误日志
                     String locationsString = legalPointStrings.stream().collect(Collectors.joining("|"));
                     log.error("batchQueryReGeoAddress failure, input: {}, errorInfo: {}", locationsString, root.getString("info"));
+                    return null;
                 }
+
+                // 返回地址信息
+                return batchAddressList(root, points, legalPointStrings);
             }
         }
 
