@@ -41,7 +41,7 @@ public interface AmapService {
     Map<String, String> getIpGeoAddress(String clientIp) throws Exception;
 
     /**
-     * 查询天气信息
+     * 查询天气信息（非付费用户只能获得实时天气信息）
      *
      * @param adcode 城市编码
      * @return
