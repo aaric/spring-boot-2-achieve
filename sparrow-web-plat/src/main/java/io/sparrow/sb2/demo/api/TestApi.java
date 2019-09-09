@@ -18,12 +18,12 @@ public interface TestApi {
 
     @ApiOperation(value = "验证数据校验")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "loginUserDto", value = "登录用户信息", dataType = "LoginUserDto", paramType = "body", required = true)
+            @ApiImplicitParam(name = "validateUserDto", value = "登录用户信息", dataType = "ValidateUserDto", paramType = "body", required = true)
     })
     @ApiResponses({
             @ApiResponse(code = 1, message = "0001-数据校验失败")
     })
-    ResponseData<Object> validate(ValidateUserDto loginValidateUserDto);
+    ResponseData<Object> validate(ValidateUserDto validateUserDto);
 
     @ApiOperation(value = "根据ID返回登录用户信息")
     @ApiImplicitParams({

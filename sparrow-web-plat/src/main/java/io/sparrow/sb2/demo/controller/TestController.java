@@ -32,8 +32,8 @@ public class TestController implements TestApi {
 
     @Override
     @PostMapping(value = "/validate")
-    public ResponseData<Object> validate(@Valid @RequestBody ValidateUserDto loginValidateUserDto) {
-        return ResponseData.ok(loginValidateUserDto);
+    public ResponseData<Object> validate(@Valid @RequestBody ValidateUserDto validateUserDto) {
+        return ResponseData.ok(validateUserDto);
     }
 
     @Override
