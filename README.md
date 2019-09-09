@@ -12,7 +12,7 @@ Spring Boot 2.x Learning.
 
 
 ## 二、`milestone-1.0`版本规划与更新日志
-1. [x] 集成**Swagger2**组件，指定`SwaggerBootstrapUi`风格(版本：0.2.2-SNAPSHOT)；
+1. [x] 集成**Swagger2**组件，指定`SwaggerBootstrapUi`风格（版本：0.2.2-SNAPSHOT）；
 2. [x] 支持国际化，继承`AbstractWebMvcConfigurationSupport`配置（版本：0.3.2-SNAPSHOT）；
 3. [x] 支持数据校验，使用`validation-api`注解（版本：0.4.2-SNAPSHOT）；
 4. [x] 支持自动化的数据库版本管理，使用`Flyway`插件（版本：0.5.1-SNAPSHOT）；
