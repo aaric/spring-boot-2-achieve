@@ -1,5 +1,4 @@
 dependencies {
-    compile project(":sb2-pojo")
     compile project(":sb2-common")
 
     compile "commons-io:commons-io:2.6"

@@ -1,0 +1,10 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project(":sb2-web")
+    compile project(":sparrow-service")
+
+    compile "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    compile "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    compile "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+}
