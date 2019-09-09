@@ -18,5 +18,7 @@ public interface ResponseSuccessState {
      *
      * @return
      */
-    String getCode();
+    default String getCode() {
+        return DEFAULT_SUCCESS;
+    }
 }

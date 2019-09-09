@@ -38,7 +38,7 @@ public interface ResponseFailureState {
     // 用户名不存在
     String ERROR_0033 = "0033";
 
-    // 用户名或密码错误
+    // 用户名或凭证错误
     String ERROR_0034 = "0034";
 
     // Token字符串错误

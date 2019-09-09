@@ -1,0 +1,8 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project(":sb2-web")
+    compile project(":sparrow-service")
+
+    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+}

@@ -77,7 +77,7 @@ pipeline {
                 echo '//---------  Deployment ----------//'
                 script {
                     // 编译镜像并运行容器
-                    def deployPkgName = 'sb2-web-plat'
+                    def deployPkgName = 'sparrow-web-plat'
                     def deployPkgVersion = sh (
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
                         returnStdout: true
@@ -114,7 +114,7 @@ pipeline {
                 echo '//---------  Publish ----------//'
                 script {
                     // 发布镜像到Harbor
-                    def deployPkgName = 'sb2-web-plat'
+                    def deployPkgName = 'sparrow-web-plat'
                     def deployPkgVersion = sh (
                         script: "gradle properties -q | grep \"version:\" | awk '{print \$2'}",
                         returnStdout: true
