@@ -5,10 +5,10 @@ pipeline {
     parameters {
         string(name: 'repoUrl', defaultValue: 'https://github.com/aaric/spring-boot-2-achieve', description: 'Git Repo Address')
         string(name: 'repoBranch', defaultValue: 'master', description: 'Git Repo Branch')
-        string(name: 'repoCredentialsId', defaultValue: 'auth-git-web', description: 'Git Repo Auth')
+        string(name: 'repoCredentialsId', defaultValue: 'auth-git-pull', description: 'Git Repo Auth')
         string(name: 'registryHostname', defaultValue: 'linux7-2:5000', description: 'Registry Hostname')
-        string(name: 'registryAuthLogin', defaultValue: 'aaric', description: 'Registry Login')
-        string(name: 'registryAuthSecret', defaultValue: 'aaricT01', description: 'Registry Login Secret')
+        string(name: 'registryAuthLogin', defaultValue: 'admin', description: 'Registry Login')
+        string(name: 'registryAuthSecret', defaultValue: 'admin', description: 'Registry Login Secret')
     }
 
     tools {
