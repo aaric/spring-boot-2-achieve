@@ -143,12 +143,14 @@ pipeline {
         success {
             echo '//---------  Pipeline Success ----------//'
             mail to: "account@incarcloud.com", //for many with ',' separate
+                cc: "account@incarcloud.com",
                 subject: "Jenkins Notification: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) Success!",
                 body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention!"
         }
         failure {
             echo '//---------  Pipeline Failure ----------//'
             mail to: "account@incarcloud.com", //for many with ',' separate
+                cc: "account@incarcloud.com",
                 subject: "Jenkins Notification: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) Failure!",
                 body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention!"
         }
