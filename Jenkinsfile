@@ -142,17 +142,15 @@ pipeline {
         }
         success {
             echo '//---------  Pipeline Success ----------//'
-            mail to: "account@incarcloud.com", //for many with ',' separate
-                cc: "account@incarcloud.com",
-                subject: "Jenkins Notification: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) Success!",
-                body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention!"
+            emailext to: "account@incarcloud.com", //for many with ',' separate
+                subject: "Jenkins构建通知: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) 执行成功！",
+                body: "Hi all,<br/>&emsp;&emsp;构建任务${env.JOB_NAME}(${BUILD_DISPLAY_NAME})已经执行完成！<br/>&emsp;&emsp;请访问${env.JOB_URL}了解更多信息！<br/><br/>&emsp;&emsp;以上，感谢关注！"
         }
         failure {
             echo '//---------  Pipeline Failure ----------//'
-            mail to: "account@incarcloud.com", //for many with ',' separate
-                cc: "account@incarcloud.com",
-                subject: "Jenkins Notification: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) Failure!",
-                body: "Hi all,\n      The job of ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) has been completed!\n      Please visit ${env.JOB_URL} for inspection.\n\n      Thanks for your attention!"
+            emailext to: "account@incarcloud.com", //for many with ',' separate
+                subject: "Jenkins构建通知: ${env.JOB_NAME}(${BUILD_DISPLAY_NAME}) 执行失败！",
+                body: "Hi all,<br/>&emsp;&emsp;构建任务${env.JOB_NAME}(${BUILD_DISPLAY_NAME})已经执行完成！<br/>&emsp;&emsp;请访问${env.JOB_URL}进行检查！<br/><br/>&emsp;&emsp;以上，感谢关注！"
         }
     }
 }
