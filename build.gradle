@@ -12,7 +12,7 @@ buildscript {
 
 allprojects {
     group 'com.incarcloud'
-    version '1.0-milestone'
+    version '1.0.1-milestone'
 }
 
 subprojects {
