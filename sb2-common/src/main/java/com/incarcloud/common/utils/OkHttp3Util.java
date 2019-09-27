@@ -1,6 +1,7 @@
 package com.incarcloud.common.utils;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Aaric, created on 2019-09-06T14:28.
  * @since 0.13.0-SNAPSHOT
  */
+@Slf4j
 public class OkHttp3Util {
 
     /**
@@ -45,7 +47,7 @@ public class OkHttp3Util {
                 Response response = okHttpClient().newCall(request).execute();
                 return response.body().string();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("get error, ", e);
             }
             return null;
         });

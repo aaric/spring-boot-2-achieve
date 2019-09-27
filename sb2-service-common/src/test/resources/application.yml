@@ -10,7 +10,7 @@ incarcloud:
       port: 21
       hostname: 127.0.0.1
       username: anonymous
-      password: anonymous
+      secret: anonymous
       connectTimeout: 60000
       dataTimeout: 60000
   email: # Email配置

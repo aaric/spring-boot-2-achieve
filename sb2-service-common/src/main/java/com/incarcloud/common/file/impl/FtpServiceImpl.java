@@ -70,14 +70,14 @@ public class FtpServiceImpl implements FtpService {
 
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("isHasFile error", e);
             } finally {
                 try {
                     // 断开连接，释放连接资源
                     ftpClient.disconnect();
                     log.info("关闭FTP连接...");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.error("isHasFile error", e);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class FtpServiceImpl implements FtpService {
                 ftpClient.disconnect();
                 log.info("关闭FTP连接...");
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("uploadFile error", e);
             }
         }
         return flag;
@@ -126,7 +126,7 @@ public class FtpServiceImpl implements FtpService {
                 ftpClient.disconnect();
                 log.info("关闭FTP连接...");
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("uploadFiles error", e);
             }
         }
     }
@@ -147,7 +147,7 @@ public class FtpServiceImpl implements FtpService {
                 // 返回下载文件
                 return thisFile;
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("downloadFile error", e);
             }
         }
         return null;
@@ -166,7 +166,7 @@ public class FtpServiceImpl implements FtpService {
 
             // 设置通用参数
             ftpClient.connect(ftpProperties.getHostname(), ftpProperties.getPort());
-            ftpClient.login(ftpProperties.getUsername(), ftpProperties.getPassword());
+            ftpClient.login(ftpProperties.getUsername(), ftpProperties.getSecret());
             ftpClient.setControlEncoding(FtpProperties.DEFAULT_HTTP_ENCODING_UTF_8);
             ftpClient.setConnectTimeout(ftpProperties.getConnectTimeout());
             ftpClient.setDataTimeout(ftpProperties.getDataTimeout());
@@ -185,7 +185,7 @@ public class FtpServiceImpl implements FtpService {
 
             return ftpClient;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getFTPClient error", e);
         }
 
         return null;
@@ -219,28 +219,25 @@ public class FtpServiceImpl implements FtpService {
             if (makeFtpDirectory(ftpClient, remotePath)) {
 
                 // 获得上传文件流对象
-                InputStream input = FileUtils.openInputStream(uploadFile);
-                if (null != input) {
-                    // 远程文件名字为“parents[parents.length - 1]”字符串
-                    upload = ftpClient.storeFile(getStringForIso(remotePath.substring(remotePath.lastIndexOf(File.separator) + 1)), input);
+                try (InputStream input = FileUtils.openInputStream(uploadFile)) {
+                    if (null != input) {
+                        // 远程文件名字为“parents[parents.length - 1]”字符串
+                        upload = ftpClient.storeFile(getStringForIso(remotePath.substring(remotePath.lastIndexOf(File.separator) + 1)), input);
 
-                    // 关闭文件流
-                    input.close();
-
-                    // 记录日志
-                    if (upload) {
-                        log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录成功...");
-                    } else {
-                        log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录失败...");
-                    }
+                        // 记录日志
+                        if (upload) {
+                            log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录成功...");
+                        } else {
+                            log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录失败...");
+                        }
+                    } //Close Input Stream
                 }
 
                 return upload;
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-
+            log.error("uploadFile error", e);
         }
 
         return upload;
@@ -293,7 +290,6 @@ public class FtpServiceImpl implements FtpService {
                 // 直接切换到根目录("/")
                 change = ftpClient.changeWorkingDirectory("/");
                 log.info("直接切换到根目录\"/\"...");
-
             }
         }
 
@@ -320,14 +316,14 @@ public class FtpServiceImpl implements FtpService {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("downloadFile error", e);
         } finally {
             try {
                 // 断开连接，释放连接资源
                 ftpClient.disconnect();
                 log.info("关闭FTP连接...");
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("downloadFile error", e);
             }
         }
         return null;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  *       port: 127.0.0.1
  *       hostname: 21
  *       username: anonymous
- *       password: anonymous
+ *       secret: anonymous
  *       connectTimeout: 60000
  *       dataTimeout: 60000
  * </pre>
@@ -56,7 +56,7 @@ public class FtpProperties {
     /**
      * 访问FTP授权密码
      */
-    private static final String DEFAULT_FTP_PASSWORD = "anonymous";
+    private static final String DEFAULT_FTP_SECRET = "anonymous";
 
     /**
      * FTP连接超时时间
@@ -74,7 +74,7 @@ public class FtpProperties {
 
     private String username = DEFAULT_FTP_USERNAME;
 
-    private String password = DEFAULT_FTP_PASSWORD;
+    private String secret = DEFAULT_FTP_SECRET;
 
     private Integer connectTimeout = DEFAULT_FTP_CONNECT_TIMEOUT;
 
@@ -104,12 +104,12 @@ public class FtpProperties {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSecret() {
+        return secret;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     public Integer getConnectTimeout() {
