@@ -48,7 +48,7 @@ public class EmailProperties {
     /**
      * 授权密码
      */
-    private static final String DEFAULT_PASSWORD = "";
+    private static final String DEFAULT_SECRET = "";
 
     private String host = DEFAULT_HOST;
 
@@ -56,7 +56,7 @@ public class EmailProperties {
 
     private String account = DEFAULT_ACCOUNT;
 
-    private String password = DEFAULT_PASSWORD;
+    private String secret = DEFAULT_SECRET;
 
     public String getHost() {
         return host;
@@ -82,12 +82,12 @@ public class EmailProperties {
         this.account = account;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSecret() {
+        return secret;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     @Override

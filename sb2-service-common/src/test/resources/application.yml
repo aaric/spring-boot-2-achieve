@@ -9,15 +9,15 @@ incarcloud:
     ftp: # FTP配置
       port: 21
       hostname: 127.0.0.1
-      username: anonymous
+      account: anonymous
       secret: anonymous
       connectTimeout: 60000
       dataTimeout: 60000
   email: # Email配置
     host: smtp.incarcloud.com
     port: 25
-    username: account@incarcloud.com
-    password: secret
+    account: account@incarcloud.com
+    secret: secret
   sms: # Aliyun OR Huawei, Others...
     dysms: # Dysms配置
       endpoint: cn-hangzhou

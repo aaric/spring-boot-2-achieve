@@ -96,7 +96,7 @@ public class EmailServiceImpl implements EmailService {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 // 设置发件人用户名和密码
-                return new PasswordAuthentication(emailProperties.getAccount(), emailProperties.getPassword());
+                return new PasswordAuthentication(emailProperties.getAccount(), emailProperties.getSecret());
             }
 
         });

@@ -166,7 +166,7 @@ public class FtpServiceImpl implements FtpService {
 
             // 设置通用参数
             ftpClient.connect(ftpProperties.getHostname(), ftpProperties.getPort());
-            ftpClient.login(ftpProperties.getUsername(), ftpProperties.getSecret());
+            ftpClient.login(ftpProperties.getAccount(), ftpProperties.getSecret());
             ftpClient.setControlEncoding(FtpProperties.DEFAULT_HTTP_ENCODING_UTF_8);
             ftpClient.setConnectTimeout(ftpProperties.getConnectTimeout());
             ftpClient.setDataTimeout(ftpProperties.getDataTimeout());

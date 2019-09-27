@@ -22,7 +22,7 @@ public class BizEmailConfiguration {
     private EmailProperties emailProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".email", name = {"host", "account", "password"})
+    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".email", name = {"host", "account", "secret"})
     public EmailService emailService() {
         return new EmailServiceImpl(emailProperties);
     }
