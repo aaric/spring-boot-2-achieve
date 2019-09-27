@@ -51,7 +51,7 @@ public class FtpProperties {
     /**
      * 访问FTP授权用户名
      */
-    private static final String DEFAULT_FTP_USERNAME = "anonymous";
+    private static final String DEFAULT_FTP_ACCOUNT = "anonymous";
 
     /**
      * 访问FTP授权密码
@@ -72,7 +72,7 @@ public class FtpProperties {
 
     private String hostname = DEFAULT_FTP_HOSTNAME;
 
-    private String username = DEFAULT_FTP_USERNAME;
+    private String account = DEFAULT_FTP_ACCOUNT;
 
     private String secret = DEFAULT_FTP_SECRET;
 
@@ -96,12 +96,12 @@ public class FtpProperties {
         this.hostname = hostname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getSecret() {

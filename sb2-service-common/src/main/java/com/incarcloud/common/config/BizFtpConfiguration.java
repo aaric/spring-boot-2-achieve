@@ -22,7 +22,7 @@ public class BizFtpConfiguration {
     private FtpProperties ftpProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".file.ftp", name = {"hostname", "username", "password"})
+    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".file.ftp", name = {"hostname", "account", "secret"})
     public FtpService ftpService() {
         return new FtpServiceImpl(ftpProperties);
     }
