@@ -222,7 +222,10 @@ public class FtpServiceImpl implements FtpService {
                 try (InputStream input = FileUtils.openInputStream(uploadFile)) {
                     if (null != input) {
                         // 远程文件名字为“parents[parents.length - 1]”字符串
-                        upload = ftpClient.storeFile(getStringForIso(remotePath.substring(remotePath.lastIndexOf(File.separator) + 1)), input);
+                        upload = ftpClient.storeFile(getStringForIso(
+                                remotePath.substring(remotePath.lastIndexOf(File.separator) + 1)),
+                                input
+                        );
 
                         // 记录日志
                         if (upload) {
