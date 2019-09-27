@@ -17,6 +17,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 极光推送服务实现
@@ -147,11 +148,13 @@ public class JpushServiceImpl implements JpushService {
                 // 返回结果ID
                 return result.msg_id;
             } else {
-                // 打印错误信息
+                // 打印错误日志
+                Optional<PushResult> optionalPushResult = Optional.of(result);
+                Optional<PushResult.Error> optionalError = Optional.of(optionalPushResult.get().error);
                 log.error("JPush Failure: msgId = {}, errorCode = {}, errorMessage = {}",
-                        result.msg_id,
-                        result.error.getCode(),
-                        result.error.getMessage());
+                        optionalPushResult.get().msg_id,
+                        optionalError.get().getCode(),
+                        optionalError.get().getMessage());
             }
 
         } catch (Exception e) {

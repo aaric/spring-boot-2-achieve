@@ -48,7 +48,7 @@ public class AuthJwtProperties {
     /**
      * 客户端Token租用周期，默认一个星期
      */
-    public static final long DEFAULT_TOKEN_LEASE_SECONDS = 7 * 24 * 60 * 60;
+    public static final long DEFAULT_TOKEN_LEASE_SECONDS = 7L * 24 * 60 * 60;
 
     private String secretKey = DEFAULT_SECRET_KEY;
 

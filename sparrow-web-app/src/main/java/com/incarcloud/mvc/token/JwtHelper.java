@@ -5,6 +5,7 @@ import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.common.share.Constant;
 import com.incarcloud.mvc.token.settings.AuthJwtProperties;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ import java.util.Base64;
  * @author Aaric, created on 2019-08-07T17:43.
  * @since 0.7.0-SNAPSHOT
  */
+@Slf4j
 @Component
 public class JwtHelper {
 
@@ -102,7 +104,7 @@ public class JwtHelper {
             throw new ApiException(ResponseFailureState.ERROR_0036, "Token已过期");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("validateToken error", e);
         }
 
         return false;

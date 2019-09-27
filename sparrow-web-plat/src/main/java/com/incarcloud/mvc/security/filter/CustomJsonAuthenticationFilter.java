@@ -2,6 +2,7 @@ package com.incarcloud.mvc.security.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.mvc.security.entity.LoginUserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
@@ -31,18 +32,20 @@ public class CustomJsonAuthenticationFilter extends UsernamePasswordAuthenticati
             throw new AuthenticationServiceException("Authentication media type not supported: " + request.getContentType());
         }
 
+        Authentication authentication;
         UsernamePasswordAuthenticationToken authRequest = null;
         try (InputStream input = request.getInputStream()) {
             LoginUserInfo loginUserInfo = JSON.parseObject(IOUtils.toString(input), LoginUserInfo.class);
             authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getP());
 
         } catch (IOException e) {
-            e.printStackTrace();
             authRequest = new UsernamePasswordAuthenticationToken("", "");
+            logger.error("attemptAuthentication error", e);
 
         } finally {
             setDetails(request, authRequest);
-            return getAuthenticationManager().authenticate(authRequest);
+            authentication = getAuthenticationManager().authenticate(authRequest);
         }
+        return authentication;
     }
 }
