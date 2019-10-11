@@ -12,13 +12,4 @@ public interface ResponseSuccessState {
      * 请求成功
      */
     String DEFAULT_SUCCESS = "0000";
-
-    /**
-     * 获得状态码字符串
-     *
-     * @return
-     */
-    default String getCode() {
-        return DEFAULT_SUCCESS;
-    }
 }

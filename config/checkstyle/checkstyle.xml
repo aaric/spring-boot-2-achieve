@@ -135,8 +135,8 @@
         <!-- 检查类是否为扩展设计l -->
         <!-- 检查只有private构造函数的类是否声明为final -->
         <module name="FinalClass"/>
-        <!-- 检查接口是否仅定义类型 -->
-        <module name="InterfaceIsType"/>
+        <!-- 检查接口是否仅定义类型(NotApply) -->
+        <!--<module name="InterfaceIsType"/>-->
         <!-- 检查类成员的可见度 检查类成员的可见性。只有static final 成员是public的
         除非在本检查的protectedAllowed和packagedAllowed属性中进行了设置-->
         <module name="VisibilityModifier">

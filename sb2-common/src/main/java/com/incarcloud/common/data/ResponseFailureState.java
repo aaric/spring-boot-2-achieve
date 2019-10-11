@@ -55,11 +55,4 @@ public interface ResponseFailureState {
 
     // Token签发机构错误
     String ERROR_0039 = "0039";
-
-    /**
-     * 获得状态码字符串
-     *
-     * @return
-     */
-    String getCode();
 }
