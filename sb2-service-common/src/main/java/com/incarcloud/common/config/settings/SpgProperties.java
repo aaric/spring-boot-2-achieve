@@ -35,7 +35,7 @@ public class SpgProperties {
     private String hostname = DEFAULT_HOSTNAME;
 
     /**
-     * 组织ID
+     * 授权组织ID
      */
     private String oid = "";
 
