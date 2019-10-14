@@ -1,5 +1,7 @@
 package com.incarcloud.common.share.map;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 地理位置信息
  *
@@ -19,18 +21,34 @@ public class GeoPoint {
     private double latitude;
 
     /**
-     * 海拔高度
+     * 纬度
      */
     private float altitude;
 
+    /**
+     * 默认构造函数
+     */
     public GeoPoint() {
     }
 
+    /**
+     * 构造函数
+     *
+     * @param longitude 经度
+     * @param latitude  纬度
+     */
     public GeoPoint(double longitude, double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
+    /**
+     * 构造函数
+     *
+     * @param longitude 经度
+     * @param latitude  纬度
+     * @param altitude  纬度
+     */
     public GeoPoint(double longitude, double latitude, float altitude) {
         this.longitude = longitude;
         this.latitude = latitude;
@@ -59,5 +77,10 @@ public class GeoPoint {
 
     public void setAltitude(float altitude) {
         this.altitude = altitude;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
