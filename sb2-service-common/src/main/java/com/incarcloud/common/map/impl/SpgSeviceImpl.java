@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.incarcloud.common.config.settings.SpgProperties;
 import com.incarcloud.common.map.SpgSevice;
 import com.incarcloud.common.share.map.BsData;
-import com.incarcloud.common.share.map.BsResult;
+import com.incarcloud.common.share.map.BsPosition;
 import com.incarcloud.common.utils.OkHttp3Util;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -66,9 +66,9 @@ public class SpgSeviceImpl implements SpgSevice {
     }
 
     @Override
-    public BsResult getReGeoInfo(BsData... data) throws Exception {
+    public BsPosition getReGeoInfo(BsData... data) throws Exception {
         // 构建请求参数
-        BsResult bsResult = null;
+        BsPosition position = null;
         String json = OkHttp3Util.get(getRestApiUrl(formatBsDataString(data)), null);
 
         // 解析json字符串
@@ -86,18 +86,18 @@ public class SpgSeviceImpl implements SpgSevice {
                 }
 
                 // 构建返回数据
-                bsResult = new BsResult();
-                bsResult.setId(result0.getString("id"));
-                bsResult.setLongitude(Double.valueOf(result0.getString("lng")));
-                bsResult.setLatitude(Double.valueOf(result0.getString("lat")));
-                bsResult.setRadius(Integer.valueOf(result0.getString("radius")));
-                bsResult.setAddress(result0.getString("address"));
-                bsResult.setRoads("roads");
-                bsResult.setRid(result0.getString("rid"));
-                bsResult.setRids(result0.getString("rids"));
+                position = new BsPosition();
+                position.setId(result0.getString("id"));
+                position.setLongitude(Double.valueOf(result0.getString("lng")));
+                position.setLatitude(Double.valueOf(result0.getString("lat")));
+                position.setRadius(Integer.valueOf(result0.getString("radius")));
+                position.setAddress(result0.getString("address"));
+                position.setRoads("roads");
+                position.setRid(result0.getString("rid"));
+                position.setRids(result0.getString("rids"));
             }
         }
 
-        return bsResult;
+        return position;
     }
 }

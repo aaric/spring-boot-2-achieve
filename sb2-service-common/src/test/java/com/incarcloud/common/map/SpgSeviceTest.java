@@ -1,7 +1,7 @@
 package com.incarcloud.common.map;
 
 import com.incarcloud.common.share.map.BsData;
-import com.incarcloud.common.share.map.BsResult;
+import com.incarcloud.common.share.map.BsPosition;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -28,8 +28,8 @@ public class SpgSeviceTest {
     @Test
     @Ignore
     public void testGetReGeoInfo() throws Exception {
-        BsResult result = spgSevice.getReGeoInfo(new BsData(460, 0, 34860, 62041));
-        log.info("result: {}", result.toString());
-        Assert.assertNotNull(result);
+        BsPosition position = spgSevice.getReGeoInfo(new BsData(460, 0, 34860, 62041));
+        log.info("position: {}", position.toString());
+        Assert.assertNotNull(position);
     }
 }

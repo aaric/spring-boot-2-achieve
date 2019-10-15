@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Aaric, created on 2019-10-14T15:19.
  * @since 1.1.0-SNAPSHOT
  */
-public class BsResult extends GeoPoint {
+public class BsPosition extends GeoPoint {
 
     /**
      * 结果ID

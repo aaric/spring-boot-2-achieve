@@ -1,7 +1,7 @@
 package com.incarcloud.common.map;
 
 import com.incarcloud.common.share.map.BsData;
-import com.incarcloud.common.share.map.BsResult;
+import com.incarcloud.common.share.map.BsPosition;
 
 /**
  * 基站位置服务接口(gpsspg.com)
@@ -18,5 +18,5 @@ public interface SpgSevice {
      * @return
      * @throws Exception
      */
-    BsResult getReGeoInfo(BsData... data) throws Exception;
+    BsPosition getReGeoInfo(BsData... data) throws Exception;
 }
