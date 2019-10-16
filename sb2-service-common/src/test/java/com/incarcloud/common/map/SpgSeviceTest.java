@@ -23,12 +23,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SpgSeviceTest {
 
     @Autowired(required = false)
-    protected SpgSevice spgSevice;
+    protected SpgService spgService;
 
     @Test
     @Ignore
     public void testGetReGeoInfo() throws Exception {
-        BsPosition position = spgSevice.getReGeoInfo(new BsData(460, 0, 34860, 62041));
+        BsPosition position = spgService.getReGeoInfo(new BsData(460, 0, 34860, 62041));
         log.info("position: {}", position.toString());
         Assert.assertNotNull(position);
     }

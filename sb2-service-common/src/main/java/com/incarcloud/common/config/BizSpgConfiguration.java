@@ -1,8 +1,8 @@
 package com.incarcloud.common.config;
 
 import com.incarcloud.common.config.settings.SpgProperties;
-import com.incarcloud.common.map.SpgSevice;
-import com.incarcloud.common.map.impl.SpgSeviceImpl;
+import com.incarcloud.common.map.SpgService;
+import com.incarcloud.common.map.impl.SpgServiceImpl;
 import com.incarcloud.common.share.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -23,7 +23,7 @@ public class BizSpgConfiguration {
 
     @Bean
     @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".map.gpsspg", name = {"oid", "key"})
-    public SpgSevice spgSevice() {
-        return new SpgSeviceImpl(spgProperties);
+    public SpgService spgService() {
+        return new SpgServiceImpl(spgProperties);
     }
 }

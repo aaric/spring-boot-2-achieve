@@ -9,7 +9,7 @@ import com.incarcloud.common.share.map.BsPosition;
  * @author Aaric, created on 2019-10-14T14:15.
  * @since 1.1.0-SNAPSHOT
  */
-public interface SpgSevice {
+public interface SpgService {
 
     /**
      * 查询基站定位逆地理编码地址信息

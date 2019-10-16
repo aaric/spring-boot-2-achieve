@@ -3,7 +3,7 @@ package com.incarcloud.common.map.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.incarcloud.common.config.settings.SpgProperties;
-import com.incarcloud.common.map.SpgSevice;
+import com.incarcloud.common.map.SpgService;
 import com.incarcloud.common.share.map.BsData;
 import com.incarcloud.common.share.map.BsPosition;
 import com.incarcloud.common.utils.OkHttp3Util;
@@ -21,14 +21,14 @@ import java.util.List;
  * @since 1.1.0-SNAPSHOT
  */
 @Slf4j
-public class SpgSeviceImpl implements SpgSevice {
+public class SpgServiceImpl implements SpgService {
 
     /**
      * 基站位置服务配置类(gpsspg.com)
      */
     private SpgProperties spgProperties;
 
-    public SpgSeviceImpl(SpgProperties spgProperties) {
+    public SpgServiceImpl(SpgProperties spgProperties) {
         this.spgProperties = spgProperties;
     }
 
