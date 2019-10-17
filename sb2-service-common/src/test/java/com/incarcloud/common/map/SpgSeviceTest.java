@@ -28,7 +28,24 @@ public class SpgSeviceTest {
     @Test
     @Ignore
     public void testGetReGeoInfo() throws Exception {
-        BsPosition position = spgService.getReGeoInfo(new BsData(460, 0, 34860, 62041));
+        /**
+         * mcc:460 mnc:0 lac:10173 ci:4430 rxlev:132
+         * Nbr: mcc:460 mnc:0 lac:10173 ci:4331 rxlev:131
+         * Nbr: mcc:460 mnc:0 lac:10129 ci:3991 rxlev:128
+         * Nbr: mcc:460 mnc:0 lac:10173 ci:4000 rxlev:127
+         * Nbr: mcc:460 mnc:0 lac:10173 ci:4390 rxlev:126
+         * Nbr: mcc:460 mnc:0 lac:10173 ci:4332 rxlev:125
+         * Nbr: mcc:460 mnc:0 lac:10173 ci:4442 rxlev:124
+         */
+        BsPosition position = spgService.getReGeoInfo(
+                new BsData(460, 0, 10173, 4430),
+                new BsData(460, 0, 10173, 4331),
+                new BsData(460, 0, 10129, 3991),
+                new BsData(460, 0, 10173, 4000),
+                new BsData(460, 0, 10173, 4390),
+                new BsData(460, 0, 10173, 4332),
+                new BsData(460, 0, 10173, 4442)
+        );
         log.info("position: {}", position.toString());
         Assert.assertNotNull(position);
     }
