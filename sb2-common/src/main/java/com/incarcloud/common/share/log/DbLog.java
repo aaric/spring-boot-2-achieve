@@ -16,18 +16,18 @@ import java.lang.annotation.Target;
 public @interface DbLog {
 
     /**
-     * 系统名称，可以自定义
+     * 标签，即系统名称
      *
      * @return string
      */
     String tag() default "";
 
     /**
-     * 模块名称，即标题
+     * 标题，即模块名称
      *
      * @return string
      */
-    String title() default "";
+    String title();
 
     /**
      * 日志内容
