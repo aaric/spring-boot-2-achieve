@@ -8,7 +8,7 @@ import io.swagger.annotations.*;
  * 测试框架模块API
  *
  * @author Aaric, created on 2019-06-26T15:35.
- * @since 0.2.1-SNAPSHOT
+ * @version 0.2.1-SNAPSHOT
  */
 @Api(tags = "测试框架模块API")
 public interface TestApi {

@@ -23,7 +23,7 @@ import java.io.PrintWriter;
  * JWT安全框架过滤器
  *
  * @author Aaric, created on 2019-08-08T11:29.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Component
 @WebFilter(filterName = "bizWebJwtFilter", urlPatterns = "/api/app/**")

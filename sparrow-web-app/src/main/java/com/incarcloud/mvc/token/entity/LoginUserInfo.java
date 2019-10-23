@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * 登录用户信息
  *
  * @author Aaric, created on 2019-08-01T17:16.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @ApiModel(description = "登录用户信息")
 public class LoginUserInfo {

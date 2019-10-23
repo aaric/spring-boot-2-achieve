@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * 基站定位结果（非CDMA格式），参考http://www.gpsspg.com/api/bs/
  *
  * @author Aaric, created on 2019-10-14T15:19.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 public class BsPosition extends GeoPoint {
 

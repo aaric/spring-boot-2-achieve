@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * JpushServiceTest
  *
  * @author Aaric, created on 2019-09-04T15:53.
- * @since 0.12.0-SNAPSHOT
+ * @version 0.12.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest

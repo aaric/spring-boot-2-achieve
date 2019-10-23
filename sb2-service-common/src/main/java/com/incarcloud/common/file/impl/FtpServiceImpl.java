@@ -19,7 +19,7 @@ import java.util.UUID;
  * FTP文件服务实现
  *
  * @author Aaric, created on 2019-08-15T17:51.
- * @since 0.8.0-SNAPSHOT
+ * @version 0.8.0-SNAPSHOT
  */
 @Slf4j
 public class FtpServiceImpl implements FtpService {

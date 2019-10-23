@@ -23,7 +23,7 @@ import java.util.Optional;
  * 极光推送服务实现
  *
  * @author Aaric, created on 2019-09-04T11:37.
- * @since 0.12.0-SNAPSHOT
+ * @version 0.12.0-SNAPSHOT
  */
 @Slf4j
 public class JpushServiceImpl implements JpushService {

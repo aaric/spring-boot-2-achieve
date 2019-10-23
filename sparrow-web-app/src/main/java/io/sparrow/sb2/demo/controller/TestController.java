@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 测试框架模块控制器
  *
  * @author Aaric, created on 2019-07-03T12:40.
- * @since 0.3.0-SNAPSHOT
+ * @version 0.3.0-SNAPSHOT
  */
 @RestController
 @RequestMapping("/api/app/demo/test")

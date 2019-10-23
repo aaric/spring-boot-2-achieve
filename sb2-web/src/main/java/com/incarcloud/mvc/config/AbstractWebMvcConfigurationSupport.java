@@ -1,5 +1,6 @@
 package com.incarcloud.mvc.config;
 
+import com.incarcloud.mvc.servlet.DbLogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.MessageSource;
@@ -19,7 +20,7 @@ import java.util.Locale;
  * 默认SpringMVC配置
  *
  * @author Aaric, created on 2019-07-09T13:51.
- * @since 0.4.1-SNAPSHOT
+ * @version 0.4.1-SNAPSHOT
  */
 public abstract class AbstractWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
@@ -40,13 +41,24 @@ public abstract class AbstractWebMvcConfigurationSupport extends WebMvcConfigura
         return new LocaleChangeInterceptor();
     }
 
+    @Bean
+    @ConditionalOnMissingBean(DbLogInterceptor.class)
+    public DbLogInterceptor dbLogInterceptor() {
+        return new DbLogInterceptor();
+    }
+
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
+        // Locale
         registry.addInterceptor(localeChangeInterceptor());
+
+        // DbLog
+        registry.addInterceptor(dbLogInterceptor()).addPathPatterns("/api/**");
     }
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // swagger-bootstrap-ui
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }

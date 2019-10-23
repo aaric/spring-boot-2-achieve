@@ -9,21 +9,21 @@ import java.lang.annotation.Target;
  * 扫描日志注解类
  *
  * @author Aaric, created on 2019-10-11T13:43.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DbLog {
 
     /**
-     * 模块名称
+     * 系统名称，可以自定义
      *
      * @return string
      */
-    String module();
+    String tag() default "";
 
     /**
-     * 日志标题
+     * 模块名称，即标题
      *
      * @return string
      */
@@ -37,18 +37,18 @@ public @interface DbLog {
     String content();
 
     /**
-     * 提交者
-     *
-     * @return string
-     */
-    String submit();
-
-    /**
-     * 备注
+     * 备注，附加信息
      *
      * @return string
      */
     String remark() default "";
+
+    /**
+     * 提交者，可以自定义
+     *
+     * @return string
+     */
+    String submit() default "";
 
     /**
      * HTTP状态码
@@ -69,5 +69,5 @@ public @interface DbLog {
      *
      * @return string
      */
-    String exceptionDetail();
+    String exceptionDetail() default "";
 }

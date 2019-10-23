@@ -18,7 +18,7 @@ import java.util.List;
  * 基站位置服务实现(gpsspg.com)
  *
  * @author Aaric, created on 2019-10-14T14:16.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 @Slf4j
 public class SpgServiceImpl implements SpgService {

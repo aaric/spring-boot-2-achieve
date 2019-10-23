@@ -6,7 +6,7 @@ import java.util.Map;
  * 极光推送服务接口
  *
  * @author Aaric, created on 2019-09-04T11:25.
- * @since 0.12.0-SNAPSHOT
+ * @version 0.12.0-SNAPSHOT
  */
 public interface JpushService {
 

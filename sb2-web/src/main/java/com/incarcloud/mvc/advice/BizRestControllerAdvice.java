@@ -21,7 +21,7 @@ import java.util.Map;
  * 全局控制器建议
  *
  * @author Aaric, created on 2019-07-08T18:00.
- * @since 0.4.0-SNAPSHOT
+ * @version 0.4.0-SNAPSHOT
  */
 @Slf4j
 @RestControllerAdvice

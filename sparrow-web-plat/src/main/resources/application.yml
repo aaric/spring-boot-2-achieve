@@ -22,6 +22,24 @@ spring:
     cache-duration: 86400
     encoding: UTF-8
 
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+    io:
+      sparrow: INFO
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: plat.log
+    max-size: ${LOGGING_FILE_MAX_SIZE:20MB}
+
 # Incarcloud settings
 incarcloud:
   swagger2:

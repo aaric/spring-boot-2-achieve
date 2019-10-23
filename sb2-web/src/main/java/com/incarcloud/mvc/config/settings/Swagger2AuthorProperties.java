@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-07-01T12:34.
- * @since 0.2.2-SNAPSHOT
+ * @version 0.2.2-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".swagger2.author")

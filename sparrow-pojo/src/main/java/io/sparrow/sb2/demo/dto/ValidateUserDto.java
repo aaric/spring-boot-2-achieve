@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  * 登录用户信息DTO
  *
  * @author Aaric, created on 2019-06-28T15:52.
- * @since 0.2.1-SNAPSHOT
+ * @version 0.2.1-SNAPSHOT
  */
 @ApiModel(description = "登录用户信息")
 @NoArgsConstructor

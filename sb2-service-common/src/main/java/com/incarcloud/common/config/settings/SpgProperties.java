@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-10-14T14:25.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".map.gpsspg")

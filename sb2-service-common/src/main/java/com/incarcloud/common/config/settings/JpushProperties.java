@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-09-04T15:37.
- * @since 0.12.0-SNAPSHOT
+ * @version 0.12.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".push.jpush")

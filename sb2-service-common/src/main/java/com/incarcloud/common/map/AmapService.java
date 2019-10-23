@@ -9,7 +9,7 @@ import java.util.Map;
  * 高德地图服务接口
  *
  * @author Aaric, created on 2019-09-04T17:09.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 public interface AmapService {
 

@@ -18,7 +18,7 @@ import java.util.Random;
  * AliyunSmsServiceTest
  *
  * @author Aaric, created on 2019-08-23T15:21.
- * @since 0.10.0-SNAPSHOT
+ * @version 0.10.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest

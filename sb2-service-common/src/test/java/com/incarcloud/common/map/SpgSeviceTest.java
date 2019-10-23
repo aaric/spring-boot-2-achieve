@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * SpgSeviceTest
  *
  * @author Aaric, created on 2019-10-14T15:29.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest

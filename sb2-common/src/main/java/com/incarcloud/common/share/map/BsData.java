@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * 基站数据（非CDMA格式）
  *
  * @author Aaric, created on 2019-10-14T14:59.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 public class BsData {
 

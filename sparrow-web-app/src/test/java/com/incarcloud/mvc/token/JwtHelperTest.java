@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * JwtHelperTest
  *
  * @author Aaric, created on 2019-08-09T11:24.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Slf4j
 @RunWith(SpringRunner.class)

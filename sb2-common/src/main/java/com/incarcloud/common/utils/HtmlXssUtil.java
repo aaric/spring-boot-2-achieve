@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * HTML防止XSS工具类
  *
  * @author Aaric, created on 2019-04-13T16:31.
- * @since 0.0.2-SNAPSHOT
+ * @version 0.0.2-SNAPSHOT
  */
 public final class HtmlXssUtil {
 

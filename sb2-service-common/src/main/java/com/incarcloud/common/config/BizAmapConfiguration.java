@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * 高德地图服务配置
  *
  * @author Aaric, created on 2019-09-06T17:17.
- * @since 1.0-milestone
+ * @version 1.0-milestone
  */
 @Configuration
 public class BizAmapConfiguration {

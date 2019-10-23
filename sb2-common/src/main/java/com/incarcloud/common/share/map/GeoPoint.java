@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * 地理位置信息
  *
  * @author Aaric, created on 2019-09-04T17:32.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 public class GeoPoint {
 

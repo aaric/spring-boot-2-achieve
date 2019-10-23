@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * 基站位置服务配置(gpsspg.com)
  *
  * @author Aaric, created on 2019-10-14T14:25.
- * @since 1.1.0-SNAPSHOT
+ * @version 1.1.0-SNAPSHOT
  */
 @Configuration
 public class BizSpgConfiguration {

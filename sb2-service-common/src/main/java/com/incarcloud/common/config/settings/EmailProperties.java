@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-08-22T14:02.
- * @since 0.8.1-SNAPSHOT
+ * @version 0.8.1-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".email")

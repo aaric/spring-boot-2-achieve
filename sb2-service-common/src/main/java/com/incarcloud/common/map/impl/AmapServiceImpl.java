@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * 高德地图服务实现
  *
  * @author Aaric, created on 2019-09-04T17:10.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 @Slf4j
 public class AmapServiceImpl implements AmapService {

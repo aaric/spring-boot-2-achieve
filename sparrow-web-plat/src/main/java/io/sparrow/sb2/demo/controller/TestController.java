@@ -1,6 +1,7 @@
 package io.sparrow.sb2.demo.controller;
 
 import com.incarcloud.common.data.ResponseData;
+import com.incarcloud.common.share.log.DbLog;
 import io.sparrow.sb2.demo.api.TestApi;
 import io.sparrow.sb2.demo.dto.ValidateUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import javax.validation.Valid;
  * 测试框架模块控制器
  *
  * @author Aaric, created on 2019-06-26T15:37.
- * @since 0.2.1-SNAPSHOT
+ * @version 0.2.1-SNAPSHOT
  */
 @RestController
 @RequestMapping("/api/plat/demo/test")
@@ -38,6 +39,7 @@ public class TestController implements TestApi {
 
     @Override
     @GetMapping(value = "/get/{id}")
+    @DbLog(title = "测试模块", content = "获取登录用户信息")
     public ResponseData<ValidateUserDto> get(@PathVariable("id") Integer id) {
         ValidateUserDto loginValidateUserDto = new ValidateUserDto("root", "root", "root@incarcloud.com");
         return ResponseData.ok(loginValidateUserDto);

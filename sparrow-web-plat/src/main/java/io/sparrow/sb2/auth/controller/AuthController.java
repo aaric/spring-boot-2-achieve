@@ -16,7 +16,7 @@ import java.util.Optional;
  * 登录授权模块控制器
  *
  * @author Aaric, created on 2019-08-02T17:58.
- * @since 0.6.0-SNAPSHOT
+ * @version 0.6.0-SNAPSHOT
  */
 @RestController
 @RequestMapping("/api/plat/auth")

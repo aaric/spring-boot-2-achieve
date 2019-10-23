@@ -18,7 +18,7 @@ import java.util.List;
  * 默认Swagger2配置
  *
  * @author Aaric, created on 2019-06-27T17:27.
- * @since 0.2.1-SNAPSHOT
+ * @version 0.2.1-SNAPSHOT
  */
 public abstract class AbstractSwagger2ConfigurationSupport {
 
