@@ -6,7 +6,7 @@ import java.util.Map;
  * 阿里云短信服务接口
  *
  * @author Aaric, created on 2019-08-23T14:27.
- * @since 0.10.0-SNAPSHOT
+ * @version 0.10.0-SNAPSHOT
  */
 public interface DysmsService {
 

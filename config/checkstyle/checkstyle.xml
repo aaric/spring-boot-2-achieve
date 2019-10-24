@@ -24,7 +24,13 @@
         <!-- 注释检查 -->
         <!-- 检查构造函数的javadoc -->
         <module name="JavadocType">
+            <!-- authorFormat: 检查author标签的格式 -->
+            <property name="authorFormat" value="\S"/>
+            <!-- versionFormat: 检查version标签的格式 -->
+            <property name="versionFormat" value="\S"/>
+            <!-- 准许自定义标签 -->
             <property name="allowUnknownTags" value="true"/>
+            <!-- 必须有类注释 -->
             <message key="javadoc.missing" value="类注释：缺少Javadoc注释。"/>
         </module>
 
@@ -135,8 +141,8 @@
         <!-- 检查类是否为扩展设计l -->
         <!-- 检查只有private构造函数的类是否声明为final -->
         <module name="FinalClass"/>
-        <!-- 检查接口是否仅定义类型 -->
-        <module name="InterfaceIsType"/>
+        <!-- 检查接口是否仅定义类型(NotApply) -->
+        <!--<module name="InterfaceIsType"/>-->
         <!-- 检查类成员的可见度 检查类成员的可见性。只有static final 成员是public的
         除非在本检查的protectedAllowed和packagedAllowed属性中进行了设置-->
         <module name="VisibilityModifier">

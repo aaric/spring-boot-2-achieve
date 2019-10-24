@@ -18,7 +18,7 @@ import java.util.Properties;
  * 发送邮件服务实现
  *
  * @author Aaric, created on 2019-08-22T11:47.
- * @since 0.8.1-SNAPSHOT
+ * @version 0.8.1-SNAPSHOT
  */
 @Slf4j
 public class EmailServiceImpl implements EmailService {

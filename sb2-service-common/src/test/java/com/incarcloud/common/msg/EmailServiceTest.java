@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * EmailServiceTest
  *
  * @author Aaric, created on 2019-08-22T17:03.
- * @since 0.8.1-SNAPSHOT
+ * @version 0.8.1-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest

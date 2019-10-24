@@ -20,7 +20,7 @@ import java.io.InputStream;
  * 自定义JSON认证过滤器
  *
  * @author Aaric, created on 2019-07-31T15:31.
- * @since 0.6.0-SNAPSHOT
+ * @version 0.6.0-SNAPSHOT
  */
 public class CustomJsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * 极光推送服务配置
  *
  * @author Aaric, created on 2019-09-06T17:56.
- * @since 1.0-milestone
+ * @version 1.0-milestone
  */
 @Configuration
 public class BizJpushConfiguration {

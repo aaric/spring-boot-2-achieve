@@ -4,7 +4,7 @@ package com.incarcloud.common.data;
  * 请求响应数据失败状态码
  *
  * @author Aaric, created on 2019-08-05T19:27.
- * @since 0.6.3-SNAPSHOT
+ * @version 0.6.3-SNAPSHOT
  */
 public interface ResponseFailureState {
 
@@ -55,11 +55,4 @@ public interface ResponseFailureState {
 
     // Token签发机构错误
     String ERROR_0039 = "0039";
-
-    /**
-     * 获得状态码字符串
-     *
-     * @return
-     */
-    String getCode();
 }

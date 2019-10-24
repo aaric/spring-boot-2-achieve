@@ -23,7 +23,7 @@ import java.util.Base64;
  * </pre>
  *
  * @author Aaric, created on 2019-08-08T12:38.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".auth.jwt")

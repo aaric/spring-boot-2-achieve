@@ -9,7 +9,7 @@ import org.junit.Test;
  * HtmlXssUtilTest
  *
  * @author Aaric, created on 2019-04-30T14:05.
- * @since 0.0.2-SNAPSHOT
+ * @version 0.0.2-SNAPSHOT
  */
 @Slf4j
 public class HtmlXssUtilTest {

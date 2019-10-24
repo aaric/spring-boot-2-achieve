@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-08-20T15:14.
- * @since 0.8.0-SNAPSHOT
+ * @version 0.8.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".file.ftp")

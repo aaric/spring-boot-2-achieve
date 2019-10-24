@@ -36,3 +36,6 @@ incarcloud:
     amap: # 高德地图配置
       hostname: restapi.amap.com
       key: yourkey
+    gpsspg: # gpsspg.com
+      oid: youroid
+      key: yourkey

@@ -19,7 +19,7 @@ import java.util.Map;
  * AmapServiceTest
  *
  * @author Aaric, created on 2019-09-04T17:11.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest

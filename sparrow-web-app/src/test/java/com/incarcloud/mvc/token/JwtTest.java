@@ -21,7 +21,7 @@ import java.util.UUID;
  * JwtTest
  *
  * @author Aaric, created on 2019-08-07T17:53.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Slf4j
 public class JwtTest {

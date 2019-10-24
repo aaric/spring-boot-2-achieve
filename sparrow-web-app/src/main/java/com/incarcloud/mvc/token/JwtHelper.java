@@ -22,7 +22,7 @@ import java.util.Base64;
  * JWT辅助类
  *
  * @author Aaric, created on 2019-08-07T17:43.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Slf4j
 @Component

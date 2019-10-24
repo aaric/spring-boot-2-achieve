@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-09-04T17:11.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".map.amap")

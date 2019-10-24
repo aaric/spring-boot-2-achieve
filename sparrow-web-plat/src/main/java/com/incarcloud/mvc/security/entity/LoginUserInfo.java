@@ -12,7 +12,7 @@ import java.util.Collection;
  * 登录用户信息
  *
  * @author Aaric, created on 2019-08-01T17:16.
- * @since 0.6.0-SNAPSHOT
+ * @version 0.6.0-SNAPSHOT
  */
 @ApiModel(description = "登录用户信息")
 public class LoginUserInfo implements UserDetails {

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * OkHttp3UtilTest
  *
  * @author Aaric, created on 2019-07-15T14:43.
- * @since 0.4.2-SNAPSHOT
+ * @version 0.4.2-SNAPSHOT
  */
 @Slf4j
 public class OkHttp3UtilTest {

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * 登录授权模块API
  *
  * @author Aaric, created on 2019-08-09T13:52.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Api(tags = "登录授权模块API")
 public interface AuthApi {

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  *
  * @author Aaric, created on 2019-08-23T14:29.
- * @since 0.10.0-SNAPSHOT
+ * @version 0.10.0-SNAPSHOT
  */
 @Component
 @ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".sms.dysms")

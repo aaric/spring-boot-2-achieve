@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * OkHttp3工具类
  *
  * @author Aaric, created on 2019-09-06T14:28.
- * @since 0.13.0-SNAPSHOT
+ * @version 0.13.0-SNAPSHOT
  */
 @Slf4j
 public class OkHttp3Util {

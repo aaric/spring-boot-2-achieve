@@ -21,7 +21,7 @@ import java.util.List;
  * 项目Swagger2配置
  *
  * @author Aaric, created on 2019-06-28T13:59.
- * @since 0.2.1-SNAPSHOT
+ * @version 0.2.1-SNAPSHOT
  */
 @Configuration
 @EnableSwagger2

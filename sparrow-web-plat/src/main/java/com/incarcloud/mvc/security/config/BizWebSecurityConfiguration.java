@@ -26,7 +26,7 @@ import java.io.PrintWriter;
  * 项目Spring Security配置
  *
  * @author Aaric, created on 2019-07-29T11:35.
- * @since 0.6.0-SNAPSHOT
+ * @version 0.6.0-SNAPSHOT
  */
 @Configuration
 public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -53,13 +53,13 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers(getApiRoute("/login"), getApiRoute("/current")).permitAll() // 设置不拦截登录地址
+                .antMatchers(getApiRoute("/login"), getApiRoute("/redirect")).permitAll() // 设置不拦截登录地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage(getApiRoute("/current")) //定义登录页面
+                .loginPage(getApiRoute("/redirect")) //定义登录页面
                 /* 会话管理 */
                 .and()
                 .sessionManagement()

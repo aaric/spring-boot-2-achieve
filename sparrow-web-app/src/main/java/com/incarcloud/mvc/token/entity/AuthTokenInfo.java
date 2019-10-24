@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 授权Token信息
  *
  * @author Aaric, created on 2019-08-09T13:56.
- * @since 0.7.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @ApiModel(description = "授权Token信息")
 public class AuthTokenInfo {
