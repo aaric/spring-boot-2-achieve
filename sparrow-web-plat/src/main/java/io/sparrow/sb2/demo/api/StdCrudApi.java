@@ -2,8 +2,10 @@ package io.sparrow.sb2.demo.api;
 
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.sparrow.sb2.demo.dto.PersonDto;
+import io.swagger.annotations.*;
+
+import java.util.List;
 
 /**
  * 标准增删改查示例API
@@ -14,18 +16,36 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "标准增删改查示例API")
 public interface StdCrudApi {
 
-    @ApiOperation(value = "保存数据")
-    ResponseData<Object> save() throws ApiException;
+    @ApiOperation(value = "保存人员信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "personDto", value = "人员信息", dataType = "PersonDto", paramType = "body", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 21, message = "0021-人员信息校验失败")
+    })
+    ResponseData<Integer> save(PersonDto personDto) throws ApiException;
 
-    @ApiOperation(value = "更新数据")
-    ResponseData<Object> update() throws ApiException;
+    @ApiOperation(value = "更新人员信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "personDto", value = "人员信息", dataType = "PersonDto", paramType = "body", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 21, message = "0021-人员信息校验失败")
+    })
+    ResponseData<Object> update(PersonDto personDto) throws ApiException;
 
-    @ApiOperation(value = "查询数据")
-    ResponseData<Object> get() throws ApiException;
+    @ApiOperation(value = "查询人员信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "人员信息ID", dataType = "int", paramType = "path", required = true, example = "1")
+    })
+    ResponseData<PersonDto> get(Integer id) throws ApiException;
 
-    @ApiOperation(value = "批量查询数据")
-    ResponseData<Object> query() throws ApiException;
+    @ApiOperation(value = "批量查询人员信息")
+    ResponseData<List<PersonDto>> query() throws ApiException;
 
-    @ApiOperation(value = "删除数据")
-    ResponseData<Object> delete() throws ApiException;
+    @ApiOperation(value = "删除人员信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "人员信息ID", dataType = "int", paramType = "path", required = true, example = "1")
+    })
+    ResponseData<Object> delete(Integer id) throws ApiException;
 }

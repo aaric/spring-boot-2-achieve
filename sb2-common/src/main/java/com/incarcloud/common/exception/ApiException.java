@@ -23,6 +23,15 @@ public class ApiException extends Exception {
      */
     private Object data;
 
+    public ApiException(String code) {
+        this.code = code;
+    }
+
+    public ApiException(String code, Object data) {
+        this.code = code;
+        this.data = data;
+    }
+
     public ApiException(String code, String message) {
         super(message);
         this.code = code;

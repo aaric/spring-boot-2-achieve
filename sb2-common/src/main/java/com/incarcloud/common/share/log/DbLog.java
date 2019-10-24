@@ -16,6 +16,21 @@ import java.lang.annotation.Target;
 public @interface DbLog {
 
     /**
+     * 记录开始请求时间戳Key
+     */
+    String DEFAULT_VISIT_START_KEY = "db-log-visit-start-key";
+
+    /**
+     * 当前登录用户名对象Key
+     */
+    String DEFAULT_CURRENT_UID_KEY = "db-log-current-uid-key";
+
+    /**
+     * 日志内容格式化内容对象Key
+     */
+    String DEFAULT_CONTENT_OBJECTS_KEY = "db-log-content-objects-key";
+
+    /**
      * 标签，即系统名称
      *
      * @return string
@@ -37,6 +52,13 @@ public @interface DbLog {
     String content();
 
     /**
+     * 日志支持MessageFormat格式化内容
+     *
+     * @return
+     */
+    String contentObjectsKey() default DEFAULT_CONTENT_OBJECTS_KEY;
+
+    /**
      * 备注，附加信息
      *
      * @return string
@@ -49,6 +71,13 @@ public @interface DbLog {
      * @return string
      */
     String submit() default "";
+
+    /**
+     * HTTP请求地址
+     *
+     * @return int string
+     */
+    String httpUrl() default "";
 
     /**
      * HTTP状态码
@@ -69,10 +98,10 @@ public @interface DbLog {
      *
      * @return int
      */
-    int httpInterval() default -1;
+    long httpInterval() default -1;
 
     /**
-     * 异常信息
+     * 处理请求异常信息
      *
      * @return string
      */
