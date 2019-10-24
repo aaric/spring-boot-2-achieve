@@ -48,6 +48,9 @@ incarcloud:
       description: 本文档包含手机端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
       version: 1.0-Milestone
+  ## 业务配置
+  biz:
+    tag: app
   auth:
     jwt:
       secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=

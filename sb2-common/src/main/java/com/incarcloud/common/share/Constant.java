@@ -9,6 +9,11 @@ package com.incarcloud.common.share;
 public interface Constant {
 
     /**
+     * 默认错误/异常代码提示前缀字符串
+     */
+    String DEFAULT_TIPS_CODE_PREV_STRING = "tips.default.error.";
+
+    /**
      * 默认企业代码
      */
     String DEFAULT_ENTERPRISE_CODE = "incarcloud";

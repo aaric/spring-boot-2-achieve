@@ -48,3 +48,6 @@ incarcloud:
       description: 本文档包含平台端全部业务接口，注意保密。
       service-url: http://localhost:9080/doc.html
       version: 1.0-Milestone
+  ## 业务配置
+  biz:
+    tag: plat

@@ -1,7 +1,9 @@
 package com.incarcloud.mvc.servlet;
 
+import com.incarcloud.common.share.Constant;
 import com.incarcloud.common.share.log.DbLog;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -18,10 +20,16 @@ import java.lang.reflect.Method;
 @Slf4j
 public class DbLogInterceptor implements HandlerInterceptor {
 
+    /**
+     * 业务标签
+     */
+    @Value("${" + Constant.DEFAULT_ENTERPRISE_CODE + ".biz.tag" + "}")
+    private String bizTag;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.debug("DbLogInterceptor: {}", request.getRequestURI());
-        // 如果不支持HandlerMethod，不拦截该请求
+        // 如果不支持反射，不拦截该请求
         if ((!(handler instanceof HandlerMethod))) {
             return true;
         }
@@ -31,7 +39,7 @@ public class DbLogInterceptor implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
         DbLog dbLog = method.getAnnotation(DbLog.class);
         if (null != dbLog) {
-            log.info("tag: {}, title: {}, content: {}", dbLog.tag(), dbLog.title(), dbLog.content());
+            log.debug("\ntag: {}, title: {}, content: {}", bizTag, dbLog.title(), dbLog.content());
         }
 
         return true;

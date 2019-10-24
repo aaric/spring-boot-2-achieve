@@ -24,6 +24,9 @@ import java.util.Locale;
  */
 public abstract class AbstractWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
+    /**
+     * 消息资源对象
+     */
     @Autowired
     protected MessageSource messageSource;
 

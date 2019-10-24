@@ -53,16 +53,23 @@ public @interface DbLog {
     /**
      * HTTP状态码
      *
-     * @return string
+     * @return int
      */
     int httpStatus() default 200;
 
     /**
-     * 响应时间间隔
+     * HTTP类型
      *
      * @return string
      */
-    int responseInterval() default -1;
+    String httpType() default "";
+
+    /**
+     * HTTP请求耗时
+     *
+     * @return int
+     */
+    int httpInterval() default -1;
 
     /**
      * 异常信息

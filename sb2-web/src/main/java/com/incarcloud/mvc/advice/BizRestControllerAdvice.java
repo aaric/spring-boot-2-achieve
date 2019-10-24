@@ -2,7 +2,9 @@ package com.incarcloud.mvc.advice;
 
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
+import com.incarcloud.common.share.Constant;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -37,8 +39,10 @@ public class BizRestControllerAdvice {
      * @return
      */
     private String getExtraMsg(String errorCode) {
-        // 要求开发者定义错误信息格式为：tips.default.error.{code}
-        return messageSource.getMessage("tips.default.error." + errorCode, null, LocaleContextHolder.getLocale());
+        // 约定：
+        // 开发者定义错误信息格式为：tips.default.error.{code}
+        // 例如：“tips.default.error.0001=非法请求”
+        return messageSource.getMessage(Constant.DEFAULT_TIPS_CODE_PREV_STRING + errorCode, null, LocaleContextHolder.getLocale());
     }
 
     /**
@@ -74,7 +78,7 @@ public class BizRestControllerAdvice {
     @ExceptionHandler(ApiException.class)
     public ResponseData<Object> handleApiException(ApiException e) {
         // 自定义请求API异常
-        String message = getExtraMsg(e.getCode());
+        String message = StringUtils.appendIfMissing(getExtraMsg(e.getCode()), e.getMessage());
         if (null != e.getData()) {
             return ResponseData.error(e.getCode(), e.getData()).extraMsg(message);
         } else {

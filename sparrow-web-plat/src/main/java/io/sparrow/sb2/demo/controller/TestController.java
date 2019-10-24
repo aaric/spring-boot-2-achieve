@@ -1,7 +1,6 @@
 package io.sparrow.sb2.demo.controller;
 
 import com.incarcloud.common.data.ResponseData;
-import com.incarcloud.common.share.log.DbLog;
 import io.sparrow.sb2.demo.api.TestApi;
 import io.sparrow.sb2.demo.dto.ValidateUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,6 @@ public class TestController implements TestApi {
 
     @Override
     @GetMapping(value = "/get/{id}")
-    @DbLog(title = "测试模块", content = "获取登录用户信息")
     public ResponseData<ValidateUserDto> get(@PathVariable("id") Integer id) {
         ValidateUserDto loginValidateUserDto = new ValidateUserDto("root", "root", "root@incarcloud.com");
         return ResponseData.ok(loginValidateUserDto);
