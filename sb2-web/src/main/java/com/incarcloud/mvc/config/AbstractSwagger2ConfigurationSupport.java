@@ -1,5 +1,6 @@
 package com.incarcloud.mvc.config;
 
+import com.incarcloud.common.share.log.DbLog;
 import com.incarcloud.mvc.config.settings.Swagger2ApiProperties;
 import com.incarcloud.mvc.config.settings.Swagger2AuthorProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +47,28 @@ public abstract class AbstractSwagger2ConfigurationSupport {
      * @return
      */
     protected List<Parameter> globalOperationParameters() {
-        ParameterBuilder builder = new ParameterBuilder();
-
-        builder.name(LocaleChangeInterceptor.DEFAULT_PARAM_NAME)
+        // 构建参数: 地区语言代码
+        ParameterBuilder builderQueryLocale = new ParameterBuilder();
+        builderQueryLocale.name(LocaleChangeInterceptor.DEFAULT_PARAM_NAME)
                 .description("地区语言代码，默认zh_CN(简体中文), en_US(英文)")
                 .modelRef(new ModelRef("string"))
                 .parameterType("query")
                 .defaultValue("zh_CN")
                 .required(false);
 
+        // 构建参数: 客户端请求时间戳
+        ParameterBuilder builderQueryTs = new ParameterBuilder();
+        builderQueryTs.name(DbLog.DEFAULT_CLIENT_TIME_KEY)
+                .description("客户端请求时间戳")
+                .modelRef(new ModelRef("integer"))
+                .parameterType("query")
+                .defaultValue("" + System.currentTimeMillis())
+                .required(false);
+
+        // 设置全局参数列表
         List<Parameter> parameters = new ArrayList<Parameter>();
-        parameters.add(builder.build());
+        parameters.add(builderQueryLocale.build());
+        parameters.add(builderQueryTs.build());
         return parameters;
     }
 }

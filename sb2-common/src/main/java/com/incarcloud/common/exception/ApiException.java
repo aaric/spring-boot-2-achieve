@@ -32,11 +32,6 @@ public class ApiException extends Exception {
         this.data = data;
     }
 
-    public ApiException(String code, String message) {
-        super(message);
-        this.code = code;
-    }
-
     public ApiException(String code, String message, Object data) {
         super(message);
         this.code = code;

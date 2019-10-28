@@ -28,19 +28,11 @@ public class StdCrudController implements StdCrudApi {
     private HttpSession httpSession;
 
     /**
-     * 设置格式化日志内容参数对象<br/>
-     * <i>建议：</i>
-     * <ul>
-     *     <li>1.归档到BaseController父类方法</li>
-     *     <li>2.设置“当前登录用户ID信息”，可以提取方法</li>
-     * </ul>
+     * 设置格式化日志内容参数对象
      *
      * @param objects 格式化日志内容参数对象
      */
     private void setDbLogObjects(Object[] objects) {
-        // 设置当前登录用户ID信息
-        httpSession.setAttribute(DbLog.DEFAULT_CURRENT_UID_KEY, "jenkins");
-
         // 设置格式化日志内容参数对象
         httpSession.setAttribute(DbLog.DEFAULT_CONTENT_OBJECTS_KEY, objects);
     }
@@ -87,6 +79,11 @@ public class StdCrudController implements StdCrudApi {
     public ResponseData<Object> delete(@PathVariable("id") Integer id) throws ApiException {
         // 设置日志内容参数对象
         setDbLogObjects(new Object[]{id});
+
+        // 测试DbLog捕获异常日志
+        if (0 < System.currentTimeMillis()) {
+            throw new ApiException(ResponseData.ERROR_0002, "DbLog自定义异常捕获", null);
+        }
 
         return ResponseData.ok(null).extraMsg("删除人员信息");
     }
