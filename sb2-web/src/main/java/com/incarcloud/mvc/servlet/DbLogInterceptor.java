@@ -1,11 +1,9 @@
 package com.incarcloud.mvc.servlet;
 
-import com.incarcloud.common.share.Constant;
 import com.incarcloud.common.share.log.DbLog;
+import com.incarcloud.common.share.log.DbLogSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -28,8 +26,17 @@ public class DbLogInterceptor implements HandlerInterceptor {
     /**
      * 业务标签
      */
-    @Value("${" + Constant.DEFAULT_ENTERPRISE_CODE + ".biz.tag" + "}")
     private String bizTag;
+
+    /**
+     * 日志提交人
+     */
+    private DbLogSubmit dbLogSubmit;
+
+    public DbLogInterceptor(String bizTag, DbLogSubmit dbLogSubmit) {
+        this.bizTag = bizTag;
+        this.dbLogSubmit = dbLogSubmit;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -39,6 +46,7 @@ public class DbLogInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    @SuppressWarnings("checkstyle:HiddenField")
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 如果不支持反射，不拦截该请求
@@ -57,32 +65,33 @@ public class DbLogInterceptor implements HandlerInterceptor {
 
             // 获取日志内容
             String dbLogContent = dbLog.content();
-            Object[] objects = (Object[]) httpSession.getAttribute(DbLog.DEFAULT_CONTENT_OBJECTS_KEY);
+            Object[] objects = (Object[]) httpSession.getAttribute(dbLog.contentObjectsKey()); // DbLog.DEFAULT_CONTENT_OBJECTS_KEY
             if (null != objects) {
                 dbLogContent = new MessageFormat(dbLogContent).format(objects);
             }
 
-            // 获取用户信息，一般是UID
-            String dbLogSubmit = "";
-            String uid = (String) httpSession.getAttribute(DbLog.DEFAULT_CURRENT_UID_KEY);
-            if (StringUtils.isNotBlank(uid)) {
-                dbLogSubmit = uid;
+            // 获得客户端请求时间戳
+            long httpClientInterval = -1L;
+            String clientTimeString = request.getParameter(DbLog.DEFAULT_CLIENT_TIME_KEY);
+            if (StringUtils.isNotBlank(clientTimeString)) {
+                httpClientInterval = dbLogVisitStart - Long.parseLong(clientTimeString);
             }
 
             // 获取异常信息
             String dbLogExceptionDetail = "no exception";
-            if (null != ex) {
-                dbLogExceptionDetail = ExceptionUtils.getStackTrace(ex);
+            String exceptionDetail = (String) httpSession.getAttribute(DbLog.DEFAULT_EXCEPTION_DETAIL_KEY);
+            if (StringUtils.isNotBlank(exceptionDetail)) {
+                dbLogExceptionDetail = exceptionDetail;
             }
 
             // 打印日志信息
             if (null != dbLog) {
-                log.debug("\n## DbLog:\n----- \nhttpType: {}, \nhttpUrl: {}, \nhttpStatus:{},"
+                log.debug("\n## DbLog:\n-----\nhttpType: {}, \nhttpUrl: {}, \nhttpStatus:{}, "
                                 + "\ntag: {}, \ntitle: {}, \ncontent: {}, \nremark: {}, "
-                                + "\nsubmit:{}, \nhttpInterval: {}ms, \nexceptionDetail: {}\n-----",
+                                + "\nsubmit: {}, \nhttpClientInterval: {}ms, \nhttpProcessInterval: {}ms, \nexceptionDetail: {}\n-----",
                         request.getMethod(), request.getRequestURI(), dbLog.httpStatus(),
                         bizTag, dbLog.title(), dbLogContent, StringUtils.appendIfMissing(dbLog.remark(), "no remark"),
-                        dbLogSubmit, (Instant.now().toEpochMilli() - dbLogVisitStart), dbLogExceptionDetail
+                        dbLogSubmit.getSubmit(), httpClientInterval, (Instant.now().toEpochMilli() - dbLogVisitStart), dbLogExceptionDetail
                 );
             }
         }

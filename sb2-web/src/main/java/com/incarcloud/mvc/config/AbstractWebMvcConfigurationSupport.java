@@ -1,6 +1,5 @@
 package com.incarcloud.mvc.config;
 
-import com.incarcloud.mvc.servlet.DbLogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.MessageSource;
@@ -44,19 +43,10 @@ public abstract class AbstractWebMvcConfigurationSupport extends WebMvcConfigura
         return new LocaleChangeInterceptor();
     }
 
-    @Bean
-    @ConditionalOnMissingBean(DbLogInterceptor.class)
-    public DbLogInterceptor dbLogInterceptor() {
-        return new DbLogInterceptor();
-    }
-
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         // Locale
         registry.addInterceptor(localeChangeInterceptor());
-
-        // DbLog
-        registry.addInterceptor(dbLogInterceptor()).addPathPatterns("/api/**");
     }
 
     @Override
