@@ -4,5 +4,6 @@ dependencies {
     compile project(":sb2-web")
     compile project(":sparrow-service")
 
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jacksonVersion}"
     compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
 }

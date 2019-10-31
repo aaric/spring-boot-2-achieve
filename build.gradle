@@ -25,6 +25,7 @@ subprojects {
     ext {
         jjwtVersion = "0.10.+"
         lombokVersion = "1.18.8"
+        jacksonVersion = "2.9.+"
         springBootVersion = "2.1.+"
         swagger2Version = "2.8.0"
         swaggerAnnotationsVersion = "1.5.20"

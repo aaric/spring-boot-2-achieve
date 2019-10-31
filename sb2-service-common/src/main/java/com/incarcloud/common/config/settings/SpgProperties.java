@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * # Incarcloud settings
  * incarcloud:
  *   map: # 高德地图 OR 百度地图 OR 腾讯地图, Others...
- *     gpsspg: # gpsspg.com
+ *     gpsspg: # 基站定位
  *       oid: youroid
  *       key: yourkey
  * </pre>
