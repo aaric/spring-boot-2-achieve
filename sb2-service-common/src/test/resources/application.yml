@@ -34,12 +34,19 @@ incarcloud:
       apnsProduction: false
   map: # 高德地图 OR 百度地图 OR 腾讯地图, Others...
     amap: # 高德地图配置
-      hostname: restapi.amap.com
-      key: yourkey
-    gpsspg: # gpsspg.com
-      oid: youroid
-      key: yourkey
-  payment: # 第三方支付
+      restapi: # REST API
+        hostname: restapi.amap.com
+        key: yourkey
+      apilocate: # Locate API
+        hostname: apilocate.amap.com
+        key: yourkey
+  pay: # 第三方支付
+    alipay: # 支付宝
+      appId: yourappid
+      apiGatewayUrl: yourapigatewayurl
+      apiPkcs8PublicKey: yourapipkcs8publickey
+      apiPkcs8PrivateKey: yourapipkcs8privatekey
+      notifyUrl: yournotifyurl
     wxpay: # 微信支付
       appId: yourappid
       mchId: yourmchid
@@ -48,9 +55,3 @@ incarcloud:
       apiPkcs12Cert: yourapipkcs12cert
       apiDomainString: yourdomainString
       notifyUrl: yournotifyUrl
-    alipay: # 支付宝
-      appId: yourappid
-      apiGatewayUrl: yourapigatewayurl
-      apiPkcs8PublicKey: yourapipkcs8publickey
-      apiPkcs8PrivateKey: yourapipkcs8privatekey
-      notifyUrl: yournotifyurl

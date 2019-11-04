@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   payment: # 第三方支付
+ *   pay: # 第三方支付
  *     alipay: # 支付宝
  *       appId: yourappid
  *       apiGatewayUrl: yourapigatewayurl
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
  * @version 1.2.0-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".payment.alipay")
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.alipay")
 public class AliPayProperties {
 
     /**

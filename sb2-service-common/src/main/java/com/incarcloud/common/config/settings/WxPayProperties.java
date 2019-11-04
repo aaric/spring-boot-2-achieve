@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   payment: # 第三方支付
+ *   pay: # 第三方支付
  *     wxpay: # 微信支付
  *       appId: yourappid
  *       mchId: yourmchid
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
  * @see
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".payment.wxpay")
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.wxpay")
 public class WxPayProperties {
 
     /**

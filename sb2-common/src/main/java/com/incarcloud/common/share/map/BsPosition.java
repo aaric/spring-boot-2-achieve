@@ -11,12 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class BsPosition extends GeoPoint {
 
     /**
-     * 结果ID
-     */
-    private String id;
-
-    /**
-     * 覆盖半径参考值，如：1500 米。
+     * 覆盖半径参考值，如：80 米。
      */
     private Integer radius;
 
@@ -28,25 +23,17 @@ public class BsPosition extends GeoPoint {
     /**
      * 靠近道路描述
      */
-    private String roads;
+    private String road;
 
     /**
      * 6位行政区划代码，见国家统计局《县及县以上行政区划代码》。
      */
-    private String rid;
+    private String code6;
 
     /**
      * 12位区划代码（参考值），见国家统计局《统计用区划代码和城乡划分代码》。
      */
-    private String rids;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String code12;
 
     public Integer getRadius() {
         return radius;
@@ -64,28 +51,28 @@ public class BsPosition extends GeoPoint {
         this.address = address;
     }
 
-    public String getRoads() {
-        return roads;
+    public String getRoad() {
+        return road;
     }
 
-    public void setRoads(String roads) {
-        this.roads = roads;
+    public void setRoad(String road) {
+        this.road = road;
     }
 
-    public String getRid() {
-        return rid;
+    public String getCode6() {
+        return code6;
     }
 
-    public void setRid(String rid) {
-        this.rid = rid;
+    public void setCode6(String code6) {
+        this.code6 = code6;
     }
 
-    public String getRids() {
-        return rids;
+    public String getCode12() {
+        return code12;
     }
 
-    public void setRids(String rids) {
-        this.rids = rids;
+    public void setCode12(String code12) {
+        this.code12 = code12;
     }
 
     @Override

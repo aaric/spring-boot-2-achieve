@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  * @version 0.13.0-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".map.amap")
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".map.amap.restapi")
 public class AmapProperties {
 
     /**
