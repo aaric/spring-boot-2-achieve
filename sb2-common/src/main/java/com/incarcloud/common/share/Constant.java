@@ -9,6 +9,11 @@ package com.incarcloud.common.share;
 public interface Constant {
 
     /**
+     * 默认UTF-8字符集
+     */
+    String DEFAULT_CHARSET = "UTF-8";
+
+    /**
      * 默认错误/异常代码提示前缀字符串
      */
     String DEFAULT_TIPS_CODE_PREV_STRING = "tips.default.error.";

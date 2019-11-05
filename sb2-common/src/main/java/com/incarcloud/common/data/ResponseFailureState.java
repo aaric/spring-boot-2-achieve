@@ -63,6 +63,6 @@ public interface ResponseFailureState {
     String ERROR_0061 = "0061";
 
     // 调用微信支付接口失败
-    String ERROR_0066 = "0062";
+    String ERROR_0062 = "0062";
 
 }

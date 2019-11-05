@@ -22,7 +22,7 @@ public class BizWxPayConfiguration {
     private WxPayProperties wxPayProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".payment.wxpay",
+    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.wxpay",
             name = {"appId", "mchId", "apiSecret", "notifyUrl"})
     public WxPayService wxPayService() {
         return new WxPayServiceImpl(wxPayProperties);

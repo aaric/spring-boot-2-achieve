@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Aaric, created on 2019-08-15T17:56.
  * @version 0.8.0-SNAPSHOT
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.incarcloud", "io.sparrow.sb2"})
 public class Application {
 
     /**

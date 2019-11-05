@@ -3,6 +3,20 @@ spring:
   profiles:
     active: dev
 
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+    io:
+      sparrow: DEBUG
+
 # Incarcloud settings
 incarcloud:
   pay: # 第三方支付
