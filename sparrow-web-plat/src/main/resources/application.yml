@@ -51,3 +51,19 @@ incarcloud:
   ## 业务配置
   biz:
     tag: plat
+  pay: # 第三方支付
+    alibaba: # 支付宝
+      appId: yourappid
+      appPrivateKey: yourappprivatekey
+      alipayGatewayUrl: youralipaygatewayurl
+      alipayPublicKey: youralipaypublickey
+      callbackNotifyUrl: yourcallbacknotifyurl
+      webReturnUrl: yourwebreturnurl
+    weixin: # 微信支付
+      appId: yourappid
+      mchId: yourmchid
+      apiSecret: yourapisecret
+      # cat apiclient_cert.p12 | base64 -w 0
+      apiPkcs12Cert: yourapipkcs12cert
+      apiDomainString: yourdomainString
+      notifyUrl: yournotifyUrl

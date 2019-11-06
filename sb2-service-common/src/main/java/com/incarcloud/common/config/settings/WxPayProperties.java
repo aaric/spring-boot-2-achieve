@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * 微信支付服务配置类<br>
  * <ul>
- *     <li>开发文档：https://pay.weixin.qq.com/wiki/doc/api/index.html</i></li>
+ *     <li>开发文档：https://pay.weixin.qq.com/wiki/doc/api/index.html</i>
  *     <li>API证书：https://kf.qq.com/product/wechatpaymentmerchant.html#hid=2874</li>
  * </ul>
  *
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * # Incarcloud settings
  * incarcloud:
  *   pay: # 第三方支付
- *     wxpay: # 微信支付
+ *     weixin: # 微信支付
  *       appId: yourappid
  *       mchId: yourmchid
  *       apiSecret: yourapisecret
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
  * @see
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.wxpay")
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.weixin")
 public class WxPayProperties {
 
     /**

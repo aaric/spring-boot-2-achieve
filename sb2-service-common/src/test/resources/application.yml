@@ -3,6 +3,20 @@ spring:
   profiles:
     active: dev
 
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+    io:
+      sparrow: DEBUG
+
 # Incarcloud settings
 incarcloud:
   file: # FTP OR FastDFS
@@ -41,13 +55,14 @@ incarcloud:
         hostname: apilocate.amap.com
         key: yourkey
   pay: # 第三方支付
-    alipay: # 支付宝
+    alibaba: # 支付宝
       appId: yourappid
-      apiGatewayUrl: yourapigatewayurl
-      apiPkcs8PublicKey: yourapipkcs8publickey
-      apiPkcs8PrivateKey: yourapipkcs8privatekey
-      notifyUrl: yournotifyurl
-    wxpay: # 微信支付
+      appPrivateKey: yourappprivatekey
+      alipayGatewayUrl: youralipaygatewayurl
+      alipayPublicKey: youralipaypublickey
+      callbackNotifyUrl: yourcallbacknotifyurl
+      webReturnUrl: yourwebreturnurl
+    weixin: # 微信支付
       appId: yourappid
       mchId: yourmchid
       apiSecret: yourapisecret

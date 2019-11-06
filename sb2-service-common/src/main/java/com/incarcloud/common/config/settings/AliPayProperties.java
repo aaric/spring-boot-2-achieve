@@ -16,19 +16,20 @@ import org.springframework.stereotype.Component;
  * # Incarcloud settings
  * incarcloud:
  *   pay: # 第三方支付
- *     alipay: # 支付宝
+ *     alibaba: # 支付宝
  *       appId: yourappid
- *       apiGatewayUrl: yourapigatewayurl
- *       apiPkcs8PublicKey: yourapipkcs8publickey
- *       apiPkcs8PrivateKey: yourapipkcs8privatekey
- *       notifyUrl: yournotifyurl
+ *       appPrivateKey: yourappprivatekey
+ *       alipayGatewayUrl: youralipaygatewayurl
+ *       alipayPublicKey: youralipaypublickey
+ *       callbackNotifyUrl: yourcallbacknotifyurl
+ *       webReturnUrl: yourwebreturnurl
  * </pre>
  *
  * @author Aaric, created on 2019-10-30T14:33.
  * @version 1.2.0-SNAPSHOT
  */
 @Component
-@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.alipay")
+@ConfigurationProperties(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.alibaba")
 public class AliPayProperties {
 
     /**
@@ -62,24 +63,35 @@ public class AliPayProperties {
     private String appId;
 
     /**
+     * 应用RSA私钥内容(pkcs8)<br>
+     * <i>商户自己生成的RSA私钥（与应用公钥必须匹配），商户开发者使用应用私钥对请求字符串进行加签。</i>
+     */
+    private String appPrivateKey;
+
+    /**
      * 请求支付API网关地址
      */
-    private String apiGatewayUrl;
+    private String alipayGatewayUrl;
 
     /**
-     * 应用RSA公钥内容(BASE64编码)
+     * 支付宝RSA公钥内容(pkcs8)<br>
+     * <i>支付宝的RSA公钥，商户使用该公钥验证该结果是否是支付宝返回的。</i><br>
+     * <p>
+     * Error: com.alipay.api.AlipayApiException: sign check fail: check Sign and Data Fail!<br>
+     * Reason: 非应用公钥，而是支付宝公钥，用于查询状态和退款
+     * </p>
      */
-    private String apiPkcs8PublicKey;
+    private String alipayPublicKey;
 
     /**
-     * 应用RSA私钥内容(BASE64编码)
+     * 支付成功通知地址
      */
-    private String apiPkcs8PrivateKey;
+    private String callbackNotifyUrl;
 
     /**
-     * 支付结果通知地址
+     * 支付成功跳转地址（电脑网站支付）
      */
-    private String notifyUrl;
+    private String webReturnUrl = "";
 
     public String getAppId() {
         return appId;
@@ -89,36 +101,44 @@ public class AliPayProperties {
         this.appId = appId;
     }
 
-    public String getApiGatewayUrl() {
-        return apiGatewayUrl;
+    public String getAppPrivateKey() {
+        return appPrivateKey;
     }
 
-    public void setApiGatewayUrl(String apiGatewayUrl) {
-        this.apiGatewayUrl = apiGatewayUrl;
+    public void setAppPrivateKey(String appPrivateKey) {
+        this.appPrivateKey = appPrivateKey;
     }
 
-    public String getApiPkcs8PublicKey() {
-        return apiPkcs8PublicKey;
+    public String getAlipayGatewayUrl() {
+        return alipayGatewayUrl;
     }
 
-    public void setApiPkcs8PublicKey(String apiPkcs8PublicKey) {
-        this.apiPkcs8PublicKey = apiPkcs8PublicKey;
+    public void setAlipayGatewayUrl(String alipayGatewayUrl) {
+        this.alipayGatewayUrl = alipayGatewayUrl;
     }
 
-    public String getApiPkcs8PrivateKey() {
-        return apiPkcs8PrivateKey;
+    public String getAlipayPublicKey() {
+        return alipayPublicKey;
     }
 
-    public void setApiPkcs8PrivateKey(String apiPkcs8PrivateKey) {
-        this.apiPkcs8PrivateKey = apiPkcs8PrivateKey;
+    public void setAlipayPublicKey(String alipayPublicKey) {
+        this.alipayPublicKey = alipayPublicKey;
     }
 
-    public String getNotifyUrl() {
-        return notifyUrl;
+    public String getCallbackNotifyUrl() {
+        return callbackNotifyUrl;
     }
 
-    public void setNotifyUrl(String notifyUrl) {
-        this.notifyUrl = notifyUrl;
+    public void setCallbackNotifyUrl(String callbackNotifyUrl) {
+        this.callbackNotifyUrl = callbackNotifyUrl;
+    }
+
+    public String getWebReturnUrl() {
+        return webReturnUrl;
+    }
+
+    public void setWebReturnUrl(String webReturnUrl) {
+        this.webReturnUrl = webReturnUrl;
     }
 
     @Override

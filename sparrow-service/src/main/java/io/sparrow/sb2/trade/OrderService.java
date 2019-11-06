@@ -9,9 +9,19 @@ package io.sparrow.sb2.trade;
 public interface OrderService {
 
     /**
-     * hello
+     * 创建支付宝订单（电脑网站支付）
      *
-     * @return
+     * @param goodsId 商品ID
+     * @return 表单HTML
      */
-    String sayHello();
+    String createAliWebOrder(Integer goodsId) throws Exception;
+
+    /**
+     * 创建微信支付订单（电脑网站支付）
+     *
+     * @param goodsId  商品ID
+     * @param clientIp 终端IP
+     * @return 二维码地址
+     */
+    String createWxWebOrder(Integer goodsId, String clientIp) throws Exception;
 }

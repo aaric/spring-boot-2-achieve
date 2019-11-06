@@ -22,8 +22,8 @@ public class BizAliPayConfiguration {
     private AliPayProperties aliPayProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.alipay",
-            name = {"appId", "apiPkcs8PublicKey", "apiPkcs8PrivateKey", "notifyUrl"})
+    @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.alibaba",
+            name = {"appId", "appPrivateKey", "alipayPublicKey", "callbackNotifyUrl"})
     public AliPayService aliPayService() {
         return new AliPayServiceImpl(aliPayProperties);
     }

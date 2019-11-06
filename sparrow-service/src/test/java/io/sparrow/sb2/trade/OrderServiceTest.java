@@ -2,6 +2,7 @@ package io.sparrow.sb2.trade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,10 @@ public class OrderServiceTest {
     private OrderService orderService;
 
     @Test
-    public void testSayHello() {
-        Assert.assertNotNull(orderService.sayHello());
+    @Ignore
+    public void testCreateOrder() throws Exception {
+        String html = orderService.createAliWebOrder(1);
+        log.debug("html: {}", html);
+        Assert.assertNotNull(html);
     }
 }
