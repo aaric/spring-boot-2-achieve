@@ -71,10 +71,10 @@
         <module name="LineLength">
             <property name="max" value="140"/>
         </module>
-        <!-- 方法不超过50行 -->
+        <!-- 方法不超过100(50)行 -->
         <module name="MethodLength">
             <property name="tokens" value="METHOD_DEF"/>
-            <property name="max" value="50"/>
+            <property name="max" value="100"/>
         </module>
         <!-- 方法的参数个数不超过10(5)个。 并且不对构造方法进行检查-->
         <module name="ParameterNumber">
@@ -157,9 +157,9 @@
         <module name="NestedForDepth">
             <property name="max" value="2"/>
         </module>
-        <!-- if最多嵌套3层 -->
+        <!-- if最多嵌套4(3)层 -->
         <module name="NestedIfDepth">
-            <property name="max" value="3"/>
+            <property name="max" value="4"/>
         </module>
         <!-- 检查未被注释的main方法,排除以Appllication结尾命名的类 -->
         <module name="UncommentedMain">

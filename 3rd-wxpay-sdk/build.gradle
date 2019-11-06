@@ -1,0 +1,6 @@
+group 'com.weixin'
+version '3.0.9'
+
+dependencies {
+    compile "org.apache.httpcomponents:httpclient:4.5.10"
+}

@@ -3,6 +3,20 @@ spring:
   profiles:
     active: dev
 
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+    io:
+      sparrow: DEBUG
+
 # Incarcloud settings
 incarcloud:
   file: # FTP OR FastDFS
@@ -34,8 +48,25 @@ incarcloud:
       apnsProduction: false
   map: # 高德地图 OR 百度地图 OR 腾讯地图, Others...
     amap: # 高德地图配置
-      hostname: restapi.amap.com
-      key: yourkey
-    gpsspg: # gpsspg.com
-      oid: youroid
-      key: yourkey
+      restapi: # REST API
+        hostname: restapi.amap.com
+        key: yourkey
+      apilocate: # Locate API
+        hostname: apilocate.amap.com
+        key: yourkey
+  pay: # 第三方支付
+    alibaba: # 支付宝
+      appId: yourappid
+      appPrivateKey: yourappprivatekey
+      alipayGatewayUrl: youralipaygatewayurl
+      alipayPublicKey: youralipaypublickey
+      callbackNotifyUrl: yourcallbacknotifyurl
+      webReturnUrl: yourwebreturnurl
+    weixin: # 微信支付
+      appId: yourappid
+      mchId: yourmchid
+      apiSecret: yourapisecret
+      # cat apiclient_cert.p12 | base64 -w 0
+      apiPkcs12Cert: yourapipkcs12cert
+      apiDomainString: yourdomainString
+      notifyUrl: yournotifyUrl

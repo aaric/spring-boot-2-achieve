@@ -27,7 +27,7 @@ public interface ResponseFailureState {
     String ERROR_0021 = "0021";
 
     /**
-     * 0031 - 0050: 定义授权错误码
+     * 0031 - 0060: 定义授权错误码
      */
     // 用户未登录
     String ERROR_0031 = "0031";
@@ -55,4 +55,14 @@ public interface ResponseFailureState {
 
     // Token签发机构错误
     String ERROR_0039 = "0039";
+
+    /**
+     * 0061 - 0070: 定义支付错误码
+     */
+    // 调用支付宝接口失败
+    String ERROR_0061 = "0061";
+
+    // 调用微信支付接口失败
+    String ERROR_0062 = "0062";
+
 }

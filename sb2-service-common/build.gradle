@@ -1,4 +1,5 @@
 dependencies {
+    compile project(":3rd-wxpay-sdk")
     compile project(":sb2-common")
 
     compile "commons-io:commons-io:2.6"
@@ -12,5 +13,8 @@ dependencies {
 
     compile "cn.jpush.api:jpush-client:3.3.10"
 
+    compile "com.alipay.sdk:alipay-sdk-java:4.8.10.ALL"
+
+    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
 }

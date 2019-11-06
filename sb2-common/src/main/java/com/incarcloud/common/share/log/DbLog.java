@@ -43,6 +43,13 @@ public @interface DbLog {
     String tag() default "";
 
     /**
+     * 分组名称，default-操作日志
+     *
+     * @return string
+     */
+    String group() default "default";
+
+    /**
      * 标题，即模块名称
      *
      * @return string
@@ -59,7 +66,7 @@ public @interface DbLog {
     /**
      * 日志支持MessageFormat格式化内容
      *
-     * @return
+     * @return string
      */
     String contentObjectsKey() default DEFAULT_CONTENT_OBJECTS_KEY;
 
@@ -80,7 +87,7 @@ public @interface DbLog {
     /**
      * HTTP请求地址
      *
-     * @return int string
+     * @return string
      */
     String httpUrl() default "";
 
@@ -101,14 +108,14 @@ public @interface DbLog {
     /**
      * HTTP请求耗时（客户端建立连接）
      *
-     * @return
+     * @return long
      */
     long httpClientInterval() default -1;
 
     /**
      * HTTP请求耗时（服务端处理业务）
      *
-     * @return int
+     * @return long
      */
     long httpProcessInterval() default -1;
 

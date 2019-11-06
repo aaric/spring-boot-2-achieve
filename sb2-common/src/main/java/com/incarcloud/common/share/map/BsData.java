@@ -17,19 +17,25 @@ public class BsData {
     private int mcc = 460;
 
     /**
-     * MNC：移动网络号码（中国移动为00，中国联通为01）
+     * MNC：移动网络号码（中国移动为0，中国联通为1）
      */
     private int mnc;
 
     /**
-     * LAC：位置区域码
+     * LAC：位置区域码，取值范围：0-65535
      */
     private int lac;
 
     /**
-     * CID：基站编号，是个16位的数据（范围是0到65535）
+     * 基站编号，取值范围：0-65535，0-268435455<br>
+     * 其中，0,65535,268435455不使用，编号大于65535时为3G基站
      */
-    private int cid;
+    private int cellid;
+
+    /**
+     * 信号强度，取值范围：0到-113dbm
+     */
+    private int signal;
 
     /**
      * 默认构造函数
@@ -40,25 +46,27 @@ public class BsData {
     /**
      * 构造函数
      *
-     * @param mcc 移动国家代码
-     * @param mnc 移动网络号码
-     * @param lac 位置区域码
-     * @param cid 基站编号
+     * @param mcc    移动国家代码
+     * @param mnc    移动网络号码
+     * @param lac    位置区域码
+     * @param cellid 基站编号
+     * @param signal 信号强度
      */
-    public BsData(int mcc, int mnc, int lac, int cid) {
+    public BsData(int mcc, int mnc, int lac, int cellid, int signal) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
-        this.cid = cid;
+        this.cellid = cellid;
+        this.signal = signal;
     }
 
     /**
-     * 格式化基站数据为指定格式字符串，例如：460,0,34860,62041
+     * 格式化基站数据为指定格式字符串，例如：460,0,34860,62041,-65
      *
      * @return
      */
     public String format() {
-        return StringUtils.joinWith(",", this.mcc, this.mnc, this.lac, this.cid);
+        return StringUtils.joinWith(",", this.mcc, this.mnc, this.lac, this.cellid, this.signal);
     }
 
     public int getMcc() {
@@ -85,12 +93,20 @@ public class BsData {
         this.lac = lac;
     }
 
-    public int getCid() {
-        return cid;
+    public int getCellid() {
+        return cellid;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setCellid(int cellid) {
+        this.cellid = cellid;
+    }
+
+    public int getSignal() {
+        return signal;
+    }
+
+    public void setSignal(int signal) {
+        this.signal = signal;
     }
 
     @Override

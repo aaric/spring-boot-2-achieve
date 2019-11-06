@@ -54,12 +54,13 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
                 .antMatchers(getApiRoute("/login"), getApiRoute("/redirect")).permitAll() // 设置不拦截登录地址
+                .antMatchers("/api/plat/trade/callback/*").permitAll() //第三方支付结果回调地址
                 .anyRequest()
                 .authenticated()
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage(getApiRoute("/redirect")) //定义登录页面
+                .loginPage(getApiRoute("/login")) //定义登录页面
                 /* 会话管理 */
                 .and()
                 .sessionManagement()

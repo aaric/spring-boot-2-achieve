@@ -1,0 +1,37 @@
+# Spring settings
+spring:
+  profiles:
+    active: dev
+
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+    io:
+      sparrow: DEBUG
+
+# Incarcloud settings
+incarcloud:
+  pay: # 第三方支付
+    alibaba: # 支付宝
+      appId: yourappid
+      appPrivateKey: yourappprivatekey
+      alipayGatewayUrl: youralipaygatewayurl
+      alipayPublicKey: youralipaypublickey
+      callbackNotifyUrl: yourcallbacknotifyurl
+      webReturnUrl: yourwebreturnurl
+    weixin: # 微信支付
+      appId: yourappid
+      mchId: yourmchid
+      apiSecret: yourapisecret
+      # cat apiclient_cert.p12 | base64 -w 0
+      apiPkcs12Cert: yourapipkcs12cert
+      apiDomainString: yourdomainString
+      notifyUrl: yournotifyUrl
