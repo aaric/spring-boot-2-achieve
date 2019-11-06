@@ -51,9 +51,25 @@ incarcloud:
   ## 业务配置
   biz:
     tag: app
-  auth:
+  auth: # JWT鉴权
     jwt:
       secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
       cid-header-name: x-access-cid
       token-header-name: x-access-token
       token-lease-seconds: 1209600
+  pay: # 第三方支付
+    alibaba: # 支付宝
+      appId: yourappid
+      appPrivateKey: yourappprivatekey
+      alipayGatewayUrl: youralipaygatewayurl
+      alipayPublicKey: youralipaypublickey
+      callbackNotifyUrl: yourcallbacknotifyurl
+      webReturnUrl: yourwebreturnurl
+    weixin: # 微信支付
+      appId: yourappid
+      mchId: yourmchid
+      apiSecret: yourapisecret
+      # cat apiclient_cert.p12 | base64 -w 0
+      apiPkcs12Cert: yourapipkcs12cert
+      apiDomainString: yourdomainString
+      notifyUrl: yournotifyUrl
