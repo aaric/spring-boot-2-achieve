@@ -51,8 +51,8 @@ incarcloud:
   ## 业务配置
   biz:
     tag: app
-  auth: # JWT鉴权
-    jwt:
+  auth: # 鉴权模式
+    jwt: # JWT
       secret-key: 4R2edylSVUUxuc6bFhUT2tN0VxUKbu7kETtoI1mCbXg=
       cid-header-name: x-access-cid
       token-header-name: x-access-token
