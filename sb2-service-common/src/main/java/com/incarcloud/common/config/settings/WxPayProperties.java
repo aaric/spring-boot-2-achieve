@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  *       # cat apiclient_cert.p12 | base64 -w 0
  *       apiPkcs12Cert: yourapipkcs12cert
  *       apiDomainString: yourdomainString
- *       notifyUrl: yournotifyUrl
+ *       callbackNotifyUrl: yourcallbacknotifyurl
  * </pre>
  *
  * @author Aaric, created on 2019-10-29T14:03.
@@ -82,7 +82,7 @@ public class WxPayProperties {
     /**
      * 支付结果通知地址
      */
-    private String notifyUrl;
+    private String callbackNotifyUrl;
 
     public String getAppId() {
         return appId;
@@ -124,12 +124,12 @@ public class WxPayProperties {
         this.apiDomainString = apiDomainString;
     }
 
-    public String getNotifyUrl() {
-        return notifyUrl;
+    public String getCallbackNotifyUrl() {
+        return callbackNotifyUrl;
     }
 
-    public void setNotifyUrl(String notifyUrl) {
-        this.notifyUrl = notifyUrl;
+    public void setCallbackNotifyUrl(String callbackNotifyUrl) {
+        this.callbackNotifyUrl = callbackNotifyUrl;
     }
 
     @Override

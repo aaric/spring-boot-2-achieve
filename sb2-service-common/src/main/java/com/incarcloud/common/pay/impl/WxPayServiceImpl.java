@@ -102,7 +102,7 @@ public class WxPayServiceImpl implements WxPayService {
         request.put("fee_type", WxPayProperties.DEFAULT_FEE_TYPE); //币种，默认人民币：CNY
         request.put("total_fee", "" + Float.valueOf(totalAmount * 100).intValue()); //货币转换：元转分
         request.put("spbill_create_ip", clientIp); //客户端IP，支持IPV4和IPV6两种格式
-        request.put("notify_url", wxPayProperties.getNotifyUrl()); //异步接收微信支付结果通知的回调地址
+        request.put("notify_url", wxPayProperties.getCallbackNotifyUrl()); //异步接收微信支付结果通知的回调地址
         request.put("trade_type", WxPayProperties.DEFAULT_TRADE_TYPE_NATIVE);  //交易类型：NATIVE-Native支付
         request.put("product_id", goodsCode); //商品ID，即商品编号，与支付宝保持统一
 

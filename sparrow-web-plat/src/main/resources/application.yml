@@ -66,4 +66,4 @@ incarcloud:
       # cat apiclient_cert.p12 | base64 -w 0
       apiPkcs12Cert: yourapipkcs12cert
       apiDomainString: yourdomainString
-      notifyUrl: yournotifyUrl
+      callbackNotifyUrl: yourcallbacknotifyurl
