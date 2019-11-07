@@ -1,5 +1,8 @@
 package io.sparrow.sb2.trade;
 
+import com.incarcloud.common.exception.ApiException;
+import io.sparrow.sb2.trade.dto.PaymentDto;
+
 /**
  * 订单管理服务接口
  *
@@ -12,16 +15,33 @@ public interface OrderService {
      * 创建支付宝订单（电脑网站支付）
      *
      * @param goodsId 商品ID
-     * @return 表单HTML
+     * @return 支付表单HTML
      */
-    String createAliWebOrder(Integer goodsId) throws Exception;
+    PaymentDto createAliWebOrder(Integer goodsId) throws ApiException;
 
     /**
      * 创建微信支付订单（电脑网站支付）
      *
      * @param goodsId  商品ID
      * @param clientIp 终端IP
-     * @return 二维码地址
+     * @return 支付二维码URL
      */
-    String createWxWebOrder(Integer goodsId, String clientIp) throws Exception;
+    PaymentDto createWxWebOrder(Integer goodsId, String clientIp) throws ApiException;
+
+    /**
+     * 创建支付宝订单（APP支付）
+     *
+     * @param goodsId 商品ID
+     * @return 支付表单HTML
+     */
+    PaymentDto createAliAppOrder(Integer goodsId) throws ApiException;
+
+    /**
+     * 创建微信支付订单（电脑网站支付）
+     *
+     * @param goodsId  商品ID
+     * @param clientIp 终端IP
+     * @return 支付二维码URL
+     */
+    PaymentDto createWxAppOrder(Integer goodsId, String clientIp) throws ApiException;
 }

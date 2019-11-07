@@ -60,7 +60,7 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* 登录 */
                 .and()
                 .formLogin()
-                .loginPage(getApiRoute("/login")) //定义登录页面
+                .loginPage(getApiRoute("/redirect")) //定义登录页面
                 /* 会话管理 */
                 .and()
                 .sessionManagement()

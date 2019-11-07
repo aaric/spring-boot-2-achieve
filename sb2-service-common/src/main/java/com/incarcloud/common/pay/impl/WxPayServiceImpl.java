@@ -93,7 +93,7 @@ public class WxPayServiceImpl implements WxPayService {
     @Override
     public String createWebOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
                                  String goodsDesc, String clientIp) throws ApiException {
-        // 构建创建支付订单业务信息
+        // 构建创建Web支付订单业务信息
         Map<String, String> request = new HashMap<>();
         request.put("device_info", "WEB"); //终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
         request.put("body", goodsName); //商品简单描述
@@ -121,7 +121,58 @@ public class WxPayServiceImpl implements WxPayService {
                     return response.get("code_url");
                 } else {
                     // 记录失败日志
-                    log.error("微信订单{}创建支付订单失败，原因：{}", orderId, JSON.toJSONString(response));
+                    log.error("微信支付Web订单{}创建支付订单失败，原因：{}", orderId, JSON.toJSONString(response));
+                }
+            }
+
+        } catch (Exception e) {
+            // 调用微信支付接口失败
+            throw new ApiException(ResponseFailureState.ERROR_0062);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Map<String, String> createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName, String goodsDesc,
+                                              String clientIp) throws ApiException {
+        return createAppOrder(orderId, goodsCode, totalAmount, goodsName, goodsDesc, clientIp, null);
+    }
+
+    @Override
+    public Map<String, String> createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName, String goodsDesc,
+                                              String clientIp, String deviceInfo) throws ApiException {
+        // 构建创建App支付订单业务信息
+        Map<String, String> request = new HashMap<>();
+        if (StringUtils.isNotBlank(deviceInfo)) {
+            request.put("device_info", deviceInfo); //终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
+        }
+        request.put("body", goodsName); //商品简单描述
+        request.put("detail", goodsName); //商品详细描述
+        request.put("out_trade_no", orderId); //商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|* 且在同一个商户号下唯一
+        request.put("fee_type", WxPayProperties.DEFAULT_FEE_TYPE); //币种，默认人民币：CNY
+        request.put("total_fee", "" + Float.valueOf(totalAmount * 100).intValue()); //货币转换：元转分
+        request.put("spbill_create_ip", clientIp); //客户端IP，支持IPV4和IPV6两种格式
+        request.put("notify_url", wxPayProperties.getCallbackNotifyUrl()); //异步接收微信支付结果通知的回调地址
+        request.put("trade_type", WxPayProperties.DEFAULT_TRADE_TYPE_APP);  //交易类型：APP-APP支付
+        request.put("product_id", goodsCode); //商品ID，即商品编号，与支付宝保持统一
+
+        // 发起支付请求
+        try {
+            // 调用API接口
+            Map<String, String> response = wxpay.unifiedOrder(request);
+            log.debug("orderId: {}, request: {}", orderId, JSON.toJSONString(response));
+
+            // 解析支付结果
+            if (null != response && 0 != response.size()) {
+                // 判断请求是否成功
+                if (StringUtils.equals("SUCCESS", response.get("return_code"))
+                        && StringUtils.equals("OK", response.get("return_msg"))) {
+                    // 返回支付信息
+                    return response;
+                } else {
+                    // 记录失败日志
+                    log.error("微信支付App订单{}创建支付订单失败，原因：{}", orderId, JSON.toJSONString(response));
                 }
             }
 
@@ -167,7 +218,7 @@ public class WxPayServiceImpl implements WxPayService {
                     }
                 } else {
                     // 记录失败日志
-                    log.error("微信订单{}查询支付状态失败，原因：{}", orderId, JSON.toJSONString(response));
+                    log.error("微信支付订单{}查询支付状态失败，原因：{}", orderId, JSON.toJSONString(response));
                 }
             }
 
@@ -211,7 +262,7 @@ public class WxPayServiceImpl implements WxPayService {
                     }
                 } else {
                     // 记录失败日志
-                    log.error("微信订单{}退款失败，原因：{}", orderId, JSON.toJSONString(response));
+                    log.error("微信支付订单{}退款失败，原因：{}", orderId, JSON.toJSONString(response));
                 }
             }
 
@@ -251,7 +302,7 @@ public class WxPayServiceImpl implements WxPayService {
                     }
                 } else {
                     // 记录失败日志
-                    log.error("微信订单{}退款失败，原因：{}", orderId, JSON.toJSONString(response));
+                    log.error("微信支付订单{}退款失败，原因：{}", orderId, JSON.toJSONString(response));
                 }
             }
 

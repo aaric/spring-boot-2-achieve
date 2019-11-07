@@ -4,14 +4,8 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.*;
-import com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest;
-import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.alipay.api.request.AlipayTradeQueryRequest;
-import com.alipay.api.request.AlipayTradeRefundRequest;
-import com.alipay.api.response.AlipayTradeFastpayRefundQueryResponse;
-import com.alipay.api.response.AlipayTradePagePayResponse;
-import com.alipay.api.response.AlipayTradeQueryResponse;
-import com.alipay.api.response.AlipayTradeRefundResponse;
+import com.alipay.api.request.*;
+import com.alipay.api.response.*;
 import com.incarcloud.common.config.settings.AliPayProperties;
 import com.incarcloud.common.data.ResponseFailureState;
 import com.incarcloud.common.exception.ApiException;
@@ -65,7 +59,7 @@ public class AliPayServiceImpl implements AliPayService {
     @Override
     public String createWebOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
                                  String goodsDesc, String refId, String passbackParams) throws ApiException {
-        // 构建创建支付订单业务信息
+        // 构建创建Web支付订单业务信息
         AlipayTradePagePayModel model = new AlipayTradePagePayModel();
         model.setOutTradeNo(orderId); //商户订单号
         model.setProductCode(goodsCode); //销售产品码，与支付宝签约的产品码名称
@@ -108,7 +102,69 @@ public class AliPayServiceImpl implements AliPayService {
                 return response.getBody();
             } else {
                 // 记录失败日志
-                log.error("支付宝订单{}创建支付订单失败，原因：{}", orderId, StringUtils.defaultIfEmpty(response.getMsg(), response.getSubMsg()));
+                log.error("支付宝Web订单{}创建支付订单失败，原因：{}", orderId, StringUtils.defaultIfEmpty(response.getMsg(), response.getSubMsg()));
+            }
+        } catch (AlipayApiException e) {
+            // 调用支付宝接口失败
+            throw new ApiException(ResponseFailureState.ERROR_0061);
+        }
+
+        return null;
+    }
+
+    @Override
+    public String createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                                 String goodsDesc) throws ApiException {
+        return createAppOrder(orderId, goodsCode, totalAmount, goodsName, goodsDesc, null, null);
+    }
+
+    @Override
+    public String createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                                 String goodsDesc, String refId, String passbackParams) throws ApiException {
+        // 构建创建App支付订单业务信息
+        AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
+        model.setOutTradeNo(orderId); //商户订单号
+        model.setProductCode(goodsCode); //销售产品码，与支付宝签约的产品码名称
+        model.setTotalAmount(String.valueOf(totalAmount)); //订单总金额，单位：元
+        model.setSubject(goodsName); //订单名称
+        model.setBody(goodsDesc); //订单描述
+
+        // 公用回传参数
+        if (StringUtils.isNotBlank(passbackParams)) {
+            try {
+                model.setPassbackParams(URLEncoder.encode(passbackParams, AliPayProperties.DEFAULT_API_CHARSET));
+            } catch (UnsupportedEncodingException e) {
+                log.error("URL编码失败", e);
+            }
+        }
+
+        // 设置业务扩展参数
+        if (StringUtils.isNotBlank(refId)) {
+            // 系统商编号
+            ExtendParams extendParams = new ExtendParams();
+            extendParams.setSysServiceProviderId(refId);
+            model.setExtendParams(extendParams);
+        }
+
+        // 设置该笔订单允许的最晚付款时间，逾期将关闭交易
+        model.setTimeoutExpress(AliPayProperties.DEFAULT_API_TIMEOUT_EXPRESS); //30分钟
+
+        // 创建支付请求
+        AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
+        request.setBizModel(model); //设置业务实体
+        request.setNotifyUrl(aliPayProperties.getCallbackNotifyUrl()); //设置支付成功通知地址
+        //request.setReturnUrl(null);  //设置支付成功跳转地址
+
+        // 发起支付请求
+        try {
+            // 调用API接口
+            AlipayTradeAppPayResponse response = alipayClient.sdkExecute(request);
+            if (response.isSuccess()) {
+                // 立即支付表单HTML
+                return response.getBody();
+            } else {
+                // 记录失败日志
+                log.error("支付宝App订单{}创建支付订单失败，原因：{}", orderId, StringUtils.defaultIfEmpty(response.getMsg(), response.getSubMsg()));
             }
         } catch (AlipayApiException e) {
             // 调用支付宝接口失败
