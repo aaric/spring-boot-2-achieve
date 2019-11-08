@@ -21,7 +21,7 @@ public interface OrderApi {
     })
     @ApiResponses({
             @ApiResponse(code = 61, message = "0061-调用支付宝接口失败"),
-            @ApiResponse(code = 62, message = "0062-调用微信支付接口失败")
+            @ApiResponse(code = 71, message = "0071-调用微信支付接口失败")
     })
     ResponseData<PaymentDto> createOrder(Integer paymentType, Integer goodsId) throws ApiException;
 }

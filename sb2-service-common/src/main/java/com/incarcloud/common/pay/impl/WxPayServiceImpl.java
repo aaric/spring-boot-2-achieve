@@ -127,7 +127,7 @@ public class WxPayServiceImpl implements WxPayService {
 
         } catch (Exception e) {
             // 调用微信支付接口失败
-            throw new ApiException(ResponseFailureState.ERROR_0062);
+            throw new ApiException(ResponseFailureState.ERROR_0071);
         }
 
         return null;
@@ -178,7 +178,7 @@ public class WxPayServiceImpl implements WxPayService {
 
         } catch (Exception e) {
             // 调用微信支付接口失败
-            throw new ApiException(ResponseFailureState.ERROR_0062);
+            throw new ApiException(ResponseFailureState.ERROR_0071);
         }
 
         return null;
@@ -224,7 +224,7 @@ public class WxPayServiceImpl implements WxPayService {
 
         } catch (Exception e) {
             // 调用微信支付接口失败
-            throw new ApiException(ResponseFailureState.ERROR_0062);
+            throw new ApiException(ResponseFailureState.ERROR_0071);
         }
 
         return false;
@@ -268,7 +268,7 @@ public class WxPayServiceImpl implements WxPayService {
 
         } catch (Exception e) {
             // 调用微信支付接口失败
-            throw new ApiException(ResponseFailureState.ERROR_0062);
+            throw new ApiException(ResponseFailureState.ERROR_0071);
         }
 
         return false;
@@ -308,7 +308,7 @@ public class WxPayServiceImpl implements WxPayService {
 
         } catch (Exception e) {
             // 调用微信支付接口失败
-            throw new ApiException(ResponseFailureState.ERROR_0062);
+            throw new ApiException(ResponseFailureState.ERROR_0071);
         }
 
         return false;
