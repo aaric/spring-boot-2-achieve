@@ -1,17 +1,17 @@
 package io.sparrow.sb2.trade.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.common.pay.AliPayService;
 import com.incarcloud.common.pay.WxPayService;
+import com.incarcloud.common.utils.PaymentUtil;
 import io.sparrow.sb2.trade.OrderService;
+import io.sparrow.sb2.trade.dto.PaymentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
+import java.util.Map;
 
 /**
  * 订单管理服务实现
@@ -35,40 +35,71 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private WxPayService wxPayService;
 
-    /**
-     * 时间格式转换
-     */
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-
     @Override
-    public String createAliWebOrder(Integer goodsId) throws Exception {
+    public PaymentDto createAliWebOrder(Integer goodsId) throws ApiException {
         // 打印说明信息
         log.info("TODO: 需要根据商品ID查询详细商品信息，然后传递给AliPayService进行支付动作");
         log.info("create web order: {}", goodsId);
 
         // 创建订单ID
-        String orderId = MessageFormat.format("{0}0001", dateFormat.format(Date.from(Instant.now())));
+        String orderId = PaymentUtil.createOrderId(1);
 
         // 支付宝
-        String html = aliPayService.createWebOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F, "支付宝测试商品", "支付宝测试描述");
+        String html = aliPayService.createWebOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F,
+                "支付宝测试Web商品", "支付宝测试Web商品描述");
         log.info("html: {}", html);
 
-        return html;
+        return new PaymentDto(orderId, html);
     }
 
     @Override
-    public String createWxWebOrder(Integer goodsId, String clientIp) throws Exception {
+    public PaymentDto createWxWebOrder(Integer goodsId, String clientIp) throws ApiException {
         // 打印说明信息
         log.info("TODO: 需要根据商品ID查询详细商品信息，然后传递给WxPayService进行支付动作");
         log.info("create web order: {}", goodsId);
 
         // 创建订单ID
-        String orderId = MessageFormat.format("{0}0001", dateFormat.format(Date.from(Instant.now())));
+        String orderId = PaymentUtil.createOrderId(1);
 
         // 微信支付
-        String qrCodeUrl = wxPayService.createWebOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F, "支付宝测试商品", "支付宝测试描述", clientIp);
+        String qrCodeUrl = wxPayService.createWebOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F,
+                "微信支付测试Web商品", "微信支付测试Web商品描述", clientIp);
         log.info("qcCodeUrl: {}", qrCodeUrl);
 
-        return qrCodeUrl;
+        return new PaymentDto(orderId, qrCodeUrl);
+    }
+
+    @Override
+    public PaymentDto createAliAppOrder(Integer goodsId) throws ApiException {
+        // 打印说明信息
+        log.info("TODO: 需要根据商品ID查询详细商品信息，然后传递给AliPayService进行支付动作");
+        log.info("create web order: {}", goodsId);
+
+        // 创建订单ID
+        String orderId = PaymentUtil.createOrderId(1);
+
+        // 支付宝
+        String sdkParams = aliPayService.createAppOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F,
+                "支付宝测试App商品", "支付宝测试App商品描述");
+        log.info("sdkParams: {}", sdkParams);
+
+        return new PaymentDto(orderId, sdkParams);
+    }
+
+    @Override
+    public PaymentDto createWxAppOrder(Integer goodsId, String clientIp) throws ApiException {
+        // 打印说明信息
+        log.info("TODO: 需要根据商品ID查询详细商品信息，然后传递给WxPayService进行支付动作");
+        log.info("create web order: {}", goodsId);
+
+        // 创建订单ID
+        String orderId = PaymentUtil.createOrderId(1);
+
+        // 微信支付
+        Map<String, String> sdkParams = wxPayService.createAppOrder(orderId, "FAST_INSTANT_TRADE_PAY", 0.01F,
+                "微信支付测试App商品", "微信支付测试App商品描述", clientIp);
+        log.info("sdkParams: {}", JSON.toJSONString(sdkParams));
+
+        return new PaymentDto(orderId, sdkParams);
     }
 }

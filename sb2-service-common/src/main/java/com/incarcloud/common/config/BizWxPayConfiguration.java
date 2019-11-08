@@ -23,7 +23,7 @@ public class BizWxPayConfiguration {
 
     @Bean
     @ConditionalOnProperty(prefix = Constant.DEFAULT_ENTERPRISE_CODE + ".pay.weixin",
-            name = {"appId", "mchId", "apiSecret", "notifyUrl"})
+            name = {"appId", "mchId", "apiSecret", "callbackNotifyUrl"})
     public WxPayService wxPayService() {
         return new WxPayServiceImpl(wxPayProperties);
     }

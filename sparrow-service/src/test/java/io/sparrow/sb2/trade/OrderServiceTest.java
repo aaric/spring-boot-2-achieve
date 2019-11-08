@@ -1,5 +1,7 @@
 package io.sparrow.sb2.trade;
 
+import com.alibaba.fastjson.JSON;
+import io.sparrow.sb2.trade.dto.PaymentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -23,11 +25,37 @@ public class OrderServiceTest {
     @Autowired
     private OrderService orderService;
 
+    private String clientIp = "59.173.243.67";
+
     @Test
     @Ignore
-    public void testCreateOrder() throws Exception {
-        String html = orderService.createAliWebOrder(1);
-        log.debug("html: {}", html);
-        Assert.assertNotNull(html);
+    public void testCreateAliWebOrder() throws Exception {
+        PaymentDto payment = orderService.createAliWebOrder(1);
+        log.debug("html: {}", payment.getContent());
+        Assert.assertNotNull(payment);
+    }
+
+    @Test
+    @Ignore
+    public void testCreateWxWebOrder() throws Exception {
+        PaymentDto payment = orderService.createWxWebOrder(1, clientIp);
+        log.debug("qcCodeUrl: {}", payment.getContent());
+        Assert.assertNotNull(payment);
+    }
+
+    @Test
+    @Ignore
+    public void testCreateAliAppOrder() throws Exception {
+        PaymentDto payment = orderService.createAliAppOrder(1);
+        log.debug("sdkParams: {}", payment.getContent());
+        Assert.assertNotNull(payment);
+    }
+
+    @Test
+    @Ignore
+    public void testCreateWxAppOrder() throws Exception {
+        PaymentDto payment = orderService.createWxAppOrder(1, clientIp);
+        log.debug("sdkParams: {}", JSON.toJSONString(payment.getData()));
+        Assert.assertNotNull(payment);
     }
 }

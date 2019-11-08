@@ -25,7 +25,7 @@ public interface AliPayService {
      * @param totalAmount 订单总金额，单位：元
      * @param goodsName   商品名称
      * @param goodsDesc   商品名称
-     * @return 立即支付表单HTML
+     * @return 支付表单HTML
      * @throws ApiException
      */
     String createWebOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
@@ -48,10 +48,40 @@ public interface AliPayService {
      * @param goodsDesc      商品名称
      * @param refId          业务ID，可选
      * @param passbackParams 公用回传参数，可选
-     * @return 立即支付表单HTML
+     * @return 支付表单HTML
      * @throws ApiException
      */
     String createWebOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                          String goodsDesc, String refId, String passbackParams) throws ApiException;
+
+    /**
+     * 创建订单（APP支付）
+     *
+     * @param orderId     订单ID
+     * @param goodsCode   商品编号，建议使用商品条形码编号
+     * @param totalAmount 订单总金额，单位：元
+     * @param goodsName   商品名称
+     * @param goodsDesc   商品名称
+     * @return 调用SDK参数信息
+     * @throws ApiException
+     */
+    String createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                          String goodsDesc) throws ApiException;
+
+    /**
+     * 创建订单（APP支付）
+     *
+     * @param orderId        订单ID
+     * @param goodsCode      商品编号，建议使用商品条形码编号
+     * @param totalAmount    订单总金额，单位：元
+     * @param goodsName      商品名称
+     * @param goodsDesc      商品名称
+     * @param refId          业务ID，可选
+     * @param passbackParams 公用回传参数，可选
+     * @return 调用SDK参数信息
+     * @throws ApiException
+     */
+    String createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
                           String goodsDesc, String refId, String passbackParams) throws ApiException;
 
     /**

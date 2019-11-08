@@ -57,12 +57,16 @@ public interface ResponseFailureState {
     String ERROR_0039 = "0039";
 
     /**
-     * 0061 - 0070: 定义支付错误码
+     * 0061 - 0080: 定义支付错误码
      */
-    // 调用支付宝接口失败
     String ERROR_0061 = "0061";
 
-    // 调用微信支付接口失败
+    // 校验支付宝签名失败
     String ERROR_0062 = "0062";
 
+    // 调用微信支付接口失败
+    String ERROR_0071 = "0071";
+
+    // 校验微信支付签名失败
+    String ERROR_0072 = "0072";
 }

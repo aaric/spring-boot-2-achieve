@@ -2,6 +2,8 @@ package com.incarcloud.common.pay;
 
 import com.incarcloud.common.exception.ApiException;
 
+import java.util.Map;
+
 /**
  * 微信支付服务接口
  *
@@ -19,10 +21,39 @@ public interface WxPayService {
      * @param goodsName   商品名称
      * @param goodsDesc   商品名称
      * @param clientIp    终端IP
-     * @return 二维码地址
+     * @return 支付二维码URL
      */
     String createWebOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
                           String goodsDesc, String clientIp) throws ApiException;
+
+    /**
+     * 创建订单（APP支付）
+     *
+     * @param orderId     订单ID
+     * @param goodsCode   商品编号，建议使用商品条形码编号
+     * @param totalAmount 订单总金额，单位：元
+     * @param goodsName   商品名称
+     * @param goodsDesc   商品名称
+     * @param clientIp    终端IP
+     * @return 支付二维码URL
+     */
+    Map<String, String> createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                                       String goodsDesc, String clientIp) throws ApiException;
+
+    /**
+     * 创建订单（APP支付）
+     *
+     * @param orderId     订单ID
+     * @param goodsCode   商品编号，建议使用商品条形码编号
+     * @param totalAmount 订单总金额，单位：元
+     * @param goodsName   商品名称
+     * @param goodsDesc   商品名称
+     * @param clientIp    终端IP
+     * @param deviceInfo  设备信息，可选
+     * @return 支付二维码URL
+     */
+    Map<String, String> createAppOrder(String orderId, String goodsCode, float totalAmount, String goodsName,
+                                       String goodsDesc, String clientIp, String deviceInfo) throws ApiException;
 
     /**
      * 查询订单支付状态
