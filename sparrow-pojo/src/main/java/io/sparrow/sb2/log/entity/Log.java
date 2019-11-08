@@ -11,5 +11,23 @@ import lombok.Data;
 @Data
 public class Log {
 
+    /**
+     * ID
+     */
     private Integer id;
+
+    /**
+     * 标签，即系统名称
+     */
+    private String tag;
+
+    /**
+     * 标题，即模块名称
+     */
+    private String title;
+
+    /**
+     * 日志内容
+     */
+    private String content;
 }

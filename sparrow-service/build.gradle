@@ -2,5 +2,6 @@ dependencies {
     compile project(":sb2-service-common")
     compile project(":sparrow-pojo")
 
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
     compile "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 }
