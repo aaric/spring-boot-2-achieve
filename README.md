@@ -29,7 +29,7 @@ Spring Boot 2.x Learning.
 ## 三、`milestone-2.0`版本规划
 1. [x] 完善可扩展日志与审计功能（1.1.0-SNAPSHOT）；
 2. [x] 实现可扩展`第三方支付`业务功能（1.2.0-SNAPSHOT）；
-3. [ ] 实现可扩展`省-市-区`业务功能（1.3.0-SNAPSHOT）；
+3. [x] 实现可扩展`省-市-区`业务功能（1.3.0-SNAPSHOT）；
 4. [ ] 实现可扩展`机构-用户-权限`业务功能（1.4.0-SNAPSHOT）；
 5. [ ] 集成`Activiti`工作流引擎（1.5.0-SNAPSHOT）。
 

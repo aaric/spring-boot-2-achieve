@@ -1,4 +1,6 @@
 dependencies {
     compile project(":sb2-service-common")
     compile project(":sparrow-pojo")
+
+    compile "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 }
