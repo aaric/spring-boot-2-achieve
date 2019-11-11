@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":sb2-pojo")
+
+    compile "org.postgresql:postgresql:42.2.8"
+    compile "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+}

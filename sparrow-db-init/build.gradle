@@ -1,13 +1,13 @@
 apply plugin: 'org.flywaydb.flyway'
 
 flyway {
-    url = 'jdbc:mysql://10.0.11.32:3306/testdb?useSSL=false&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull'
+    url = 'jdbc:postgresql://10.0.11.21:5432/testdb'
     user = 'testdb'
     password = 'testdb'
 }
 
 dependencies {
-    compile "mysql:mysql-connector-java:8.0.+"
+    compile "org.postgresql:postgresql:42.2.8"
 }
 
 buildscript {

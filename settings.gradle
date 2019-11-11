@@ -1,5 +1,7 @@
 include '3rd-wxpay-sdk'
 include 'sb2-common'
+include 'sb2-pojo'
+include 'sb2-service'
 include 'sb2-service-common'
 include 'sb2-web'
 include 'sparrow-pojo'

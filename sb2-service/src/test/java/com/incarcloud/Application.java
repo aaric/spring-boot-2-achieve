@@ -1,4 +1,4 @@
-package io.sparrow.sb2;
+package com.incarcloud;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Spring Boot Launcher.
  *
- * @author Aaric, created on 2019-10-29T15:33.
- * @version 1.2.0-SNAPSHOT
+ * @author Aaric, created on 2019-11-11T17:47.
+ * @version 1.3.0-SNAPSHOT
  */
-@SpringBootApplication(scanBasePackages = {"com.incarcloud", "io.sparrow.sb2"})
-@MapperScan({"com.incarcloud.**.mapper", "io.sparrow.sb2.**.mapper"})
+@SpringBootApplication
+@MapperScan({"com.incarcloud.**.mapper"})
 public class Application {
 
     /**

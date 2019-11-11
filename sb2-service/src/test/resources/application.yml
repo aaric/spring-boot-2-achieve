@@ -1,0 +1,21 @@
+# Spring settings
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/testdb
+    username: testdb
+    password: testdb
+    driver-class-name: org.postgresql.Driver
+
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
