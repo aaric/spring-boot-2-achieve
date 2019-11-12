@@ -142,7 +142,7 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 }
 ```
 
-2. **Docker Compose使用PostgreSQL10数据库**
+2. **Docker Compose构建PostgreSQL10数据库**
 ```bash
 # su - root
 sh> mkdir -p /data/docker/container/db_postgres_10/data
