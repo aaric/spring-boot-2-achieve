@@ -1,7 +1,7 @@
-package io.sparrow.sb2.trade;
+package io.sparrow.sb2.trade.service;
 
 import com.alibaba.fastjson.JSON;
-import io.sparrow.sb2.trade.dto.PaymentDto;
+import io.sparrow.sb2.dto.PaymentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Ignore;

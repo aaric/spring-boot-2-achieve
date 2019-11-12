@@ -1,4 +1,4 @@
-package io.sparrow.sb2.trade.dto;
+package io.sparrow.sb2.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

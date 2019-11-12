@@ -2,7 +2,7 @@ package io.sparrow.sb2.demo.api;
 
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
-import io.sparrow.sb2.demo.dto.PersonDto;
+import io.sparrow.sb2.dto.PersonDto;
 import io.swagger.annotations.*;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package io.sparrow.sb2.trade.api;
 
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
-import io.sparrow.sb2.trade.dto.PaymentDto;
+import io.sparrow.sb2.dto.PaymentDto;
 import io.swagger.annotations.*;
 
 /**

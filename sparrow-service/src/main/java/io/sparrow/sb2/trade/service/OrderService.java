@@ -1,7 +1,7 @@
-package io.sparrow.sb2.trade;
+package io.sparrow.sb2.trade.service;
 
 import com.incarcloud.common.exception.ApiException;
-import io.sparrow.sb2.trade.dto.PaymentDto;
+import io.sparrow.sb2.dto.PaymentDto;
 
 /**
  * 订单管理服务接口

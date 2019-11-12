@@ -4,7 +4,7 @@ import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.common.share.log.DbLog;
 import io.sparrow.sb2.demo.api.StdCrudApi;
-import io.sparrow.sb2.demo.dto.PersonDto;
+import io.sparrow.sb2.dto.PersonDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
