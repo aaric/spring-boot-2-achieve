@@ -49,19 +49,15 @@ Spring Boot 2.x Learning.
 
 
 ## 六、其他说明
-### 6.1 MySQL建库语句
+### 6.1 PostgreSQL建库语句
 
-> 注意: **MySQL 8.0** 以后，`charset`默认为`utf8mb4`非`latin1`，`collate`默认`utf8mb4_0900_ai_ci`。
+> PostgreSQL 的 Slogan 是 "世界上最先进的开源关系型数据库"。
 
 ```sql
-/* utf8mb4: 解决存储emoji表情问题; utf8mb4_bin: 要求区分英文字母大小写 */
--- MySQL8已将创建用户和授权语句分离，必须分开写
-sql> create database testdb default charset utf8mb4 collate utf8mb4_bin;
--- MySQL8默认是严格加密模式，修改为普通加密模式，并更新用户密码，建议更新Client，以下为非优雅的方式
--- sql> create user 'testdb'@'%' identified with mysql_native_password by 'testdb';
-sql> create user 'testdb'@'%' identified by 'testdb';
-sql> grant all privileges on testdb.* to 'testdb'@'%';
-sql> flush privileges;
+sql> CREATE DATABASE testdb;
+sql> CREATE USER testdb WITH PASSWORD 'testdb';
+sql> GRANT ALL PRIVILEGES ON DATABASE testdb TO testdb;
+sql> GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO testdb;
 ```
 
 ### 6.2 Flyway命名规范
@@ -79,6 +75,7 @@ sql> flush privileges;
 2. **选择Security安全框架，弃用Shiro的理由**
     - *Spring Boot*对*Security*框架的约定配置，很大程度上减小*Security*框架的集成难度；
     - 以后支持*Spring Cloud*框架比较容易，使用*Apache Shiro*框架明显不合适了。
+
 3. **Gradle配置文件implement替换compile的理由**
     - 加快编译速度；
     - 隐藏对外不必要的接口。
@@ -145,33 +142,25 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 }
 ```
 
-2. **Jenkins Pipeline（非标准DSL）配置参考**
-```groovy
-node {
- stage('Preparation') {
-   git branch: 'master', url: 'https://github.com/aaric/spring-boot-2-achieve'
- }
-
- stage('Build') {
-   sh "${tool 'gradle-5.2.1'}/bin/gradle clean build"
- }
-
- stage('JUnit Test Reports') {
-   junit '**/build/test-results/test/*.xml'
- }
-
- stage('SonarQube Analysis') {
-   // https://docs.sonarqube.org/7.8/analysis/scan/sonarscanner-for-gradle/
-   withSonarQubeEnv() {
-     sh "${tool 'gradle-5.2.1'}/bin/gradle sonarqube -x test --info"
-   }
- }
-}
-```
-
-3. **Docker使用MySQL8数据库**
+2. **Docker Compose使用PostgreSQL10数据库**
 ```bash
-~>$ sudo docker pull mysql:8.0.16
-~>$ sudo docker run --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourpassword -d mysql:8.0.16
-~>$ sudo docker exec -it mysql8 /bin/bash
+# su - root
+sh> mkdir -p /data/docker/container/db_postgres_10/data
+sh> tee docker-compose.yml <<-'EOF'
+version: '3'
+services:
+  db_postgres_10:
+    restart: always
+    image: postgres:10.10
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /data/docker/container/db_postgres_10/data:/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+EOF
+sh> docker-compose up -d  # start
+sh> docker exec -it db_postgres_10_db_postgres_10_1 psql -U postgres  # psql
+sh> docker-compose down -v  # destory
 ```
