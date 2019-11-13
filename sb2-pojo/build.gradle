@@ -1,4 +1,7 @@
 dependencies {
     compile "io.swagger:swagger-annotations:${swaggerAnnotationsVersion}"
     compile "javax.validation:validation-api:2.0.1.Final"
+
+    compile "com.baomidou:mybatis-plus-annotation:${mybatisPlusVersion}"
+    compile "com.baomidou:mybatis-plus-extension:${mybatisPlusVersion}"
 }

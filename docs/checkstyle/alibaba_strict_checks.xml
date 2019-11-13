@@ -19,7 +19,7 @@
             <property name="excludes" value="java.io,java.net,java.lang.Math"/>
             <!-- 实例；import java.util.*;.-->
             <property name="allowClassImports" value="false"/>
-            <!-- 实例 ；import static org.junit.Assert.*;-->
+            <!-- 实例 ；import static org.junit.Assertions.*;-->
             <property name="allowStaticMemberImports" value="true"/>
         </module>
         <!-- 检查是否从非法的包中导入了类 -->

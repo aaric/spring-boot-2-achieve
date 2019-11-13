@@ -3,13 +3,13 @@ package com.incarcloud.common.map;
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.common.share.map.GeoPoint;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,22 +23,22 @@ import java.util.Map;
  */
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class AmapServiceTest {
 
     @Autowired(required = false)
     protected AmapService amapService;
 
     @Test
-    @Ignore
+    @Disabled
     public void testGetGeoAddress() throws Exception {
         String address = amapService.getReGeoAddress(new GeoPoint(114.403588, 30.475432));
         log.info("address: {}", address);
-        Assert.assertNotNull(address);
+        Assertions.assertNotNull(address);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testBatchQueryReGeoAddress() throws Exception {
         List<GeoPoint> points = new ArrayList<>();
         points.add(new GeoPoint(114.403588, 30.475432));
@@ -50,18 +50,18 @@ public class AmapServiceTest {
         List<String> addressList = amapService.batchQueryReGeoAddress(points);
         addressList.forEach(address -> log.info("address: {}", address));
 
-        Assert.assertNotNull(addressList);
+        Assertions.assertNotNull(addressList);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testGetIpGeoAddress() throws Exception {
         Map<String, String> addressInfo = amapService.getIpGeoAddress("59.173.243.67");
         log.info("addressInfo: {}", JSON.toJSONString(addressInfo));
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testGetWeatherInfo() throws Exception {
         Map<String, String> weatherInfo = amapService.getWeatherInfo("420100");
         log.info("weatherInfo: {}", JSON.toJSONString(weatherInfo));

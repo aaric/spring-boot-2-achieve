@@ -6,8 +6,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.security.Key;
 import java.sql.Date;
@@ -43,7 +43,7 @@ public class JwtTest {
                 .signWith(key).compact();
         log.info("token: " + token);
 
-        Assert.assertNotNull(token);
+        Assertions.assertNotNull(token);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class JwtTest {
         // signature=XC5s3HNxC0_oNJMu8HrkTkNvbu4WWpHyV2w8per0iJI
         log.info(claimsJws.toString());
 
-        Assert.assertEquals("admin", claimsJws.getBody().getAudience());
+        Assertions.assertEquals("admin", claimsJws.getBody().getAudience());
     }
 }

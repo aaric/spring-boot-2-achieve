@@ -2,8 +2,8 @@ package com.incarcloud.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * HtmlXssUtilTest
@@ -24,20 +24,20 @@ public class HtmlXssUtilTest {
 
         String result = HtmlXssUtil.stripXSS(htmlText);
         log.info(result);
-        Assert.assertEquals("_alert('hello')<p>hello</p><s>_alert('hello')<p>hello</p>_alert('hello')somethingxxx", result);
+        Assertions.assertEquals("_alert('hello')<p>hello</p><s>_alert('hello')<p>hello</p>_alert('hello')somethingxxx", result);
     }
 
     @Test
     public void testValidateFileExt() {
         String fileName = "hello.png";
-        Assert.assertTrue(StringUtils.isNotBlank(fileName));
-        Assert.assertTrue(-1 != StringUtils.indexOf(fileName, "."));
-        Assert.assertTrue(-1 != StringUtils.lastIndexOf(fileName, ".png"));
+        Assertions.assertTrue(StringUtils.isNotBlank(fileName));
+        Assertions.assertTrue(-1 != StringUtils.indexOf(fileName, "."));
+        Assertions.assertTrue(-1 != StringUtils.lastIndexOf(fileName, ".png"));
 
         boolean flag = true;
         if (!(StringUtils.endsWith(fileName, ".jpg") || StringUtils.endsWith(fileName, ".png"))) {
             flag = false;
         }
-        Assert.assertTrue(flag);
+        Assertions.assertTrue(flag);
     }
 }

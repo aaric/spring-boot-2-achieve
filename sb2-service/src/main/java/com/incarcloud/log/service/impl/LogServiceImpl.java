@@ -7,7 +7,7 @@ import com.incarcloud.pojo.entity.Log;
 import org.springframework.stereotype.Service;
 
 /**
- * 日志服务实现
+ * 日志记录服务实现
  *
  * @author Aaric, created on 2019-11-11T16:55.
  * @version 1.3.0-SNAPSHOT

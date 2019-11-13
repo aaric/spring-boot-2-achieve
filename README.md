@@ -29,7 +29,7 @@ Spring Boot 2.x Learning.
 ## 三、`milestone-2.0`版本规划
 1. [x] 完善可扩展日志与审计功能（1.1.0-SNAPSHOT）；
 2. [x] 实现可扩展`第三方支付`业务功能（1.2.1-SNAPSHOT）；
-3. [x] 实现可扩展`省-市-区`业务功能（1.3.0-SNAPSHOT）；
+3. [x] 实现可扩展`省-市-区`业务功能（1.3.2-SNAPSHOT）；
 4. [ ] 实现可扩展`机构-用户-权限`业务功能（1.4.0-SNAPSHOT）；
 5. [ ] 集成`Activiti`工作流引擎（1.5.0-SNAPSHOT）。
 
@@ -65,6 +65,46 @@ sql> GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO testdb;
 > [Migrations - Flyway by Boxfuse • Database Migrations Made Easy.](https://flywaydb.org/documentation/migrations "Flyway Documentation Online")
 
 ![Flyway](https://github.com/aaric/spring-boot-2-achieve/raw/master/docs/images/gradle_flyway_naming.png "Flyway Naming Rule")
+
+### 6.3 JUnit5配置与使用
+
+> JUnit Jupiter是在JUnit 5中编写测试和扩展的新编程模型和扩展模型的组合。
+
+1. build.gradle配置
+```groovy
+dependencies {
+    testCompile "org.junit.jupiter:junit-jupiter-engine:5.5.2"
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+        exclude group: 'junit', module: 'junit'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+buildscript {
+    dependencies {
+        classpath "org.junit.platform:junit-platform-gradle-plugin:1.2.0"
+    }
+}
+```
+
+2. 相关方法替换建议
+    - @Test：`import org.junit.Test;` --> `import org.junit.jupiter.api.Test;`
+    - @Ignore: `import org.junit.Ignore;` --> `import org.junit.jupiter.api.Disabled;`
+    - @Assert: `import org.junit.Assert;` --> `import org.junit.jupiter.api.Assertions;`
+    - @RunWith: `import org.junit.runner.RunWith;` --> `import org.junit.jupiter.api.extension.ExtendWith;`
+    - @SpringRunner: `import org.springframework.test.context.junit4.SpringRunner;` --> `import org.springframework.test.context.junit.jupiter.SpringExtension;`
+    - @Before: `import org.junit.Before;` --> `org.junit.jupiter.api.BeforeEach;`
+
+3. 支持@SpringBootTest测试
+```java
+@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
+public class XxxTest {
+}
+```
 
 
 ## 七、FAQ

@@ -22,10 +22,11 @@ spring:
     cache-duration: 86400
     encoding: UTF-8
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/testdb
-    username: testdb
-    password: testdb
-    driver-class-name: org.postgresql.Driver
+    druid:
+      url: jdbc:postgresql://127.0.0.1:5432/testdb
+      username: testdb
+      password: testdb
+      driver-class-name: org.postgresql.Driver
 
 # Logging settings
 logging:

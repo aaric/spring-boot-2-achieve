@@ -2,13 +2,13 @@ package com.incarcloud.mvc.token;
 
 import io.sparrow.sb2.App;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * JwtHelperTest
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @version 0.7.0-SNAPSHOT
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = App.class)
 public class JwtHelperTest {
 
@@ -26,7 +26,7 @@ public class JwtHelperTest {
 
     private String token;
 
-    @Before
+    @BeforeEach
     public void begin() {
         token = jwtHelper.createToken("cid", 1000);
     }
@@ -34,11 +34,11 @@ public class JwtHelperTest {
     @Test
     public void testCreateToken() {
         log.info("token: " + token);
-        Assert.assertNotNull(token);
+        Assertions.assertNotNull(token);
     }
 
     @Test
     public void testValidateToken() throws Exception {
-        Assert.assertTrue(jwtHelper.validateToken("cid", token));
+        Assertions.assertTrue(jwtHelper.validateToken("cid", token));
     }
 }

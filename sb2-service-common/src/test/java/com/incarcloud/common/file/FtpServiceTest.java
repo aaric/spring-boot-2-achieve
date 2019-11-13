@@ -1,13 +1,13 @@
 package com.incarcloud.common.file;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.File;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class FtpServiceTest {
 
     /**
@@ -36,19 +36,19 @@ public class FtpServiceTest {
     protected FtpService ftpService;
 
     @Test
-    @Ignore
+    @Disabled
     public void testIsHasFile() {
-        Assert.assertFalse(ftpService.isHasFile("/fakeFile"));
+        Assertions.assertFalse(ftpService.isHasFile("/fakeFile"));
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testUploadFile() {
-        Assert.assertTrue(ftpService.uploadFile("/" + testFileName, new File(testFileDirectory, testFileName)));
+        Assertions.assertTrue(ftpService.uploadFile("/" + testFileName, new File(testFileDirectory, testFileName)));
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testUploadFiles() {
         Map<String, File> uploadFiles = new HashMap<>();
         uploadFiles.put("/01-" + testFileName, new File(testFileDirectory, testFileName));
@@ -57,10 +57,10 @@ public class FtpServiceTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testDownloadFile() {
         File downloadFile = ftpService.downloadFile("/" + testFileName);
         log.info(downloadFile.getAbsolutePath());
-        Assert.assertNotNull(downloadFile);
+        Assertions.assertNotNull(downloadFile);
     }
 }
