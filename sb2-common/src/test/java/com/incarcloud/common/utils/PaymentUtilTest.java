@@ -1,7 +1,7 @@
 package com.incarcloud.common.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * PaymentUtilTest
@@ -14,12 +14,12 @@ public class PaymentUtilTest {
     @Test
     public void testCreateOrderId() {
         String orderId = PaymentUtil.createOrderId(1);
-        Assert.assertNotNull(orderId);
+        Assertions.assertNotNull(orderId);
     }
 
     @Test
     public void testGetRefundIdByOrderId() {
         String orderId = PaymentUtil.createOrderId(1);
-        Assert.assertEquals("TK" + orderId, PaymentUtil.getRefundIdByOrderId(orderId));
+        Assertions.assertEquals("TK" + orderId, PaymentUtil.getRefundIdByOrderId(orderId));
     }
 }

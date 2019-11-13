@@ -3,13 +3,13 @@ package com.incarcloud.common.map;
 import com.incarcloud.common.share.map.BsData;
 import com.incarcloud.common.share.map.BsPosition;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +22,14 @@ import java.util.List;
  */
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class AmapLocateServiceTest {
 
     @Autowired(required = false)
     private AmapLocateService amapLocateService;
 
     @Test
-    @Ignore
+    @Disabled
     public void testGetAddress() throws Exception {
         BsData bts = new BsData(460, 0, 10173, 4430, 132);
         List<BsData> nearBts = new ArrayList<>();
@@ -41,6 +41,6 @@ public class AmapLocateServiceTest {
         nearBts.add(new BsData(460, 0, 10173, 4442, 124));
         BsPosition position = amapLocateService.getAddress("862233026116709", bts, nearBts);
         log.info("position: {}", position.toString());
-        Assert.assertNotNull(position);
+        Assertions.assertNotNull(position);
     }
 }

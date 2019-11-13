@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +28,11 @@ public class OkHttp3UtilTest {
     @Test
     public void testGet() throws Exception {
         String result = OkHttp3Util.get("https://www.baidu.com", null);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testShowApiNameList() throws Exception {
         // Init
         int serverPort = 9090;
@@ -71,6 +71,6 @@ public class OkHttp3UtilTest {
             sortNameList.forEach(object -> log.info(object));
         }
 
-        Assert.assertNotNull(sortNameList);
+        Assertions.assertNotNull(sortNameList);
     }
 }

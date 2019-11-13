@@ -2,10 +2,10 @@ package io.sparrow.sb2.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,19 +16,17 @@ import javax.validation.constraints.NotBlank;
  * @author Aaric, created on 2019-06-28T15:52.
  * @version 0.2.1-SNAPSHOT
  */
-@ApiModel(description = "人员信息")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 @NoArgsConstructor
-@ToString
+@ApiModel(description = "人员信息")
 public class PersonDto {
 
-    @Getter
-    @Setter
     @NotBlank(message = "{validate.login-user.username.not-blank}") //姓名不能为空
     @ApiModelProperty(position = 1, value = "姓名", example = "jenkins", required = true)
     private String fullName;
 
-    @Getter
-    @Setter
     @Email(message = "{validate.login-user.email.error}") //邮箱格式不正确
     @ApiModelProperty(position = 2, value = "联系邮箱", example = "jenkins@incarcloud.com", required = true)
     private String email;

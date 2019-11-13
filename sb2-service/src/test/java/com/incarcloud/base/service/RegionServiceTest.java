@@ -1,7 +1,6 @@
-package com.incarcloud.common.msg;
+package com.incarcloud.base.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,22 +9,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * EmailServiceTest
+ * RegionServiceTest
  *
- * @author Aaric, created on 2019-08-22T17:03.
- * @version 0.8.1-SNAPSHOT
+ * @author Aaric, created on 2019-11-12T16:30.
+ * @version 1.3.1-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class EmailServiceTest {
+public class RegionServiceTest {
 
-    @Autowired(required = false)
-    private EmailService emailService;
+    @Autowired
+    private RegionService regionService;
 
     @Test
     @Disabled
-    public void testSendTemplate() {
-        Assertions.assertTrue(emailService.sendTemplate("Hello", "<h1>You are my super man.</h1>", "acccount@incarcloud.com"));
+    public void testInitDbData() {
+        regionService.initDbData();
     }
 }

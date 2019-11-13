@@ -1,13 +1,13 @@
 package com.incarcloud.common.sms;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -22,20 +22,20 @@ import java.util.Random;
  */
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class DysmsServiceTest {
 
     @Autowired(required = false)
     protected DysmsService dysmsService;
 
     @Test
-    @Ignore
+    @Disabled
     public void testSendTemplate() {
         Map<String, String> templateParams = new HashMap<>();
         templateParams.put("code", MessageFormat.format("{0,number,000000}", new Random().nextInt(999999)));
 
         String bizId = dysmsService.sendTemplate("SMS_150740230", templateParams, null, "1340000xxxx");
         log.info(bizId);
-        Assert.assertNotNull(bizId);
+        Assertions.assertNotNull(bizId);
     }
 }

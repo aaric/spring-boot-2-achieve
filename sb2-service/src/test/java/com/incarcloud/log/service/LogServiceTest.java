@@ -2,13 +2,13 @@ package com.incarcloud.log.service;
 
 import com.incarcloud.pojo.entity.Log;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * LogServiceTest
@@ -18,19 +18,19 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class LogServiceTest {
 
     @Autowired
     private LogService logService;
 
     @Test
-    @Ignore
+    @Disabled
     public void testSaveLog() {
         Log log = new Log();
         log.setTag("plat");
         log.setTitle("test2");
         log.setContent("test contest2");
-        Assert.assertTrue(logService.saveLog(log));
+        Assertions.assertTrue(logService.saveLog(log));
     }
 }
