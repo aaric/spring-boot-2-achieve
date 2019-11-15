@@ -1,5 +1,6 @@
 dependencies {
     compile project(":sb2-pojo")
+    compile project(":sb2-common")
 
     compile "org.postgresql:postgresql:${postgresqlVersion}"
     compile "com.alibaba:druid-spring-boot-starter:${druidSpringVersion}"

@@ -8,6 +8,7 @@ import com.incarcloud.mvc.token.settings.AuthJwtProperties;
 import io.sparrow.sb2.auth.api.AuthApi;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class AuthController implements AuthApi {
     private JwtHelper jwtHelper;
 
     @Override
-    @PostMapping("/login")
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseData<AuthTokenInfo> login(@RequestBody LoginUserInfo loginUserInfo, HttpServletRequest request) {
         // 获得客户端ID字符串
         String cid = request.getHeader(authJwtProperties.getCidHeaderName());
@@ -49,7 +50,7 @@ public class AuthController implements AuthApi {
     }
 
     @Override
-    @PostMapping("/logout")
+    @PostMapping(value = "/logout", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseData<Object> logout() {
         return ResponseData.ok().extraMsg("清除本地存储的Token字符串即可");
     }

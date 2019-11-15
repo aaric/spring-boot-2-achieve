@@ -1,4 +1,4 @@
-package com.incarcloud.log.service;
+package com.incarcloud.base.service;
 
 import com.incarcloud.pojo.entity.Log;
 

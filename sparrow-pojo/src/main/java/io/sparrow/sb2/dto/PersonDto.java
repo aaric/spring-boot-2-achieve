@@ -3,7 +3,6 @@ package io.sparrow.sb2.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -17,7 +16,6 @@ import javax.validation.constraints.NotBlank;
  * @version 0.2.1-SNAPSHOT
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "人员信息")

@@ -56,8 +56,8 @@ Spring Boot 2.x Learning.
 ```sql
 sql> CREATE DATABASE testdb;
 sql> CREATE USER testdb WITH PASSWORD 'testdb';
-sql> GRANT ALL PRIVILEGES ON DATABASE testdb TO testdb;
-sql> GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO testdb;
+sql> GRANT ALL ON DATABASE testdb TO testdb;
+sql> GRANT ALL ON ALL TABLES IN SCHEMA public TO testdb;
 ```
 
 ### 6.2 Flyway命名规范
@@ -90,7 +90,7 @@ buildscript {
 }
 ```
 
-2. 相关方法替换建议
+2. JUnit4升级到JUnit5指南
     - @Test：`import org.junit.Test;` --> `import org.junit.jupiter.api.Test;`
     - @Ignore: `import org.junit.Ignore;` --> `import org.junit.jupiter.api.Disabled;`
     - @Assert: `import org.junit.Assert;` --> `import org.junit.jupiter.api.Assertions;`
@@ -184,23 +184,32 @@ public class CustomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 
 2. **Docker Compose构建PostgreSQL10数据库**
 ```bash
-# su - root
-sh> mkdir -p /data/docker/container/db_postgres_10/data
+sh> docker volume ls
+sh> docker volume create db-postgres-10-data
+sh> docker volume inspect db-postgres-10-data
+# 编写编排文件
 sh> tee docker-compose.yml <<-'EOF'
 version: '3'
 services:
-  db_postgres_10:
+  db-postgres-10:
     restart: always
     image: postgres:10.10
+    container_name: db-postgres-10
     environment:
       POSTGRES_PASSWORD: postgres
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - /data/docker/container/db_postgres_10/data:/var/lib/postgresql/data/pgdata
+      - db-postgres-10-data:/var/lib/postgresql/data/pgdata
     ports:
       - 5432:5432
+volumes:
+  db-postgres-10-data:
+    external: true
 EOF
+# 初始化PostgreSQL数据库
 sh> docker-compose up -d  # start
-sh> docker exec -it db_postgres_10_db_postgres_10_1 psql -U postgres  # psql
+# PSQL
+sh> docker exec -it db-postgres-10 psql -U postgres
+# 销毁容器
 sh> docker-compose down -v  # destory
 ```

@@ -3,7 +3,6 @@ package io.sparrow.sb2.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -16,7 +15,6 @@ import java.util.Map;
  * @version 1.2.1-SNAPSHOT
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "付款信息")

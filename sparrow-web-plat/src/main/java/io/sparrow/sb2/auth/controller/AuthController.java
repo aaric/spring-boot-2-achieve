@@ -4,6 +4,7 @@ import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
 import io.sparrow.sb2.auth.api.AuthApi;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class AuthController implements AuthApi {
      */
 
     @Override
-    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseData<String> redirect(HttpServletRequest request) throws ApiException {
         // 获得当前登录用户名
         Optional<Principal> principal = Optional.ofNullable(request.getUserPrincipal());
