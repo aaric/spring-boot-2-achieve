@@ -4,9 +4,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
@@ -33,9 +33,9 @@ public interface CallbackApi {
      * @author Aaric, created on 2019-10-29T16:13.
      * @version 1.2.1-SNAPSHOT
      */
-    @Data
+    @Getter
+    @Setter
     @ToString(callSuper = true)
-    @EqualsAndHashCode(callSuper = false)
     @Accessors(chain = true)
     @NoArgsConstructor
     @JacksonXmlRootElement(localName = "xml")
@@ -54,7 +54,9 @@ public interface CallbackApi {
      * @author Aaric, created on 2019-10-29T16:13.
      * @version 1.2.1-SNAPSHOT
      */
-    @Data
+    @Getter
+    @Setter
+    @ToString(callSuper = true)
     @Accessors(chain = true)
     @NoArgsConstructor
     @JacksonXmlRootElement(localName = "xml")

@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -14,9 +16,11 @@ import lombok.experimental.Accessors;
  * @author Aaric, created on 2019-11-08T17:52.
  * @version 1.3.0-SNAPSHOT
  */
-@Data
-@Accessors(chain = true) //支持setXxx链式编程习惯
-@NoArgsConstructor
+@Getter
+@Setter
+@ToString(callSuper = true)
+@Accessors(chain = true)
+@NoArgsConstructor //支持setXxx链式编程习惯
 @KeySequence(value = "log_id_seq")
 @TableName(value = "log")
 public class Log {

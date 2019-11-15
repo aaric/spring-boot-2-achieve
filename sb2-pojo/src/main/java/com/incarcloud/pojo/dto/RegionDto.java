@@ -3,9 +3,9 @@ package com.incarcloud.pojo.dto;
 import com.incarcloud.pojo.entity.Region;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
@@ -17,9 +17,9 @@ import java.util.List;
  * @author Aaric, created on 2019-11-14T11:51.
  * @version 1.3.2-SNAPSHOT
  */
-@Data
+@Getter
+@Setter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "行政区信息")
