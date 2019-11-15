@@ -1,4 +1,4 @@
-package com.incarcloud.log.service;
+package com.incarcloud.base.mapper;
 
 import com.incarcloud.pojo.entity.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -11,26 +11,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * LogServiceTest
+ * LogMapperTest
  *
- * @author Aaric, created on 2019-11-08T17:51.
+ * @author Aaric, created on 2019-11-08T17:50.
  * @version 1.3.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class LogServiceTest {
+public class LogMapperTest {
 
     @Autowired
-    private LogService logService;
+    private LogMapper logMapper;
 
     @Test
     @Disabled
-    public void testSaveLog() {
+    public void testInsert() throws Exception {
         Log log = new Log();
         log.setTag("plat");
-        log.setTitle("test2");
-        log.setContent("test contest2");
-        Assertions.assertTrue(logService.saveLog(log));
+        log.setTitle("test1");
+        log.setContent("test contest1");
+        Assertions.assertNotEquals(0, logMapper.insert(log));
     }
 }

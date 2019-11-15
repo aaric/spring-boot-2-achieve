@@ -1,8 +1,8 @@
-package com.incarcloud.log.service.impl;
+package com.incarcloud.base.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.incarcloud.log.mapper.LogMapper;
-import com.incarcloud.log.service.LogService;
+import com.incarcloud.base.mapper.LogMapper;
+import com.incarcloud.base.service.LogService;
 import com.incarcloud.pojo.entity.Log;
 import org.springframework.stereotype.Service;
 

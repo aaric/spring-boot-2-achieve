@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ public interface CallbackApi {
      * @version 1.2.1-SNAPSHOT
      */
     @Data
+    @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = false)
     @Accessors(chain = true)
     @NoArgsConstructor
@@ -53,7 +55,6 @@ public interface CallbackApi {
      * @version 1.2.1-SNAPSHOT
      */
     @Data
-    @EqualsAndHashCode(callSuper = false)
     @Accessors(chain = true)
     @NoArgsConstructor
     @JacksonXmlRootElement(localName = "xml")

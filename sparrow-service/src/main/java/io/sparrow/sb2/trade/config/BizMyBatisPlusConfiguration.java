@@ -1,4 +1,4 @@
-package com.incarcloud.config;
+package io.sparrow.sb2.trade.config;
 
 import com.baomidou.mybatisplus.extension.incrementer.PostgreKeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * MyBatis Plus配置
  *
- * @author Aaric, created on 2019-11-13T09:30.
- * @version 1.3.1-SNAPSHOT
+ * @author Aaric, created on 2019-11-14T13:40.
+ * @version 1.3.2-SNAPSHOT
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.incarcloud.**.mapper"})
-public class MyBatisPlusConfiguration {
+@MapperScan({"com.incarcloud.**.mapper", "io.sparrow.sb2.**.mapper"})
+public class BizMyBatisPlusConfiguration {
 
     /**
      * 设置PostgreSQL主键策略

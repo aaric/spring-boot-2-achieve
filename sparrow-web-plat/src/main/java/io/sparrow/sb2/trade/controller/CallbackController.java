@@ -78,7 +78,7 @@ public class CallbackController implements CallbackApi {
      * @param request 请求对象
      * @return 字符串
      */
-    private String getXMLString(HttpServletRequest request) {
+    private String getWxXMLString(HttpServletRequest request) {
         try (InputStream input = request.getInputStream()) {
             try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
                 byte[] buffer = new byte[1024];
@@ -98,7 +98,7 @@ public class CallbackController implements CallbackApi {
     @PostMapping(value = "/wxpay", produces = MediaType.APPLICATION_XML_VALUE)
     public WXPayResult wxpay(HttpServletRequest request) {
         // 获得XML结果
-        String xml = getXMLString(request);
+        String xml = getWxXMLString(request);
         log.debug("xml: {}", xml);
 
         // 解析XML为对象
