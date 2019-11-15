@@ -17,15 +17,17 @@ pipeline {
     }
 
     environment {
-        HELLO_CUSTOM_TITLE = 'Hello, Jenkins Pipeline!'
+        POSTGRES_HOST = '127.0.0.1'
+        POSTGRES_PORT = '5432'
+        POSTGRES_DATABASE = 'testdb'
+        POSTGRES_USERNAME = 'testdb'
+        POSTGRES_PASSWORD = 'testdb'
     }
 
     stages {
         //-------------------- BEGIN --------------------//
         stage('Preparation') {
             steps {
-                echo "${env.HELLO_CUSTOM_TITLE}"
-
                 echo '//---------  Preparation ----------//'
                 git branch: params.repoBranch, credentialsId: params.repoCredentialsId, url: params.repoUrl
             }
