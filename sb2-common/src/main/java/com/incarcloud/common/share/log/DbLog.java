@@ -117,7 +117,7 @@ public @interface DbLog {
      *
      * @return long
      */
-    long processInterval() default -1;
+    long serverProcessInterval() default -1;
 
     /**
      * 异常信息，方便排除问题
