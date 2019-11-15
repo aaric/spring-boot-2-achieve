@@ -87,10 +87,11 @@ public class DbLogInterceptor implements HandlerInterceptor {
             // 打印日志信息
             if (null != dbLog) {
                 log.debug("\n## DbLog:\n-----\nhttpType: {}, \nhttpUrl: {}, \nhttpStatus:{}, "
-                                + "\ntag: {}, \ngroup:{}, \ntitle: {}, \ncontent: {}, \nremark: {}, "
-                                + "\nsubmit: {}, \nhttpClientInterval: {}ms, \nhttpProcessInterval: {}ms, \nexceptionDetail: {}\n-----",
+                                + "\ntag: {}, \ngroup: {}, \ntitle: {}, \ncontent: {}, \nremark: {}, "
+                                + "\nsubmit: {}, \nclientConnectInterval: {}ms, \nserverProcessInterval: {}ms,"
+                                + " \nexceptionDetail: {}\n-----",
                         request.getMethod(), request.getRequestURI(), dbLog.httpStatus(),
-                        bizTag, dbLog.group(), dbLog.title(), dbLogContent, StringUtils.appendIfMissing(dbLog.remark(), "no remark"),
+                        bizTag, dbLog.classify(), dbLog.title(), dbLogContent, StringUtils.appendIfMissing(dbLog.remark(), "no remark"),
                         dbLogSubmit.getSubmit(), httpClientInterval, (Instant.now().toEpochMilli() - dbLogVisitStart), dbLogExceptionDetail
                 );
             }
