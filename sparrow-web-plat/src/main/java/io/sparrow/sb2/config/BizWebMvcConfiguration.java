@@ -1,8 +1,10 @@
 package io.sparrow.sb2.config;
 
+import com.incarcloud.base.service.LogService;
 import com.incarcloud.common.share.Constant;
 import com.incarcloud.mvc.config.AbstractWebMvcConfigurationSupport;
 import com.incarcloud.mvc.servlet.DbLogInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +31,12 @@ public class BizWebMvcConfiguration extends AbstractWebMvcConfigurationSupport {
     private String bizTag;
 
     /**
+     * 日志服务
+     */
+    @Autowired
+    private LogService logService;
+
+    /**
      * 初始化日志拦截器
      *
      * @return
@@ -36,7 +44,7 @@ public class BizWebMvcConfiguration extends AbstractWebMvcConfigurationSupport {
     @Bean
     @ConditionalOnMissingBean(DbLogInterceptor.class)
     public DbLogInterceptor dbLogInterceptor() {
-        return new DbLogInterceptor(bizTag, () -> {
+        return new DbLogInterceptor(bizTag, logService, () -> {
             // 从Security获取登录用户UID
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (!(authentication instanceof AnonymousAuthenticationToken)) {

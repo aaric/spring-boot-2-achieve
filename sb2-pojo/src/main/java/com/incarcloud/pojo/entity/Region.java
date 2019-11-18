@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.util.Date;
@@ -19,7 +21,9 @@ import java.util.Date;
  * @author Aaric, created on 2019-11-12T15:15.
  * @version 1.3.1-SNAPSHOT
  */
-@Data
+@Getter
+@Setter
+@ToString(callSuper = true)
 @Accessors(chain = true)
 @NoArgsConstructor
 @KeySequence(value = "region_id_seq", clazz = Integer.class)

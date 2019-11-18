@@ -2,8 +2,10 @@ package io.sparrow.sb2.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Email;
@@ -15,7 +17,9 @@ import javax.validation.constraints.NotBlank;
  * @author Aaric, created on 2019-06-28T15:52.
  * @version 0.2.1-SNAPSHOT
  */
-@Data
+@Getter
+@Setter
+@ToString(callSuper = true)
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "人员信息")

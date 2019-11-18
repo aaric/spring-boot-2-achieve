@@ -2,8 +2,10 @@ package io.sparrow.sb2.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.util.Map;
@@ -14,7 +16,9 @@ import java.util.Map;
  * @author Aaric, created on 2019-11-07T13:39.
  * @version 1.2.1-SNAPSHOT
  */
-@Data
+@Getter
+@Setter
+@ToString(callSuper = true)
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "付款信息")

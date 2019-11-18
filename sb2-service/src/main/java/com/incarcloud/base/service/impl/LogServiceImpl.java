@@ -6,6 +6,8 @@ import com.incarcloud.base.service.LogService;
 import com.incarcloud.pojo.entity.Log;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+
 /**
  * 日志记录服务实现
  *
@@ -22,5 +24,16 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements LogSe
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean saveLog(String tag, String title, String content, String submit, Timestamp serverProcessStart) {
+        Log log = new Log();
+        log.setTag(tag);
+        log.setTitle(title);
+        log.setContent(content);
+        log.setSubmit(submit);
+        log.setServerProcessStart(serverProcessStart);
+        return saveLog(log);
     }
 }

@@ -47,7 +47,7 @@ public @interface DbLog {
      *
      * @return string
      */
-    String group() default "default";
+    String classify() default "default";
 
     /**
      * 标题，即模块名称
@@ -106,18 +106,18 @@ public @interface DbLog {
     String httpType() default "";
 
     /**
-     * HTTP请求耗时（客户端建立连接）
+     * 客户端建立连接耗时
      *
      * @return long
      */
-    long httpClientInterval() default -1;
+    long clientConnectInterval() default -1;
 
     /**
-     * HTTP请求耗时（服务端处理业务）
+     * 服务端处理业务耗时
      *
      * @return long
      */
-    long httpProcessInterval() default -1;
+    long serverProcessInterval() default -1;
 
     /**
      * 异常信息，方便排除问题
