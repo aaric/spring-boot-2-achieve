@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 /**
  * LogServiceTest
  *
@@ -31,6 +34,14 @@ public class LogServiceTest {
         log.setTag("plat");
         log.setTitle("test2");
         log.setContent("test contest2");
+        log.setServerProcessStart(Timestamp.valueOf(LocalDateTime.now()));
         Assertions.assertTrue(logService.saveLog(log));
+    }
+
+    @Test
+    @Disabled
+    public void testSaveLog2() {
+        Timestamp startTime = Timestamp.valueOf(LocalDateTime.now());
+        Assertions.assertTrue(logService.saveLog("plat", "test3", "test contest3", "username", startTime));
     }
 }

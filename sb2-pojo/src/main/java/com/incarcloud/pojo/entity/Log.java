@@ -55,7 +55,7 @@ public class Log {
     private String httpUrl;
 
     @ApiModelProperty(position = 9, value = "HTTP请求状态码", required = true)
-    private String httpStatus;
+    private Integer httpStatus;
 
     @ApiModelProperty(position = 10, value = "HTTP请求类型", required = true)
     private String httpType;
@@ -64,10 +64,10 @@ public class Log {
     private Timestamp clientConnectStart;
 
     @ApiModelProperty(position = 12, value = "服务端处理业务开始时间", required = true)
-    private String serverProcessStart;
+    private Timestamp serverProcessStart;
 
     @ApiModelProperty(position = 13, value = "服务端处理业务结束时间")
-    private String serverProcessEnd;
+    private Timestamp serverProcessEnd;
 
     @ApiModelProperty(position = 14, value = "客户端建立连接耗时，单位：ms", required = true)
     private Integer clientConnectInterval;

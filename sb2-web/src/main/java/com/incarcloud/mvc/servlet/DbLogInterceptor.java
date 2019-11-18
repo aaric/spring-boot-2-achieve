@@ -1,7 +1,9 @@
 package com.incarcloud.mvc.servlet;
 
+import com.incarcloud.base.service.LogService;
 import com.incarcloud.common.share.log.DbLog;
 import com.incarcloud.common.share.log.DbLogSubmit;
+import com.incarcloud.pojo.entity.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.time.Instant;
 
@@ -33,8 +36,14 @@ public class DbLogInterceptor implements HandlerInterceptor {
      */
     private DbLogSubmit dbLogSubmit;
 
-    public DbLogInterceptor(String bizTag, DbLogSubmit dbLogSubmit) {
+    /**
+     * 日志服务
+     */
+    private LogService logService;
+
+    public DbLogInterceptor(String bizTag, LogService logService, DbLogSubmit dbLogSubmit) {
         this.bizTag = bizTag;
+        this.logService = logService;
         this.dbLogSubmit = dbLogSubmit;
     }
 
@@ -59,41 +68,53 @@ public class DbLogInterceptor implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
         DbLog dbLog = method.getAnnotation(DbLog.class);
         if (null != dbLog) {
-            // 获取请求信息
-            HttpSession httpSession = request.getSession();
-            long dbLogVisitStart = (long) httpSession.getAttribute(DbLog.DEFAULT_VISIT_START_KEY);
-
             // 获取日志内容
-            String dbLogContent = dbLog.content();
+            String logContent = dbLog.content();
+            HttpSession httpSession = request.getSession();
             Object[] objects = (Object[]) httpSession.getAttribute(dbLog.contentObjectsKey()); // DbLog.DEFAULT_CONTENT_OBJECTS_KEY
             if (null != objects) {
-                dbLogContent = new MessageFormat(dbLogContent).format(objects);
+                logContent = new MessageFormat(logContent).format(objects);
             }
 
+            // 获取服务端处理时间戳
+            long serverProcessStart = (long) httpSession.getAttribute(DbLog.DEFAULT_VISIT_START_KEY);
+            Timestamp serverProcessStartTime = Timestamp.from(Instant.ofEpochMilli(serverProcessStart));
+
             // 获得客户端请求时间戳
-            long httpClientInterval = -1L;
-            String clientTimeString = request.getParameter(DbLog.DEFAULT_CLIENT_TIME_KEY);
-            if (StringUtils.isNotBlank(clientTimeString)) {
-                httpClientInterval = dbLogVisitStart - Long.parseLong(clientTimeString);
+            long clientConnectInterval = -1L;
+            Timestamp clientConnectStartTime = null;
+            String clientConnectTimeString = request.getParameter(DbLog.DEFAULT_CLIENT_TIME_KEY);
+            if (StringUtils.isNotBlank(clientConnectTimeString)) {
+                long clientConnectStart = Long.valueOf(clientConnectTimeString);
+                clientConnectStartTime = Timestamp.from(Instant.ofEpochMilli(clientConnectStart));
+                clientConnectInterval = serverProcessStart - clientConnectStart;
             }
 
             // 获取异常信息
-            String dbLogExceptionDetail = "no exception";
             String exceptionDetail = (String) httpSession.getAttribute(DbLog.DEFAULT_EXCEPTION_DETAIL_KEY);
-            if (StringUtils.isNotBlank(exceptionDetail)) {
-                dbLogExceptionDetail = exceptionDetail;
-            }
 
             // 打印日志信息
             if (null != dbLog) {
-                log.debug("\n## DbLog:\n-----\nhttpType: {}, \nhttpUrl: {}, \nhttpStatus:{}, "
-                                + "\ntag: {}, \ngroup: {}, \ntitle: {}, \ncontent: {}, \nremark: {}, "
-                                + "\nsubmit: {}, \nclientConnectInterval: {}ms, \nserverProcessInterval: {}ms,"
-                                + " \nexceptionDetail: {}\n-----",
-                        request.getMethod(), request.getRequestURI(), dbLog.httpStatus(),
-                        bizTag, dbLog.classify(), dbLog.title(), dbLogContent, StringUtils.appendIfMissing(dbLog.remark(), "no remark"),
-                        dbLogSubmit.getSubmit(), httpClientInterval, (Instant.now().toEpochMilli() - dbLogVisitStart), dbLogExceptionDetail
-                );
+                // 构建日志信息
+                Log log = new Log();
+                log.setTag(bizTag) //基本信息
+                        .setTitle(dbLog.title())
+                        .setContent(logContent)
+                        .setRemark(dbLog.remark())
+                        .setSubmit(dbLogSubmit.getSubmit());
+                log.setHttpType(request.getMethod()) //HTTP请求信息
+                        .setHttpUrl(request.getRequestURI())
+                        .setHttpStatus(dbLog.httpStatus());
+                Instant serverProcessEnd = Instant.now();
+                log.setClientConnectStart(clientConnectStartTime) //记录时间点
+                        .setServerProcessStart(serverProcessStartTime)
+                        .setServerProcessEnd(Timestamp.from(serverProcessEnd));
+                log.setClientConnectInterval(Math.toIntExact(clientConnectInterval)) //耗时信息
+                        .setServerProcessInterval(Math.toIntExact(serverProcessEnd.toEpochMilli() - serverProcessStart));
+                log.setExceptionDetail(exceptionDetail); //异常信息
+
+                // 存储到数据库
+                logService.saveLog(log);
             }
         }
 

@@ -28,6 +28,16 @@ spring:
       password: ${POSTGRES_PASSWORD}
       driver-class-name: org.postgresql.Driver
 
+# MyBatis-Plus settings
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**Mapper.xml
+  global-config:
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
 # Logging settings
 logging:
   level:

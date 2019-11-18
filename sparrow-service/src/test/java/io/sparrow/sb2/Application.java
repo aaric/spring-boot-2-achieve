@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.2.0-SNAPSHOT
  */
 @SpringBootApplication(scanBasePackages = {"com.incarcloud", "io.sparrow.sb2"})
-@MapperScan({"com.incarcloud.**.mapper", "io.sparrow.sb2.**.mapper"})
+@MapperScan({"com.incarcloud.*.mapper", "io.sparrow.sb2.*.mapper"})
 public class Application {
 
     /**

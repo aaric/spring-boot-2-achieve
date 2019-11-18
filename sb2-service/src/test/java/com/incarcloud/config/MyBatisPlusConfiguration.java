@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.incarcloud.**.mapper"})
+@MapperScan({"com.incarcloud.*.mapper"})
 public class MyBatisPlusConfiguration {
 
     /**

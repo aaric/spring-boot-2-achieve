@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 /**
  * LogMapperTest
  *
@@ -26,11 +29,12 @@ public class LogMapperTest {
 
     @Test
     @Disabled
-    public void testInsert() throws Exception {
+    public void testInsert() {
         Log log = new Log();
         log.setTag("plat");
         log.setTitle("test1");
         log.setContent("test contest1");
+        log.setServerProcessStart(Timestamp.valueOf(LocalDateTime.now()));
         Assertions.assertNotEquals(0, logMapper.insert(log));
     }
 }
