@@ -31,7 +31,7 @@ public class LogMapperTest {
     @Disabled
     public void testInsert() {
         Log log = new Log();
-        log.setTag("plat");
+        log.setTagName("plat");
         log.setTitle("test1");
         log.setContent("test contest1");
         log.setServerProcessStart(Timestamp.valueOf(LocalDateTime.now()));

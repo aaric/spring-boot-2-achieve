@@ -31,7 +31,7 @@ public class LogServiceTest {
     @Disabled
     public void testSaveLog() {
         Log log = new Log();
-        log.setTag("plat");
+        log.setTagName("plat");
         log.setTitle("test2");
         log.setContent("test contest2");
         log.setServerProcessStart(Timestamp.valueOf(LocalDateTime.now()));

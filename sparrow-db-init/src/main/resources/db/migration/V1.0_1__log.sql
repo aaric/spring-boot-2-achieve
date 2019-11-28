@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS log (
   id bigserial PRIMARY KEY,
-  tag varchar(20) NOT NULL,
-  classify varchar(20) NOT NULL DEFAULT 'default',
+  tag_name varchar(20) NOT NULL,
+  group_name varchar(20) NOT NULL DEFAULT 'default',
   title varchar(100) NOT NULL,
   content varchar(200) NOT NULL,
   remark text,
@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS log (
 
 COMMENT ON TABLE log IS '日志记录';
 COMMENT ON COLUMN log.id IS 'ID';
-COMMENT ON COLUMN log.tag IS '标签，即系统名称';
-COMMENT ON COLUMN log.classify IS '分组名称，default-操作日志';
+COMMENT ON COLUMN log.tag_name IS '标签，即系统名称';
+COMMENT ON COLUMN log.group_name IS '分组名称，default-操作日志';
 COMMENT ON COLUMN log.title IS '标题，即模块名称';
 COMMENT ON COLUMN log.content IS '日志内容';
 COMMENT ON COLUMN log.remark IS '备注，附加信息';

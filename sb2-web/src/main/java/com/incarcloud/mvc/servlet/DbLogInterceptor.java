@@ -97,7 +97,8 @@ public class DbLogInterceptor implements HandlerInterceptor {
             if (null != dbLog) {
                 // 构建日志信息
                 Log log = new Log();
-                log.setTag(bizTag) //基本信息
+                log.setTagName(bizTag) //基本信息
+                        .setGroupName(dbLog.group())
                         .setTitle(dbLog.title())
                         .setContent(logContent)
                         .setRemark(dbLog.remark())

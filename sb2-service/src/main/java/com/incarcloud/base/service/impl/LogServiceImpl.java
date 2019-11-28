@@ -27,9 +27,9 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements LogSe
     }
 
     @Override
-    public boolean saveLog(String tag, String title, String content, String submit, Timestamp serverProcessStart) {
+    public boolean saveLog(String tagName, String title, String content, String submit, Timestamp serverProcessStart) {
         Log log = new Log();
-        log.setTag(tag);
+        log.setTagName(tagName);
         log.setTitle(title);
         log.setContent(content);
         log.setSubmit(submit);

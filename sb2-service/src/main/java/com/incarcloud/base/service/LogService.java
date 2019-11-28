@@ -23,12 +23,12 @@ public interface LogService {
     /**
      * 保存日志
      *
-     * @param tag                标签，即系统名称
+     * @param tagName            标签，即系统名称
      * @param title              标题，即模块名称
      * @param content            日志内容
      * @param submit             提交者，即用户名
      * @param serverProcessStart 服务端处理业务开始时间
      * @return
      */
-    boolean saveLog(String tag, String title, String content, String submit, Timestamp serverProcessStart);
+    boolean saveLog(String tagName, String title, String content, String submit, Timestamp serverProcessStart);
 }

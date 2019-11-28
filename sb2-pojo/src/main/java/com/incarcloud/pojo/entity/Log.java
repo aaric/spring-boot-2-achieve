@@ -34,10 +34,10 @@ public class Log {
     private Long id;
 
     @ApiModelProperty(position = 2, value = "标签，即系统名称", required = true)
-    private String tag;
+    private String tagName;
 
     @ApiModelProperty(position = 3, value = "分组名称，default-操作日志", required = true)
-    private String classify;
+    private String groupName;
 
     @ApiModelProperty(position = 4, value = "标题，即模块名称", required = true)
     private String title;

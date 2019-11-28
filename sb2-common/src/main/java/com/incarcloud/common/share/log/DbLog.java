@@ -47,7 +47,7 @@ public @interface DbLog {
      *
      * @return string
      */
-    String classify() default "default";
+    String group() default "default";
 
     /**
      * 标题，即模块名称
