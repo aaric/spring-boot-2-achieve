@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ import java.util.Date;
 @NoArgsConstructor
 @KeySequence(value = "log_id_seq")
 @TableName(value = "log")
+@ApiModel(description = "日志记录")
 public class Log {
 
     @TableId(value = "id", type = IdType.INPUT)

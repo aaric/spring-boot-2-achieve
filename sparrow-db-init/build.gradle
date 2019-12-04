@@ -12,6 +12,6 @@ dependencies {
 
 buildscript {
     dependencies {
-        classpath "org.flywaydb:flyway-gradle-plugin:5.2.4"
+        classpath "org.flywaydb:flyway-gradle-plugin:6.1.0"
     }
 }

@@ -2,7 +2,7 @@ package com.incarcloud.mvc.security.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.common.share.Constant;
-import com.incarcloud.mvc.security.entity.LoginUserInfo;
+import com.incarcloud.mvc.security.entity.LoginParamInfo;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
@@ -35,8 +35,8 @@ public class CustomJsonAuthenticationFilter extends UsernamePasswordAuthenticati
         Authentication authentication;
         UsernamePasswordAuthenticationToken authRequest = null;
         try (InputStream input = request.getInputStream()) {
-            LoginUserInfo loginUserInfo = JSON.parseObject(IOUtils.toString(input, Constant.DEFAULT_CHARSET), LoginUserInfo.class);
-            authRequest = new UsernamePasswordAuthenticationToken(loginUserInfo.getU(), loginUserInfo.getP());
+            LoginParamInfo loginParamInfo = JSON.parseObject(IOUtils.toString(input, Constant.DEFAULT_CHARSET), LoginParamInfo.class);
+            authRequest = new UsernamePasswordAuthenticationToken(loginParamInfo.getU(), loginParamInfo.getP());
 
         } catch (IOException e) {
             authRequest = new UsernamePasswordAuthenticationToken("", "");

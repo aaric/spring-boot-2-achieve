@@ -3,7 +3,9 @@ package com.incarcloud.mvc.security.config;
 import com.alibaba.fastjson.JSON;
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.mvc.security.filter.CustomJsonAuthenticationFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -28,6 +31,7 @@ import java.io.PrintWriter;
  * @author Aaric, created on 2019-07-29T11:35.
  * @version 0.6.0-SNAPSHOT
  */
+@Slf4j
 @Configuration
 public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -36,6 +40,9 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     private static final String DEFAULT_AUTH_ROUTE_PREFIX = "/api/plat/auth";
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -43,9 +50,13 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root")
+        // 静态验证
+        /*auth.inMemoryAuthentication().withUser("root")
                 .password("$2a$10$I8l1l4U7LyYVQGQDNbUH1eiQDG.n0SS6yuEcRl9SXVkTfBYhtc4sK")
-                .roles("root");
+                .roles("root");*/
+
+        // 动态验证
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -53,7 +64,7 @@ public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 /* 公共访问资源 */
                 .antMatchers("/swagger-resources", "/v2/api-docs", "/doc.html", "/webjars/bycdao-ui/**").permitAll() //设置所有人都可以访问在线文档
-                .antMatchers(getApiRoute("/login"), getApiRoute("/redirect")).permitAll() // 设置不拦截登录地址
+                .antMatchers(getApiRoute("/login"), getApiRoute("/redirect")).permitAll() //设置不拦截登录地址
                 .antMatchers("/api/plat/trade/callback/*").permitAll() //第三方支付结果回调地址
                 .anyRequest()
                 .authenticated()
