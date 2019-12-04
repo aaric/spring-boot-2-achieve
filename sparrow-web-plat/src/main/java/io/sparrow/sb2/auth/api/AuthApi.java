@@ -3,6 +3,7 @@ package io.sparrow.sb2.auth.api;
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
 import com.incarcloud.mvc.security.entity.LoginParamInfo;
+import com.incarcloud.mvc.security.entity.LoginSuccessInfo;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public interface AuthApi {
             @ApiImplicitParam(name = "loginParamInfo", value = "登录参数信息", dataType = "LoginParamInfo", paramType = "body", required = true)
     })
     @PostMapping("/login")
-    default void fakeLogin(@RequestBody LoginParamInfo loginParamInfo) {
+    default LoginSuccessInfo fakeLogin(@RequestBody LoginParamInfo loginParamInfo) {
         throw new IllegalStateException("Add Spring Security to handle authentication");
     }
 
