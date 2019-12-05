@@ -4,7 +4,10 @@ import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
 import io.sparrow.sb2.auth.api.AuthApi;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +26,9 @@ import java.util.Optional;
 @RequestMapping("/api/plat/auth")
 public class AuthController implements AuthApi {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * <pre>
      * Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -32,7 +38,6 @@ public class AuthController implements AuthApi {
      * }
      * </pre>
      */
-
     @Override
     @RequestMapping(value = "/redirect", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseData<String> redirect(HttpServletRequest request) throws ApiException {
@@ -47,5 +52,11 @@ public class AuthController implements AuthApi {
 
         // 返回用户信息
         return ResponseData.ok(userName);
+    }
+
+    @Override
+    @GetMapping(value = "/genPwdStr", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseData<String> genPwdStr(String pwdMd5, String secretSalt) throws ApiException {
+        return ResponseData.ok(passwordEncoder.encode(pwdMd5));
     }
 }

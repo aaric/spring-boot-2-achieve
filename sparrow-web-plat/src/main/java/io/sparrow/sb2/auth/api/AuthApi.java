@@ -39,4 +39,11 @@ public interface AuthApi {
             @ApiResponse(code = 31, message = "用户未登录")
     })
     ResponseData<String> redirect(HttpServletRequest request) throws ApiException;
+
+    @ApiOperation("加密凭据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pwdMd5", value = "加密后的密码字符串", dataType = "string", paramType = "query", required = true),
+            @ApiImplicitParam(name = "secretSalt", value = "密码盐", dataType = "string", paramType = "query", required = true)
+    })
+    ResponseData<String> genPwdStr(String pwdMd5, String secretSalt) throws ApiException;
 }
