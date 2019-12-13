@@ -28,7 +28,7 @@ subprojects {
         jacksonVersion = "2.9.+"
         springBootVersion = "2.1.+"
         postgresqlVersion = "42.2.8"
-        druidSpringVersion = "1.1.21"
+        druidSpringVersion = "1.1.20"
         mybatisPlusVersion = "3.2.0"
         swagger2Version = "2.8.0"
         swaggerAnnotationsVersion = "1.5.20"
