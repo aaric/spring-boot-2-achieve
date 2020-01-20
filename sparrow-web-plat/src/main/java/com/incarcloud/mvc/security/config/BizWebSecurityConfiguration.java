@@ -36,7 +36,7 @@ import java.io.PrintWriter;
 @Slf4j
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, proxyTargetClass = true)
 public class BizWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
