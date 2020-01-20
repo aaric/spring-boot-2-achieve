@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 /**
  * UserInfoServiceTest
  *
@@ -30,5 +32,12 @@ public class UserInfoServiceTest {
         UserInfo userInfo = userInfoService.getUserInfo("root");
         log.debug(userInfo.toString());
         Assertions.assertNotNull(userInfo);
+    }
+
+    @Test
+    @Disabled
+    public void testQueryAuthorityList() {
+        List<String> list = userInfoService.queryAuthorityList(1);
+        Assertions.assertNotEquals(0, list.size());
     }
 }

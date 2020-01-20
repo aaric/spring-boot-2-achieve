@@ -10,3 +10,6 @@ COMMENT ON COLUMN role.id IS 'ID';
 COMMENT ON COLUMN role.role_name IS '角色名称';
 COMMENT ON COLUMN role.is_del IS '是否删除，默认false';
 COMMENT ON COLUMN role.insert_time IS '入库时间';
+
+/* 初始化系统支持的角色记录 */
+INSERT INTO role VALUES (1, '超级管理员');

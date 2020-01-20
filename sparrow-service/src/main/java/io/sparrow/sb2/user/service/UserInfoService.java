@@ -2,6 +2,8 @@ package io.sparrow.sb2.user.service;
 
 import io.sparrow.sb2.entity.UserInfo;
 
+import java.util.List;
+
 /**
  * 用户信息服务接口
  *
@@ -17,4 +19,12 @@ public interface UserInfoService {
      * @return
      */
     UserInfo getUserInfo(String username);
+
+    /**
+     * 查询授权信息
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    List<String> queryAuthorityList(Integer userId);
 }

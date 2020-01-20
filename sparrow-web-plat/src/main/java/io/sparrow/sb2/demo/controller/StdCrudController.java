@@ -8,6 +8,7 @@ import io.sparrow.sb2.dto.PersonDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -39,6 +40,7 @@ public class StdCrudController implements StdCrudApi {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('demo:stdCrud:save')")
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @DbLog(title = "测试模块", content = "保存人员信息：{0}")
     public ResponseData<Integer> save(@Valid @RequestBody PersonDto personDto) throws ApiException {
@@ -49,6 +51,7 @@ public class StdCrudController implements StdCrudApi {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('demo:stdCrud:update')")
     @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @DbLog(title = "测试模块", content = "更新人员信息：{0}")
     public ResponseData<Object> update(@Valid @RequestBody PersonDto personDto) throws ApiException {
@@ -59,6 +62,7 @@ public class StdCrudController implements StdCrudApi {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('demo:stdCrud:get')")
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @DbLog(title = "测试模块", content = "查询人员信息：{0}")
     public ResponseData<PersonDto> get(@PathVariable("id") Integer id) throws ApiException {
@@ -69,12 +73,14 @@ public class StdCrudController implements StdCrudApi {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('demo:stdCrud:query')")
     @GetMapping(value = "/query", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseData<List<PersonDto>> query() throws ApiException {
         return ResponseData.ok(null).extraMsg("批量查询人员信息");
     }
 
     @Override
+    @PreAuthorize("hasAuthority('demo:stdCrud:delete')")
     @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @DbLog(title = "测试模块", content = "删除人员信息：{0}")
     public ResponseData<Object> delete(@PathVariable("id") Integer id) throws ApiException {

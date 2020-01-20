@@ -8,10 +8,15 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 用户认证服务实现
@@ -52,6 +57,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new DisabledException(msg);
         }
 
-        return new LoginSuccessInfo(userInfo.getId(), userInfo.getUsername(), userInfo.getSecret(), null);
+        // 查询当前用户授权信息
+        Collection<GrantedAuthority> authorities = queryGrantedAuthorities(userInfo.getId());
+
+        return new LoginSuccessInfo(userInfo.getId(), userInfo.getUsername(), userInfo.getSecret(), authorities);
+    }
+
+    /**
+     * 根据用户ID查询授权信息
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    private Collection<GrantedAuthority> queryGrantedAuthorities(Integer userId) {
+        // 权限注解示例：@PreAuthorize("hasAuthority('demo:stdCrud:query')")
+        List<String> authorities = userInfoService.queryAuthorityList(userId);
+        return AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]));
     }
 }

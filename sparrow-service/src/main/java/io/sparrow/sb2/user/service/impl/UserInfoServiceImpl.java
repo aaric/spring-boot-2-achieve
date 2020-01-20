@@ -9,6 +9,8 @@ import io.sparrow.sb2.user.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 用户信息服务实现
  *
@@ -24,5 +26,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         LambdaQueryWrapper<UserInfo> wrapper = Wrappers.<UserInfo>lambdaQuery()
                 .eq(UserInfo::getUsername, username);
         return getBaseMapper().selectOne(wrapper);
+    }
+
+    @Override
+    public List<String> queryAuthorityList(Integer userId) {
+        return getBaseMapper().queryAuthorityList(userId);
     }
 }

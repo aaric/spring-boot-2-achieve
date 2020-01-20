@@ -10,3 +10,10 @@ COMMENT ON COLUMN authority.id IS 'ID';
 COMMENT ON COLUMN authority.authority_code IS '权限识别码';
 COMMENT ON COLUMN authority.is_del IS '是否删除，默认false';
 COMMENT ON COLUMN authority.insert_time IS '入库时间';
+
+/* 初始化系统支持的权限记录 */
+INSERT INTO authority VALUES (1, 'demo:stdCrud:save');
+INSERT INTO authority VALUES (2, 'demo:stdCrud:update');
+INSERT INTO authority VALUES (3, 'demo:stdCrud:get');
+INSERT INTO authority VALUES (4, 'demo:stdCrud:query');
+INSERT INTO authority VALUES (5, 'demo:stdCrud:delete');
