@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,7 +25,7 @@ import java.util.Collection;
 @Accessors(chain = true)
 @NoArgsConstructor
 @ApiModel(description = "登录成功信息")
-public class LoginSuccessInfo implements UserDetails {
+public class LoginSuccessInfo implements UserDetails, CredentialsContainer {
 
     @ApiModelProperty(position = 1, value = "ID", required = true)
     private Integer id;
@@ -83,5 +84,10 @@ public class LoginSuccessInfo implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        this.password = null;
     }
 }

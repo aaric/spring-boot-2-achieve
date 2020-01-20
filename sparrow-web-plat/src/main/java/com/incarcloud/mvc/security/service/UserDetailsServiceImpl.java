@@ -57,9 +57,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new DisabledException(msg);
         }
 
-        // 查询当前用户授权信息
-        Collection<GrantedAuthority> authorities = queryGrantedAuthorities(userInfo.getId());
-        return new LoginSuccessInfo(userInfo.getId(), userInfo.getUsername(), userInfo.getSecret(), authorities);
+        // 设置当前用户信息和授权信息
+        return new LoginSuccessInfo(userInfo.getId(), userInfo.getUsername(), userInfo.getSecret(), queryGrantedAuthorities(userInfo.getId()));
     }
 
     /**
