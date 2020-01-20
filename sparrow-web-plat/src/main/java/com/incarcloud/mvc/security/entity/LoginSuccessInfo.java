@@ -35,10 +35,10 @@ public class LoginSuccessInfo implements UserDetails {
     @ApiModelProperty(position = 3, value = "认证凭据")
     private String password;
 
-    @ApiModelProperty(position = 3, value = "账号拥有授权列表")
+    @ApiModelProperty(position = 4, value = "账号拥有权限列表")
     private Collection<? extends GrantedAuthority> authorities;
 
-    public LoginSuccessInfo(Integer id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public LoginSuccessInfo(Integer id, String username, String password, Collection<GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.password = password;

@@ -59,7 +59,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // 查询当前用户授权信息
         Collection<GrantedAuthority> authorities = queryGrantedAuthorities(userInfo.getId());
-
         return new LoginSuccessInfo(userInfo.getId(), userInfo.getUsername(), userInfo.getSecret(), authorities);
     }
 
