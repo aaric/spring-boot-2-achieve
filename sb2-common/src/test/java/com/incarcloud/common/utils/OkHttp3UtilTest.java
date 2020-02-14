@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class OkHttp3UtilTest {
 
     @Test
+    @Disabled
     public void testGet() throws Exception {
         String result = OkHttp3Util.get("https://www.baidu.com", null);
         Assertions.assertNotNull(result);

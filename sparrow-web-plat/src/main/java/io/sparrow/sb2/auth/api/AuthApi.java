@@ -2,7 +2,8 @@ package io.sparrow.sb2.auth.api;
 
 import com.incarcloud.common.data.ResponseData;
 import com.incarcloud.common.exception.ApiException;
-import com.incarcloud.mvc.security.entity.LoginUserInfo;
+import com.incarcloud.mvc.security.entity.LoginParamInfo;
+import com.incarcloud.mvc.security.entity.LoginSuccessInfo;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +21,10 @@ public interface AuthApi {
 
     @ApiOperation("登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "loginUserInfo", value = "登录用户信息", dataType = "LoginUserInfo", paramType = "body", required = true)
+            @ApiImplicitParam(name = "loginParamInfo", value = "登录参数信息", dataType = "LoginParamInfo", paramType = "body", required = true)
     })
     @PostMapping("/login")
-    default void fakeLogin(@RequestBody LoginUserInfo loginUserInfo) {
+    default LoginSuccessInfo fakeLogin(@RequestBody LoginParamInfo loginParamInfo) {
         throw new IllegalStateException("Add Spring Security to handle authentication");
     }
 
@@ -38,4 +39,11 @@ public interface AuthApi {
             @ApiResponse(code = 31, message = "用户未登录")
     })
     ResponseData<String> redirect(HttpServletRequest request) throws ApiException;
+
+    @ApiOperation("加密凭据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pwdMd5", value = "加密后的密码字符串", dataType = "string", paramType = "query", required = true),
+            @ApiImplicitParam(name = "secretSalt", value = "密码盐", dataType = "string", paramType = "query", required = true)
+    })
+    ResponseData<String> genPwdStr(String pwdMd5, String secretSalt) throws ApiException;
 }
