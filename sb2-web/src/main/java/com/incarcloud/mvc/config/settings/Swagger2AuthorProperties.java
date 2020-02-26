@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   document:
+ *   swagger2:
  *     author:
  *       name: 英卡科技
  *       website-url: www.incarcloud.com

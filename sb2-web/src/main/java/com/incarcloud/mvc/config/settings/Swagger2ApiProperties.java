@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * <pre>
  * # Incarcloud settings
  * incarcloud:
- *   document:
+ *   swagger2:
  *     api:
  *       title: 英卡示例项目在线API文档
  *       description: 本文档包含该项目全部业务接口，注意保密。

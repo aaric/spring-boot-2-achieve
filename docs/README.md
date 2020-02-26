@@ -219,3 +219,50 @@ sh> docker exec -it db-postgres-10 psql -U postgres
 # 销毁容器
 sh> docker-compose down -v  # destory
 ```
+
+3. **发布jar到Maven仓库配置**
+
+```groovy
+apply plugin: "maven-publish"
+
+ext {
+    publishUsername = "username"
+    publishPassword = "possword"
+}
+
+ task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = "sources"
+}
+
+publishing {
+    // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+    publications {
+        myPublication(MavenPublication) {
+            from components.java
+            artifact sourceJar
+        }
+    }
+    repositories {
+        if (project.version.contains("-")) {
+            // Snapshots
+            maven {
+                url "https://repository.incarcloud.com/content/repositories/snapshots/"
+                credentials {
+                    username publishUsername
+                    password publishPassword
+                }
+            }
+        } else {
+            // Releases
+            maven {
+                url "https://repository.incarcloud.com/content/repositories/releases/"
+                credentials {
+                    username publishUsername
+                    password publishPassword
+                }
+            }
+        }
+    }
+}
+```
