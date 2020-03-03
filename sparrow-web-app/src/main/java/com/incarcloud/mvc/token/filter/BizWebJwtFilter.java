@@ -60,7 +60,7 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
         // 考虑未携带Token非法请求的情况
         if (StringUtils.isBlank(cid) || StringUtils.isBlank(token)) {
             // 提示：非法请求
-            doResponse(response, ResponseData.error(ResponseData.ERROR_0001).extraMsg("非法请求"));
+            doResponse(response, ResponseData.error(ResponseData.ERROR_0002).extraMsg("非法请求"));
         } else {
             // 验证客户端Token信息
             try {
@@ -79,7 +79,7 @@ public class BizWebJwtFilter extends OncePerRequestFilter {
 
             } catch (Exception e) {
                 // 提示：未知错误
-                doResponse(response, ResponseData.error(ResponseData.ERROR_0003).extraMsg("未知错误"));
+                doResponse(response, ResponseData.error(ResponseData.ERROR_0001).extraMsg("未知错误"));
             }
         }
     }

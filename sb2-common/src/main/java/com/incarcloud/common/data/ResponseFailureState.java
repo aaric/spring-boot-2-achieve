@@ -11,13 +11,13 @@ public interface ResponseFailureState {
     /**
      * 0001 - 0020: 定义系统错误吗
      */
-    // 非法请求
+    // 未知错误
     String ERROR_0001 = "0001";
 
-    // 系统繁忙，请稍候重试
+    // 非法请求
     String ERROR_0002 = "0002";
 
-    // 未知错误
+    // 系统繁忙，请稍候重试
     String ERROR_0003 = "0003";
 
     /**
