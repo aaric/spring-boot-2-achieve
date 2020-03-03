@@ -94,6 +94,8 @@ buildscript {
 
 2. JUnit4升级到JUnit5指南
 
+> [junit-5-support](https://docs.gradle.org/4.6/release-notes.html#junit-5-support)
+
     - @Test：`import org.junit.Test;` --> `import org.junit.jupiter.api.Test;`
     - @Ignore: `import org.junit.Ignore;` --> `import org.junit.jupiter.api.Disabled;`
     - @Assert: `import org.junit.Assert;` --> `import org.junit.jupiter.api.Assertions;`
@@ -104,7 +106,7 @@ buildscript {
 3. 支持@SpringBootTest测试
 
 ```java
-@RunWith(SpringRunner.class)
+@SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class XxxTest {
 }

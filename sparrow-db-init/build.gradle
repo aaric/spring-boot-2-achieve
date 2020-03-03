@@ -1,9 +1,9 @@
-apply plugin: 'org.flywaydb.flyway'
+apply plugin: "org.flywaydb.flyway"
 
 flyway {
-    url = 'jdbc:postgresql://10.0.11.21:5432/testdb'
-    user = 'testdb'
-    password = 'testdb'
+    url = "jdbc:postgresql://10.0.11.21:5432/testdb"
+    user = "testdb"
+    password = "testdb"
 }
 
 dependencies {

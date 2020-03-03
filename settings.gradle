@@ -1,14 +1,14 @@
-include '3rd-wxpay-sdk'
-include 'sb2-common'
-include 'sb2-pojo'
-include 'sb2-service'
-include 'sb2-service-common'
-include 'sb2-web'
-include 'sparrow-pojo'
-include 'sparrow-service'
-include 'sparrow-web-app'
-include 'sparrow-web-plat'
-include 'sparrow-cmd-task'
-include 'sparrow-db-init'
+include "3rd-wxpay-sdk"
+include "sb2-common"
+include "sb2-pojo"
+include "sb2-service"
+include "sb2-service-common"
+include "sb2-web"
+include "sparrow-pojo"
+include "sparrow-service"
+include "sparrow-web-app"
+include "sparrow-web-plat"
+include "sparrow-cmd-task"
+include "sparrow-db-init"
 
-rootProject.name = 'spring-boot-2-achieve'
+rootProject.name = "spring-boot-2-achieve"
